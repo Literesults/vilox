@@ -17,13 +17,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #fff;
 }
 
 @layer utilities {
@@ -31,3 +25,31 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
+/* Hero section startting */
+.hero{
+  height: 85vh;
+}
+@media (min-width: 992px){
+  .hero{
+    height: 135vh;
+  }
+  .hero h1{
+    line-height: 84px;
+  }
+}
+/* Hero section ending */
+
+
+/* why us starting  */
+/* .whyContainer{
+  height: auto ;
+}
+@media(min-width: 992px) {
+  .whyContainer{
+    height: 600px;
+  }
+} */
+/* why us ending */
