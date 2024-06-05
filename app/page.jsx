@@ -1,6 +1,5 @@
 import Hero from "./components/Hero/Hero";
 import About from "./components/about/About";
-import { Download } from "./components/download/download";
 import WhyUs from "./components/whyUs/why";
 
 export default function Home() {
@@ -10,7 +9,7 @@ export default function Home() {
     <WhyUs />
     <About />
    
-    <Download />
+   
     </>
  )
 
