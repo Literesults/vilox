@@ -3,7 +3,8 @@ import wIcon from '../../assets/w-icon.png'
 
 const WhyUs = () => {
     return (
-        <div className="whyContainer h-auto lg:p-14 p-6"
+        <div className="whyContainer h-auto lg:p-14 p-6" 
+        id="whyUs"
             style={
                 {
                     backgroundColor: '#0F0F0F'

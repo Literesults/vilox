@@ -31,6 +31,7 @@ body {
 /* Hero section startting */
 .hero{
   height: 85vh;
+  padding-top: 60px!important
 }
 @media (min-width: 992px){
   .hero{
@@ -47,6 +48,22 @@ body {
   /* download section ending */
 }
 /* Hero section ending */
+
+@media  (max-width: 768px) {
+  .navbar .mobileView{
+    position: absolute;
+    text-align: center;
+    height: 90vh;
+    width: 100%;
+    background-color: white;
+    top: 80px;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+  }
+}
 
 
 /* why us starting  */

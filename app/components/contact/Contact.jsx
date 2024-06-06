@@ -4,7 +4,7 @@ import PhoneImg from '../../assets/contactPhone.png'
 
  const Contact = () => {
   return (
-    <div className='container my-14 py-24'>
+    <div className='container my-14 py-24' id='contact'>
         <h2 className='text-3xl font-bold text-center' 
         style={{
             color: '#0F0F0F'
