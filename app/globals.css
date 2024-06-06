@@ -39,6 +39,12 @@ body {
   .hero h1{
     line-height: 84px;
   }
+
+  /* download section starting  */
+  .download h1{
+    line-height: 84px;
+  }
+  /* download section ending */
 }
 /* Hero section ending */
 
