@@ -20,7 +20,7 @@ const About = () => {
       >
         Get to understand Vilox and what we do.
       </p>
-      <div className="lg:grid grid-cols-2 lg:p-10 p-2">
+      <div className="lg:grid grid-cols-2 lg:p-10 p-0">
         <div className="gridContent">
           <Image src={aboutImg} />
         </div>
