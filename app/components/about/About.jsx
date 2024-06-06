@@ -7,7 +7,7 @@ import AppStore from '../../assets/appStoreButton.png'
 
 const About = () => {
   return (
-    <div className="my-8">
+    <div className="my-8" id='about'>
       <h2 className="text-3xl font-bold text-center"
         style={{
           color: '#0F0F0F'

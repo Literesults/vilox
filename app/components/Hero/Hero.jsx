@@ -8,7 +8,7 @@ import AppStore from '../../assets/appStoreButton.png'
   return (
     <div className="hero container w-full flex flex-col p-6 lg:pt-16  lg:p-44 text-center overflow-hidden" 
     >
-       <div className="textInfo">
+       <div className="textInfo pt-10">
        <h1 className="font-bold lg:text-7xl text-center py-4 text-4xl" 
         style={{color: '#0F0F0F',
         }}>
@@ -18,7 +18,7 @@ import AppStore from '../../assets/appStoreButton.png'
         className="font-normal lg:text-2xl text-1xl text-center"
          style={{
             color: '#373737',
-            lineHeight: '32px'
+            lineHeight: 'normal'
          }}
         >
         Exchange can never go wrong with Vilox. We buy all kinds of gift card and Cryptocurrencies available.
