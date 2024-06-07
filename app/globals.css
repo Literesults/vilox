@@ -27,12 +27,21 @@ body {
 }
 
 
+/* .navbar section  */
+.mobileViewLogo{
+  width: 100%;
+  height: auto;
+}
+/* .navbar section ending */
+
+
 
 /* Hero section startting */
 .hero{
   height: 85vh;
   padding-top: 60px!important
 }
+
 @media (min-width: 992px){
   .hero{
     height: 135vh;
@@ -62,6 +71,10 @@ body {
     display: flex;
     flex-direction : column;
     justify-content: center;
+  }
+  .mobileViewLogo{
+    width: 100%;
+    height: auto;
   }
 }
 

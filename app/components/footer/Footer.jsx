@@ -1,11 +1,19 @@
 import React from 'react'
 import Image from 'next/image'
 import Logo from '../../assets/viloxLogo.png'
+import 
+{ FaFacebook,
+ FaInstagram,
+ FaLinkedinIn,
+ FaTwitter} 
+from 'react-icons/fa'
 
  const Footer = () => {
   return (
     <div className="lg:px-16 p-6">
-        <h2 className='font-bold text-center lg:text-5xl text-3xl'
+        <h2
+        data-aos="zoom-in-down"
+        className='font-bold text-center lg:text-5xl text-3xl'
         style={
             {
                 color: '#0F0F0F'
@@ -26,11 +34,33 @@ import Logo from '../../assets/viloxLogo.png'
             backgroundColor: 'rgba(30, 30, 30, 0.1)'
         }}
         >
-            <div className="icons">
-                <a href="#">Icon</a>
-                <a href="#">Icon</a>
-                <a href="#">Icon</a>
-                <a href="#">Icon</a>
+            <div className="icons flex justify-center lg:justify-start item-center mb-6 lg:mb-0"
+            style={{
+                gap: '30px'
+            }}
+            >
+                <a href="#" className='p-2 text-white rounded-full' 
+                style={{background: 'rgba(15, 15, 15, 1)'}}
+                >
+                    <FaFacebook />
+                </a>
+                <a href="#"
+                 className='p-2 text-white rounded-full' 
+                style={{background: 'rgba(15, 15, 15, 1)'}}>
+                    <FaTwitter />
+                </a>
+                <a href="#"
+                 className='p-2 text-white rounded-full' 
+                 style={{background: 'rgba(15, 15, 15, 1)'}}
+                >
+                <FaInstagram />
+                </a>
+                <a href="#" 
+                 className='p-2 text-white rounded-full' 
+                 style={{background: 'rgba(15, 15, 15, 1)'}}
+                >
+                    <FaLinkedinIn />
+                </a>
             </div>
             <div className="footerImg text-center flex justify-center my-4">
                 <a href="#">
