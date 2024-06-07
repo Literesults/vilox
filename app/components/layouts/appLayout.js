@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import SideNav from "../molecules/SideNav";
 import { useRouter } from "next/navigation";
-import TopNav from "../molecules/TopNav";
 import { useSelector } from "react-redux";
-import { Session } from "@/hooks/Auth";
+import { Session } from "@/app/hooks/Auth";
+import SideNav from "../molecules/SideNav";
 
 function AppLayout({ children }) {
   const user = useSelector((state) => state.User);
@@ -13,7 +12,7 @@ function AppLayout({ children }) {
   const router = useRouter();
 
   if (isAuthenticated.status === "unauthenticated") {
-    router.push("/auth/login");
+    router.push("/auth");
   } else {
     return (
       <>
@@ -21,10 +20,6 @@ function AppLayout({ children }) {
           <SideNav />
         </div>
         <div className={`p-4 pb-8 md:ml-64 transition-all duration-300 select-none min-h-screen`}>
-          <div className="flex gap-3 items-center">
-            <div className="flex-grow"><TopNav /></div>
-            <div onClick={() => setShowNav(!showNav)} className="h-8 w-8 bg-hrms_green md:hidden text-white rounded-md text-xl flex items-center justify-center cursor-pointer"><i className="ri-menu-line"></i></div>
-          </div>
           {children}
         </div>
       </>

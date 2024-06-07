@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
-import bg from "@assets/images/bg.png";
-import logo from "@assets/images/authLogo.png";
 import React from "react";
-import { useSelector } from "react-redux";
+import logo from "@assets/image/viloxLogo.png"
+import Image from "next/image";
 
 function AuthLayout({ children, onSubmit, errMsg }) {
   const serialize = (form) => {
@@ -46,25 +44,36 @@ function AuthLayout({ children, onSubmit, errMsg }) {
   };
 
   return (
-    <div className="h-screen overflow-hidden relative w-screen flex items-center">
-      <div className="bg-hrms_green bg-opacity-15 bottom-44 -left-14 h-28 w-28 absolute rounded-full"></div>
-      <div className="bg-hrms_green -right-40 -top-40 bg-opacity-5 h-96 w-96 absolute rounded-full"></div>
-      <div className="bg-hrms_green -left-20 -bottom-20 bg-opacity-20 h-96 w-96 absolute rounded-full"></div>
-      <div className="w-full z-50">
-        <form
-            onSubmit={(e) => {
-              e.preventDefault(), onSubmit(serialize(e.target));
-            }} className="max-w-lg space-y-10 mx-auto p-3">
-          
-          <Image src={logo} alt="" draggable="false" className="mx-auto w-72 " />
+    <div className="h-screen bg-black grid md:grid-cols-2 lg:grid-cols-3">
+      <div className="bg-white h-screen p-4 flex flex-col">
+        <div>
+          <Image src={logo} className="w-20" alt="LOGO" />
+        </div>
+        <div className="flex-grow flex flex-col space-y-16 w-full justify-center">
           <div className="space-y-4">
-            <div className="text-danger text-sm">{errMsg}</div>
-            <div className="space-y-5">{children}</div>
+            <div className="text-3xl">Welcome Back</div>
+            <div className="text-sm text-gray-400">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ratione, corrupti consequatur animi fugiat numquam sed dolore repellendus
+            </div>
           </div>
-        </form>
+          <div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault(), onSubmit(serialize(e.target));
+              }} >
+              <div className="space-y-4">
+                <div className="text-danger text-sm">{errMsg}</div>
+                <div className="space-y-5">{children}</div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="text-center text-xs select-none pointer-events-none">Powered by Vilox</div>
       </div>
+      <div className="col-span-2"></div>
     </div>
   );
 }
 
 export default AuthLayout;
+{/*  */ }
