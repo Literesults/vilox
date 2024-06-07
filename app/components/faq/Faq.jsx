@@ -46,12 +46,12 @@ const Faq = () => {
       </p>
 
       <div className="lg:grid grid-cols-2 my-11" style={{ gap: '120px' }}>
-        <div className="gridContent" data-aos="zoom-out">
+        <div className="gridContent" data-aos="fade-out">
           <Image src={FaqImg} alt="FAQ Image" />
         </div>
         <div className="gridContent mt-18 relative">
           <ul className="relative p-6 lg:p-1" style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
-            <div data-aos="zoom-in-down">
+            <div data-aos="fade-in">
               <li
                 className='flex'
                 style={{
@@ -74,7 +74,7 @@ const Faq = () => {
                 </div>
               )}
             </div>
-            <div data-aos="zoom-in-down" data-aos-delay="100">
+            <div data-aos="fade-out" data-aos-delay="100">
               <li
                 style={{
                   color: 'rgba(15, 15, 15, 1)',
@@ -93,7 +93,7 @@ const Faq = () => {
                 </div>
               )}
             </div>
-            <div className="" data-aos="zoom-in-down" data-aos-delay="200">
+            <div className="" data-aos="fade-out" data-aos-delay="200">
               <li
                 style={{
                   color: 'rgba(15, 15, 15, 1)',
@@ -112,7 +112,7 @@ const Faq = () => {
                 </div>
               )}
             </div>
-            <div data-aos="zoom-in-down" data-aos-delay="300">
+            <div data-aos="fade-down" data-aos-delay="300">
               <li
                 style={{
                   color: 'rgba(15, 15, 15, 1)',
@@ -131,7 +131,7 @@ const Faq = () => {
                 </div>
               )}
             </div>
-            <div data-aos="zoom-in-down" data-aos-delay="400">
+            <div data-aos="fade-up" data-aos-delay="400">
               <li
                 style={{
                   color: 'rgba(15, 15, 15, 1)',

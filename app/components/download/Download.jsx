@@ -32,7 +32,7 @@ const Download = () => {
       </div>
       <div 
         className="gridContent"
-        data-aos="zoom-in"
+        data-aos="fade-in"
       >
         <Image src={DownloadPng} alt="Download Image" />
       </div>
