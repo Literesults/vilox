@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaBars } from 'react-icons/fa';
 
 
 export const MobileView = () => {
@@ -9,7 +10,9 @@ export const MobileView = () => {
 
     return (
         <>
-      <button className='lg:hidden block' onClick={menu}>Menu</button>
+      <button className='lg:hidden block' onClick={menu}>
+        <FaBars />
+      </button>
             {navbarHide && (
                 <ul className='lg:flex gap-10 m-0 p-0 justify-end items-center mobileView' >
                     <li className='list-none'>
@@ -18,12 +21,10 @@ export const MobileView = () => {
                             Home
                         </a>
                     </li>
-                    <li className='list-none'>
                         <a href="#whyUs"
                             className='font-normal'>
                             Why use Vilox
                         </a>
-                    </li>
                     <li className='list-none'>
                         <a href="#about"
                             className='font-normal'>

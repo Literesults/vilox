@@ -10,9 +10,7 @@ const Navbar = () => {
     style={{zIndex: '999'}}
     >
       <a href="#">
-        <a>
-          <Image src={Logo} alt="Vilox Logo" />
-        </a>
+          <Image src={Logo} alt="Vilox Logo" className='mobileViewLogo' />
       </a>
      < ul className='lg:flex gap-10 m-0 p-0 justify-end items-center hidden' >
          <li className='list-none'>
@@ -21,12 +19,10 @@ const Navbar = () => {
              Home
            </a>
          </li>
-         <li className='list-none'>
            <a href="#whyUs"
            className='font-normal'>
              Why use Vilox
            </a>
-         </li>
          <li className='list-none'>
            <a href="#about"
            className='font-normal'>

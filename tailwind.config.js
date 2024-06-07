@@ -12,6 +12,9 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      color:{
+        ViloxBlack: '#00FF00',
+      },
     },
     colors: {
       white: "#FFFFFF",
@@ -32,5 +35,6 @@ module.exports = {
       },
     },
   },
+ 
   plugins: [],
 };
