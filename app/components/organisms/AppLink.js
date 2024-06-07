@@ -19,9 +19,9 @@ function AppLink({ text, icon, subMenu }) {
 
   const checkOpen = () => {
     const page = url.split("/");
-    setActive(page[1]);
-    if (page.length > 1 && page[1].toLowerCase() === text.toLowerCase().replaceAll(" ", "_").replaceAll("&", "x")) {
-      setActiveSub(page[2]);
+    setActive(page[2]);
+    if (page.length > 1 && page[2].toLowerCase() === text.toLowerCase().replaceAll(" ", "_").replaceAll("&", "x")) {
+      setActiveSub(page[3]);
       openSubMenu();
     }
   };
@@ -53,9 +53,9 @@ function AppLink({ text, icon, subMenu }) {
         </div>
       ) : (
         <Link
-          href={`/${text === "dashboard"
-              ? "admin"
-              : "admin/"+text.toLowerCase().replaceAll(" ", "_").replaceAll("&", "x")
+          href={`/admin/${text === "dashboard"
+              ? "dashboard"
+              : text.toLowerCase().replaceAll(" ", "_").replaceAll("&", "x")
             }`}
         >
           <div
