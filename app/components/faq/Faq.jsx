@@ -48,8 +48,8 @@ const Faq = () => {
           <Image src={FaqImg} alt="FAQ Image" />
         </div>
         <div className="gridContent mt-18 relative">
-          <ul className="relative"
-          style={{display: 'flex', flexDirection: 'column', gap: '60px'}}
+          <ul className="relative p-6 lg:p-1"
+          style={{display: 'flex',  flexDirection: 'column', gap: '60px'}}
           >
         <div>
         <li
@@ -89,7 +89,7 @@ const Faq = () => {
               </div>
             )}
         </div>
-        <div className="p-4">
+        <div className="">
         <li
               style={{
                 color: 'rgba(15, 15, 15, 1)',
