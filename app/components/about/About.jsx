@@ -14,8 +14,8 @@ const About = () => {
         Get to understand Vilox and what we do.
       </p>
       <div className="lg:grid grid-cols-2 lg:p-10 p-0">
-        <div className="gridContent" data-aos="zoom-in">
-          <Image src={aboutImg} alt="About Vilox" />
+        <div className="gridContent p-4" >
+          <Image src={aboutImg} alt="About Vilox" data-aos="zoom-in" />
         </div>
         <div className="gridContent h-auto p-6">
           <div className="p-6" style={{ backgroundColor: '#F2F2F2', borderRadius: '20px' }} data-aos="fade-up">

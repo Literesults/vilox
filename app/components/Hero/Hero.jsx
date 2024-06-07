@@ -38,7 +38,7 @@ import AppStore from '../../assets/appStoreButton.png'
         </div>
        </div>
        <div className="imgInfo flex justify-center" >
-        <Image src={HeroImg}  data-aos="fade-up"  />
+        <Image src={HeroImg}  />
        </div>
     </div>
   )
