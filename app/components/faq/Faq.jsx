@@ -5,28 +5,6 @@ import FaqImg from '../../assets/FaqImg.png';
 import { FaAngleUp } from 'react-icons/fa';
 
 const Faq = () => {
-  const [hideContent, displayContent] = useState(false);
-  const [hideContent1, displayContent1] = useState(false);
-  const [hideContent2, displayContent2] = useState(false);
-  const [hideContent3, displayContent3] = useState(false);
-  const [hideContent4, displayContent4] = useState(false);
-
-  const toggleContent = () => {
-    displayContent(!hideContent);
-  };
-  const toggleContent1 = () => {
-    displayContent1(!hideContent1);
-  };
-  const toggleContent2 = () => {
-    displayContent2(!hideContent2);
-  };
-  const toggleContent3 = () => {
-    displayContent3(!hideContent3);
-  };
-  const toggleContent4 = () => {
-    displayContent4(!hideContent4);
-  };
-
   return (
     <div className='my-4 lg:my-32 flex justify-center flex-col items-center relative' id='faq'>
       <h2
