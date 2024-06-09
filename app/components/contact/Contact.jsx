@@ -5,22 +5,13 @@ import PhoneImg from '../../assets/contactPhone.png'
  const Contact = () => {
   return (
     <div className='container my-14 py-24' id='contact'>
-        <h2 className='text-3xl font-bold text-center' 
-        style={{
-            color: '#0F0F0F'
-        }}
+        <h2 className='text-3xl font-bold text-center text-headText' 
         >Contact Us</h2>
-        <p className='text-1xl leading-4 font-normal py-3 text-center'
-        style={{
-            color: '#373737'
-        }}
+        <p className='text-1xl leading-4 font-normal py-3 text-center text-paraText'
+      
         >Got any issues? Drop a message below.</p>
 
-        <div className="lg:grid p-4 lg:p-12 grid-cols-2 lg:flex items-center justify-center" style={
-            {
-                gap: '30px'
-            }
-        }>
+        <div className="lg:grid p-4 lg:p-12 grid-cols-2 lg:flex items-center justify-center gap-[30px]" >
             <div className="gridContent">
                 <Image src={PhoneImg}  />
             </div>

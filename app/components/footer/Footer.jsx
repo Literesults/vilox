@@ -13,20 +13,10 @@ from 'react-icons/fa'
     <div className="lg:px-16 p-6">
         <h2
         data-aos="zoom-in-down"
-        className='font-bold text-center lg:text-5xl text-3xl'
-        style={
-            {
-                color: '#0F0F0F'
-            }
-        }
-        >Your go - to app for swift <br className="hidden lg:block" /> and easy transactions</h2>
+        className='font-bold text-center lg:text-5xl text-3xl text-headText'>Your go - to app for swift <br className="hidden lg:block" /> and easy transactions</h2>
         <p
-        className='font-normal my-4 text-center leading-6 py-5'
-        style={
-            {
-                color: '#373737'
-            }
-        }
+        className='font-normal my-4 text-center leading-6 py-5 text-paraText'
+        
         >Sell all giftcards and cryptocurrencies on vilox <br className="hidden lg:block" /> and get your funds in minutes.</p>
 
         <div className="my-10 lg:flex items-center justify-between lg:px-16 py-10 text-center" 

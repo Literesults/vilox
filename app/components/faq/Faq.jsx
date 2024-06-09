@@ -30,8 +30,8 @@ const Faq = () => {
   return (
     <div className='my-4 lg:my-32 flex justify-center flex-col items-center relative' id='faq'>
       <h2
-        className='font-bold text-center text-3xl'
-        style={{ color: 'rgba(15, 15, 15, 1)' }}
+        className='font-bold text-center text-3xl text-linkColor'
+
         data-aos="fade-up"
       >
         Frequently Asked Questions (FAQs)
@@ -53,13 +53,9 @@ const Faq = () => {
           <ul className="relative p-6 lg:p-1" style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
             <div data-aos="fade-in">
               <li
-                className='flex'
-                style={{
-                  color: 'rgba(15, 15, 15, 1)',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer'
-                }}
+                className='flex text-linkColor font-[600] text-[16px] cursor-pointer'
+             
+                
                 onClick={toggleContent}
               >
                 <span> What is Vilox about?</span>
@@ -75,13 +71,8 @@ const Faq = () => {
               )}
             </div>
             <div data-aos="fade-out" data-aos-delay="100">
-              <li
-                style={{
-                  color: 'rgba(15, 15, 15, 1)',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer'
-                }}
+              <li className='text-linkColor font-[600] text-[16px] cursor-pointer'
+              
                 onClick={toggleContent1}
               >
                 How do I download the Vilox app?
@@ -95,12 +86,7 @@ const Faq = () => {
             </div>
             <div className="" data-aos="fade-out" data-aos-delay="200">
               <li
-                style={{
-                  color: 'rgba(15, 15, 15, 1)',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer'
-                }}
+                className='text-linkColor font-[600] text-[16px] cursor-pointer'
                 onClick={toggleContent2}
               >
                 What is Vilox gift card rate?
@@ -114,12 +100,7 @@ const Faq = () => {
             </div>
             <div data-aos="fade-down" data-aos-delay="300">
               <li
-                style={{
-                  color: 'rgba(15, 15, 15, 1)',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer'
-                }}
+               className='text-linkColor font-[600] text-[16px] cursor-pointer'
                 onClick={toggleContent3}
               >
                 Which cryptocurrency does Vilox buy?
@@ -133,12 +114,7 @@ const Faq = () => {
             </div>
             <div data-aos="fade-up" data-aos-delay="400">
               <li
-                style={{
-                  color: 'rgba(15, 15, 15, 1)',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer'
-                }}
+              className='text-linkColor font-[600] text-[16px] cursor-pointer'
                 onClick={toggleContent4}
               >
                 Does Vilox Sell Cryptocurrency to users?
