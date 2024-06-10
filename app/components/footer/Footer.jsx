@@ -13,51 +13,37 @@ from 'react-icons/fa'
     <div className="lg:px-16 p-6">
         <h2
         data-aos="zoom-in-down"
-        className='font-bold text-center lg:text-5xl text-3xl'
-        style={
-            {
-                color: '#0F0F0F'
-            }
-        }
-        >Your go - to app for swift <br className="hidden lg:block" /> and easy transactions</h2>
+        className='font-bold text-center lg:text-5xl text-3xl text-headText'>Your go - to app for swift <br className="hidden lg:block" /> and easy transactions</h2>
         <p
-        className='font-normal my-4 text-center leading-6 py-5'
-        style={
-            {
-                color: '#373737'
-            }
-        }
+        className='font-normal my-4 text-center leading-6 py-5 text-paraText'
+        
         >Sell all giftcards and cryptocurrencies on vilox <br className="hidden lg:block" /> and get your funds in minutes.</p>
 
-        <div className="my-10 lg:flex items-center justify-between lg:px-16 py-10 text-center" 
-        style={{
-            backgroundColor: 'rgba(30, 30, 30, 0.1)'
-        }}
+        <div className="my-10 lg:flex items-center justify-between lg:px-16 py-10 text-center bg-footerBg" 
+        
         >
-            <div className="icons flex justify-center lg:justify-start item-center mb-6 lg:mb-0"
-            style={{
-                gap: '30px'
-            }}
+            <div className="icons flex justify-center lg:justify-start item-center mb-6 lg:mb-0 gap-[30px]"
+            
             >
-                <a href="#" className='p-2 text-white rounded-full' 
-                style={{background: 'rgba(15, 15, 15, 1)'}}
+                <a href="#" className='p-2 text-white rounded-full bg-linkColor' 
+               
                 >
                     <FaFacebook />
                 </a>
                 <a href="#"
-                 className='p-2 text-white rounded-full' 
-                style={{background: 'rgba(15, 15, 15, 1)'}}>
+                 className='p-2 text-white rounded-full bg-linkColor' 
+               >
                     <FaTwitter />
                 </a>
                 <a href="#"
-                 className='p-2 text-white rounded-full' 
-                 style={{background: 'rgba(15, 15, 15, 1)'}}
+                 className='p-2 text-white rounded-full bg-linkColor' 
+                
                 >
                 <FaInstagram />
                 </a>
                 <a href="#" 
-                 className='p-2 text-white rounded-full' 
-                 style={{background: 'rgba(15, 15, 15, 1)'}}
+                 className='p-2 text-white rounded-full bg-linkColor' 
+                
                 >
                     <FaLinkedinIn />
                 </a>
@@ -66,7 +52,7 @@ from 'react-icons/fa'
                 <a href="#">
                     <Image src={Logo} />
                 </a>
-            </div>
+            </div>3
         </div>
 
             <div className="my-2 lg:flex items-center justify-between pb-6 text-center" 

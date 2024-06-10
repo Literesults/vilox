@@ -1,6 +1,6 @@
 'use client'
 import Cookies from 'js-cookie';
-import { addData } from '@/Store/reducers/UsersReducer';
+import { addData } from '../Store/reducers/UsersReducer';
 
 
 export function SignInAuth(data, dispatch) {

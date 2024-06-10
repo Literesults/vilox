@@ -3,13 +3,9 @@ import wIcon from '../../assets/w-icon.png';
 
 const WhyUs = () => {
     return (
-        <div className="whyContainer h-auto lg:p-14 p-6" 
+        <div className="whyContainer h-auto lg:p-14 p-6 bg-headText" 
         id="whyUs"
-            style={
-                {
-                    backgroundColor: '#0F0F0F'
-                }
-            }
+
         >
             <h4 className="text-3xl text-white font-bold text-center py-4" data-aos="fade-down">Why use Vilox</h4>
             <p className="text-1xl font-normal text-center" data-aos="fade-up"
@@ -21,13 +17,7 @@ const WhyUs = () => {
                 Download the app and give us a try today!!
             </p>
             <div className="grid lg:grid-cols-3 my-14">
-                <div className="gridItem p-6 pt-2 pb-11 lg:m-4 m-2"
-                    style={
-                        {
-                            backgroundColor: '#EFEFEF',
-                            borderRadius: '20px'
-                        }
-                    }
+                <div className="gridItem p-6 pt-2 pb-11 lg:m-4 m-2 bg-lightBg rounded-[20px]"
                     data-aos="fade-up" data-aos-delay="100"
                 >
                     <Image src={wIcon} className="py-3" alt="Icon" />
@@ -36,57 +26,32 @@ const WhyUs = () => {
                             { color: '#0F0F0F' }
                         }
                     >Secure & Safe</h5>
-                    <p
-                        style={
-                            { fontSize: '14px' }
-                        }
-                    >
+                    <p  className="text-[14px]">
                         We ensure that trading your digital assets is very safe and secure. No Ripping. No Delay. No Scam.
                     </p>
                 </div>
-                <div className="gridItem p-6 pt-2 pb-11 lg:m-4 m-2"
-                    style={
-                        {
-                            backgroundColor: '#EFEFEF',
-                            borderRadius: '20px'
-                        }
-                    }
+                <div className="gridItem p-6 pt-2 pb-11 lg:m-4 m-2 bg-lightBg rounded-[20px]"
                     data-aos="fade-up" data-aos-delay="200"
                 >
                     <Image src={wIcon} className="py-3" alt="Icon" />
-                    <h5 className="font-semibold text-2xl py-3"
-                        style={
-                            { color: '#0F0F0F' }
-                        }
+                    <h5 className="font-semibold text-2xl py-3 text-headText"
+                  
                     >Customers Satisfaction</h5>
-                    <p
-                        style={
-                            { fontSize: '14px' }
-                        }
-                    >
+                    <p  className="text-[14px]">
                         Ensuring that our customers are satisfied is what keeps us moving in business. We give the best services of all.
                     </p>
                 </div>
-                <div className="gridItem p-6 pt-2 pb-11 lg:m-4 m-2"
-                    style={
-                        {
-                            backgroundColor: '#EFEFEF',
-                            borderRadius: '20px'
-                        }
-                    }
+                <div className="gridItem p-6 pt-2 pb-11 lg:m-4 m-2 bg-lightBg rounded-[20px]"
+                
                     data-aos="fade-up" data-aos-delay="300"
+                   
+                    
                 >
                     <Image src={wIcon} className="py-3" alt="Icon" />
-                    <h5 className="font-semibold text-2xl py-3"
-                        style={
-                            { color: '#0F0F0F' }
-                        }
+                    <h5 className="font-semibold text-2xl py-3 text-headText"
+                      
                     >Fast pay, High Rate</h5>
-                    <p
-                        style={
-                            { fontSize: '14px' }
-                        }
-                    >
+                    <p  className="text-[14px]">
                         Yes, we offer high rates on all cards and we give you the fastest payment method. This is a fact and not a lie, give it a try today.
                     </p>
                 </div>
