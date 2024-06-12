@@ -7,22 +7,22 @@ import Image from 'next/image';
 import FaqImg from '../../assets/faq.png';
 
 const Faq = () => {
-  const [faqs,setFaqs] = useState([
+  const [faqs, setFaqs] = useState([
     {
-      title:'What is Vilox about?',
-      content:' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
-    },{
-      title:'How do I download the Vilox app?',
-      content:' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
-    },{
-      title:' What is Vilox gift card rate?',
-      content:' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
-    },{
-      title:'Which cryptocurrency does Vilox buy?',
-      content:' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
-    },{
-      title:'Does Vilox Sell Cryptocurrency to users?',
-      content:' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
+      title: 'What is Vilox about?',
+      content: ' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
+    }, {
+      title: 'How do I download the Vilox app?',
+      content: ' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
+    }, {
+      title: ' What is Vilox gift card rate?',
+      content: ' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
+    }, {
+      title: 'Which cryptocurrency does Vilox buy?',
+      content: ' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
+    }, {
+      title: 'Does Vilox Sell Cryptocurrency to users?',
+      content: ' Vilox has been in business for a few years now, though we have been working offline. Judging from comments, we are rated one of the best exchange platforms. We buy gift cards of all kinds, give you the best exchange rate, fast payment, very secure, and offer good customer service.'
     }
   ])
   return (
@@ -50,8 +50,10 @@ const Faq = () => {
         <div className="gridContent mt-18 relative">
           <ul className="relative p-6 lg:p-1 item-center flex flex-col gap-[60px] lg:mt-14" >
             {
-              faqs?.map((faq,i) => (
-                <FaqChips title={faq.title} content={faq.content}/>
+              faqs?.map((faq, i) => (
+                <div key={i}>
+                  <FaqChips title={faq.title} content={faq.content} />
+                </div>
               ))
             }
           </ul>
