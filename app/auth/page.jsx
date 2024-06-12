@@ -24,7 +24,7 @@ function Page() {
             setErrMsg('')
             console.log(data);
             SignInAuth(data, dispatch)
-            router.push("/admin")
+            router.push("/admin/dashboard")
         } else {
             setErrMsg(data.message)
         }
@@ -37,7 +37,7 @@ function Page() {
             <AppInput name="password" required label="Enter your password" type="password" />
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <div className="flex-grow">
-                    <AppInput type="checkbox" label="Confirm your details" />
+                    <AppInput type="checkbox" name="remember" label="remember me" />
                 </div>
                 <Link href="forgotten-password" className="text-sm text-black hidden sm:block">Forgot Password ?</Link>
             </div>
