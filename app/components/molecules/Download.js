@@ -1,14 +1,14 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
-import GooglePlay from '../../assets/googleButton.png';
-import AppStore from '../../assets/appStoreButton.png';
-import DownloadPng from '../../assets/downloadImg.png';
+import GooglePlay from '@images/images/googleButton.png';
+import AppStore from '@images/images/appStoreButton.png';
+import DownloadPng from '@images/images/downloadImg.png';
 
 const Download = () => {
   return (
     <div 
-      className='lg:grid grid-cols-2 download h-auto bg-headText'
+      className='lg:grid grid-cols-2 download h-auto bg-blackText'
      
     >
       <div 

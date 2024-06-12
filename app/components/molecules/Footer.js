@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Logo from '../../assets/viloxLogo.png'
+import Logo from '@images/images/viloxLogo.png'
 import 
 { FaFacebook,
  FaInstagram,
@@ -13,7 +13,7 @@ from 'react-icons/fa'
     <div className="lg:px-16 p-6">
         <h2
         data-aos="zoom-in-down"
-        className='font-bold text-center lg:text-5xl text-3xl text-headText'>Your go - to app for swift <br className="hidden lg:block" /> and easy transactions</h2>
+        className='font-bold text-center lg:text-5xl text-3xl text-blackText'>Your go - to app for swift <br className="hidden lg:block" /> and easy transactions</h2>
         <p
         className='font-normal my-4 text-center leading-6 py-5 text-paraText'
         
@@ -25,24 +25,24 @@ from 'react-icons/fa'
             <div className="icons flex justify-center lg:justify-start item-center mb-6 lg:mb-0 gap-[30px]"
             
             >
-                <a href="#" className='p-2 text-white rounded-full bg-linkColor' 
+                <a href="#" className='p-2 text-white rounded-full bg-blackText' 
                
                 >
                     <FaFacebook />
                 </a>
                 <a href="#"
-                 className='p-2 text-white rounded-full bg-linkColor' 
+                 className='p-2 text-white rounded-full bg-blackText' 
                >
                     <FaTwitter />
                 </a>
                 <a href="#"
-                 className='p-2 text-white rounded-full bg-linkColor' 
+                 className='p-2 text-white rounded-full bg-blackText' 
                 
                 >
                 <FaInstagram />
                 </a>
                 <a href="#" 
-                 className='p-2 text-white rounded-full bg-linkColor' 
+                 className='p-2 text-white rounded-full bg-blackText' 
                 
                 >
                     <FaLinkedinIn />
@@ -52,18 +52,18 @@ from 'react-icons/fa'
                 <a href="#">
                     <Image src={Logo} />
                 </a>
-            </div>3
+            </div>
         </div>
 
             <div className="my-2 lg:flex items-center justify-between pb-6 text-center" 
         >
             <div className="icons">
-                <a href="#">Terms of Service</a>
-                <a href="#" className='mx-4'>Privacy Policy</a>
-                <a href="#">FAQs</a>
+                <a href="#" className='text-blackText'>Terms of Service</a>
+                <a href="#" className='mx-4 text-blackText'>Privacy Policy</a>
+                <a href="#" className='text-blackText'>FAQs</a>
             </div>
             <div className="footerImg">
-                <a href="#">@2024 Vilox. All rights reserved</a>
+                <a href="#" className='text-blackText'>@2024 Vilox. All rights reserved</a>
             </div>
         </div>
     </div>

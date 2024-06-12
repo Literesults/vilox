@@ -1,11 +1,11 @@
-import Hero from "./components/Hero/Hero";
-import About from "./components/about/About";
-import Contact from "./components/contact/Contact";
-import Download from "./components/download/Download";
-import Faq from "./components/faq/Faq";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
-import WhyUs from "./components/whyUs/why";
+import Hero from "./components/molecules/Hero.js";
+import About from "./components/molecules/About.js";
+import Contact from "./components/molecules/Contact.js";
+import Download from "./components/molecules/Download.js";
+import Faq from "./components/molecules/Faq.js";
+import Footer from "./components/molecules/Footer.js";
+import Navbar from "./components/navbar/Navbar.js";
+import WhyUs from "./components/molecules/why.js";
 
 export default function Home() {
  return(
@@ -14,7 +14,7 @@ export default function Home() {
     <Hero />
     <WhyUs />
     <About />
-   <Faq />
+   <Faq /> 
    <Download />   
    <Contact />
    <Footer />
