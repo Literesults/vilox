@@ -46,7 +46,7 @@ const WhyUs = () => {
                       
                     >Fast pay, High Rate</h5>
                     <p  className="text-[14px] text-paraText">
-                        Yes, we offer high rates on all cards and we give you the fastest payment method. This is a fact and not a lie, give it a try today.
+                        Yes, we offer high rates on all cards and we give you the fastest payment method. This is a fact and not a lie, give it a try today
                     </p>
                 </div>
             </div>
