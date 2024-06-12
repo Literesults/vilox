@@ -17,7 +17,8 @@
 }
 
 body {
-  background: #fff;
+  background: white;
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -65,12 +66,13 @@ body {
     height: 90vh;
     width: 100%;
     background-color: white;
-    top: 80px;
+    top: 50px;
     right: 0;
     left: 0;
     display: flex;
     flex-direction : column;
     justify-content: center;
+    transition: all 0.3s ease-in;
   }
   .mobileViewLogo{
     width: 100%;

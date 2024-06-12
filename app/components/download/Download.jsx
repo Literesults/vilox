@@ -8,11 +8,8 @@ import DownloadPng from '../../assets/downloadImg.png';
 const Download = () => {
   return (
     <div 
-      className='lg:grid grid-cols-2 download'
-      style={{
-        height: 'auto',
-        backgroundColor: '#0F0F0F'
-      }}
+      className='lg:grid grid-cols-2 download h-auto bg-headText'
+     
     >
       <div 
         className="gridContent flex items-center flex-col justify-center p-4"
@@ -32,7 +29,7 @@ const Download = () => {
       </div>
       <div 
         className="gridContent"
-        data-aos="zoom-in"
+        data-aos="fade-in"
       >
         <Image src={DownloadPng} alt="Download Image" />
       </div>

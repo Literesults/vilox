@@ -8,17 +8,17 @@ import Navbar from "./components/navbar/Navbar";
 import WhyUs from "./components/whyUs/why";
 
 export default function Home() {
-   return (
-      <>
-         <Navbar />
-         <Hero />
-         <WhyUs />
-         <About />
-         <Faq />
-         <Download />
-         <Contact />
-         <Footer />
-      </>
-   )
+ return(
+    <>
+    <Navbar />
+    <Hero />
+    <WhyUs />
+    <About />
+   <Faq />
+   <Download />   
+   <Contact />
+   <Footer />
+    </>
+ )
 
 }

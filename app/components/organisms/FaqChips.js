@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 
 function FaqChips({title,content}) {
@@ -7,14 +8,10 @@ function FaqChips({title,content}) {
         displayContent(!hideContent);
     };
     return (
-        <div>
-            <li
-                style={{
-                    color: 'rgba(15, 15, 15, 1)',
-                    fontWeight: '600',
-                    fontSize: '16px',
-                    cursor: 'pointer'
-                }}
+        
+        <div  data-aos="fade-in">
+            <li className='text-linkColor text-[16px] cursor-pointer font-[600]'
+               
                 onClick={toggleContent}
             >
                 {title}

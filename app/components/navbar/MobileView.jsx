@@ -10,8 +10,8 @@ export const MobileView = () => {
 
     return (
         <>
-      <button className='lg:hidden block' onClick={menu}>
-        <FaBars />
+      <button className='lg:hidden block'>
+        <FaBars onClick={menu} />
       </button>
             {navbarHide && (
                 <ul className='lg:flex gap-10 m-0 p-0 justify-end items-center mobileView' >
