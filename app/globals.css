@@ -112,3 +112,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #000; 
 }
+
+.apexcharts-toolbar{
+  display: none !important;
+}
