@@ -19,7 +19,7 @@ function AppLayout({ children }) {
         <div className={`bg-gray-50 z-50 transition-all ${showNav ? "left-0":"-left-64 md:left-0"} duration-300  relative`}>
           <SideNav />
         </div>
-        <div className={`p-4 pb-8 md:ml-64 transition-all duration-300 select-none min-h-screen`}>
+        <div className={`p-4 pb-8 md:ml-64 space-y-5 bg-gray-50 transition-all duration-300 select-none min-h-screen`}>
           {children}
         </div>
       </>
