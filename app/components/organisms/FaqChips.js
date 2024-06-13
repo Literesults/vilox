@@ -10,14 +10,14 @@ function FaqChips({title,content}) {
     return (
         
         <div  data-aos="fade-in">
-            <li className='text-linkColor text-[16px] cursor-pointer font-[600]'
+            <li className='text-textBlack text-[16px] cursor-pointer font-[600]'
                
                 onClick={toggleContent}
             >
                 {title}
             </li>
             {hideContent && (
-                <div className="dropdown  top-10">{content}</div>
+                <div className="dropdown  top-10 text-paraText">{content}</div>
             )}
         </div>
     )

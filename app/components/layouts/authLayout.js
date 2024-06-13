@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import logo from "@assets/image/viloxLogo.png"
+import logo from "@assets/images/viloxLogo.png"
 import Image from "next/image";
 
 function AuthLayout({ children, onSubmit, errMsg }) {

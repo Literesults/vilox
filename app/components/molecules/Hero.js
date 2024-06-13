@@ -1,8 +1,8 @@
 
 import Image from 'next/image';
-import HeroImg from '../../assets/heroInfo.png'
-import GooglePlay from '../../assets/googleButton.png'
-import AppStore from '../../assets/appStoreButton.png'
+import HeroImg from '@assets/images/heroInfo.png'
+import GooglePlay from '@assets/images/googleButton.png'
+import AppStore from '@assets/images/appStoreButton.png'
 
 
  const Hero = () => {
@@ -11,7 +11,7 @@ import AppStore from '../../assets/appStoreButton.png'
     <div className="hero container w-full flex flex-col p-6 lg:pt-16  lg:p-44 text-center overflow-hidden mx-auto" 
     >
        <div className="textInfo pt-10">
-       <h1 className="font-bold lg:text-7xl text-center py-4 text-4xl text-headText"
+       <h1 className="font-bold lg:text-7xl text-center py-4 text-4xl text-blackText"
       data-aos="zoom-in">
          
           Easily trade your Gift Cards & Cryptocurrencies with Vilox
