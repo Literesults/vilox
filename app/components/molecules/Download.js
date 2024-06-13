@@ -1,9 +1,9 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
-import GooglePlay from '@images/images/googleButton.png';
-import AppStore from '@images/images/appStoreButton.png';
-import DownloadPng from '@images/images/downloadImg.png';
+import GooglePlay from '@assets/images/googleButton.png';
+import AppStore from '@assets/images/appStoreButton.png';
+import DownloadPng from '@assets/images/downloadImg.png';
 
 const Download = () => {
   return (

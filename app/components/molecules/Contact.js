@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import PhoneImg from '@images/images/contactPhone.png'
+import PhoneImg from '@assets/images/contactPhone.png'
 
  const Contact = () => {
   return (

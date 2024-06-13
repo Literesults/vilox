@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import Logo from '@images/images/viloxLogo.png';
+import Logo from '@assets/images/viloxLogo.png';
 import { MobileView } from './MobileView';
 
 const Navbar = () => {

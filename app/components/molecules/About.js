@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import aboutImg from '@images/images/about.png';
-import GooglePlay from '@images/images/googleButton.png';
-import AppStore from '@images/images/appStoreButton.png';
+import aboutImg from '@assets/images/about.png';
+import GooglePlay from '@assets/images/googleButton.png';
+import AppStore from '@assets/images/appStoreButton.png';
 
 const About = () => {
   return (

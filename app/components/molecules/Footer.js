@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Logo from '@images/images/viloxLogo.png'
+import Logo from '@assets/images/viloxLogo.png'
 import 
 { FaFacebook,
  FaInstagram,

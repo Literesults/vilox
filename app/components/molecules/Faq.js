@@ -2,7 +2,7 @@
 
 import FaqChips from "../organisms/FaqChips";
 import Image from 'next/image';
-import FaqImg from '@images/images/faq.png';
+import FaqImg from '@assets/images/faq.png';
 import { faqChipsContent } from "../organisms/FaqChipsData";
 
 const Faq = () => {

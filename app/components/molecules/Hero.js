@@ -1,8 +1,8 @@
 
 import Image from 'next/image';
-import HeroImg from '@images/images/heroInfo.png'
-import GooglePlay from '@images/images/googleButton.png'
-import AppStore from '@images/images/appStoreButton.png'
+import HeroImg from '@assets/images/heroInfo.png'
+import GooglePlay from '@assets/images/googleButton.png'
+import AppStore from '@assets/images/appStoreButton.png'
 
 
  const Hero = () => {

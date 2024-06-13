@@ -1,5 +1,5 @@
 import Image from "next/image";
-import wIcon from '@images/images/w-icon.png';
+import wIcon from '@assets/images/w-icon.png';
 
 const WhyUs = () => {
     return (
