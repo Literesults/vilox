@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import AppLink from "../organisms/AppLink";
-import logo from "@assets/image/viloxLogo.png"
+import logo from "@assets/images/viloxLogo.png"
 
 function SideNav() {
   return (
