@@ -32,6 +32,7 @@ import PhoneImg from '@assets/images/contactPhone.png'
                 <textarea id="bio" placeholder='Drop a message' name="bio" rows="4" className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-inputBg"
                 ></textarea>
             </div>
+            <button type='submit' className='rounded-lg w-full bg-blackText hover:bg-inputBg hover:text-blackText text-inputBg p-4'>Submit</button>
 
                 </form>
             </div>
