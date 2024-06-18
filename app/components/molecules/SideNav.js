@@ -25,6 +25,14 @@ function SideNav() {
           />
           <AppLink
             text={"transactions"}
+            icon={<i class="ri-refund-line"></i>}
+            subMenu={[
+              { name: "withdrawal", extra: false },
+              { name: "payment", extra: false }
+            ]}
+          />
+          <AppLink
+            text={"manage product"}
             icon={<i className="ri-p2p-line"></i>}
             subMenu={[
               { name: "gift cards", extra: false },
