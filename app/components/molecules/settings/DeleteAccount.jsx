@@ -44,7 +44,7 @@ const DeleteAccount = ({ goBack }) => {
 
       <div className="md:w-[65%] px-4 md:px-0 space-y-11 flex-grow md:flex-grow-0 ">
         <div className="font-normal text-sm dark:text-white-1">
-          To proceed with deleting your account, please let us know the reason for your departure. Once we receive this information, we'll process your request promptly. Thank you.
+          To proceed with deleting your account, please let us know the reason for your departure. Once we receive this information, we&apos;ll process your request promptly. Thank you.
         </div>
         <div className="space-y-5">
           <AppInput type={"text"} label={"Email Address"} required name={"Email"}/>
