@@ -33,8 +33,6 @@ function Page() {
         <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
           <div className="flex">
             <div className="flex-grow font-semibold">Top Users</div>
-            <Link href="/admin/users"><div className="text-blue text-sm">View all users</div></Link>
-
           </div>
           <div className="divide-y divide-gray-200">
             {
