@@ -8,13 +8,13 @@ import Appearance from '@/app/components/molecules/settings/Appearance';
 import DeleteAccount from '@/app/components/molecules/settings/DeleteAccount';
 
 function Page() {
-  const [activeTab, setActiveTab] = useState("personal-info");
+  const [activeTab, setActiveTab] = useState("change-password");
   const [showNav, setShowNav] = useState(true)
   const settingsTabs = [
-    {
-      title: "Personal Info",
-      id: "personal-info",
-    },
+    // {
+    //   title: "Personal Info",
+    //   id: "personal-info",
+    // },
     {
       title: "Change Password",
       id: "change-password",
