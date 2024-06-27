@@ -19,7 +19,7 @@ function CategoryChip() {
                                 <div className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-gray-500'>View</div>
                             </Link>
                             <div className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-gray-500'>Edit Category Info</div>
-                            <div className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-danger'>Delete</div>
+                            <div className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-danger'>Deactivate</div>
                         </div>
                     </div>
                 </div>
