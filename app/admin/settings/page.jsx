@@ -4,8 +4,8 @@ import AppLayout from '@component/layouts/appLayout'
 import PersonalInfo from '@/app/components/molecules/settings/PersonalInfo';
 import ChangePassword from '@/app/components/molecules/settings/ChangePassword';
 import Notifications from '@/app/components/molecules/settings/Notifications';
-import Appearance from '@/app/components/molecules/settings/Appearance';
 import DeleteAccount from '@/app/components/molecules/settings/DeleteAccount';
+import Appearance from '@/app/components/molecules/settings/Appearance';
 
 function Page() {
   const [activeTab, setActiveTab] = useState("change-password");

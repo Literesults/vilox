@@ -1,14 +1,12 @@
-
-import dark from "@assets/image/dark.svg";
-import light from "@assets/image/light.svg";
+"use client"
 import { useState } from "react";
 
 const Appearance = ({ goBack }) => {
   const [theme, setTheme] = useState("light")
 
-  const handleThemeToggle = (selectedTheme) => {
-    setTheme(selectedTheme);
-  };
+  // const handleThemeToggle = (selectedTheme) => {
+  //   setTheme(selectedTheme);
+  // };
 
   return (
     <section>
