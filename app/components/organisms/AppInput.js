@@ -71,6 +71,7 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
             id={label === "" ? "-" + figu : label}
             className="w-full border focus:border-black border-black placeholder-shown:border-gray-300 p-3 peer outline-none rounded-lg placeholder:text-transparent"
             placeholder={label}
+            onChange={(e) => onChange && onChange(e)}
           />
           <span className="text-xl absolute top-3 right-3 text-black peer-focus:text-black peer-placeholder-shown:text-gray-300">
             <i className="ri-arrow-down-s-line"></i>
@@ -99,6 +100,7 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
         <textarea
           name={name}
           required={required}
+          onChange={(e) => onChange && onChange(e)}
           value={value}
           defaultValue={defaultValue}
           className="w-full border resize-none focus:border-black border-black placeholder-shown:border-gray-300 p-3 peer outline-none rounded-lg placeholder:text-transparent"
@@ -108,6 +110,7 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
           name={name}
           required={required}
           type={inputType}
+          onChange={(e) => onChange && onChange(e)}
           value={value}
           defaultValue={defaultValue}
           className="w-full border focus:border-black border-black placeholder-shown:border-gray-300 p-3 peer outline-none rounded-lg placeholder:text-transparent"

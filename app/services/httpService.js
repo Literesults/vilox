@@ -24,7 +24,7 @@ export const apiWithAuth = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: `Bearer ${Cookies.get("jwt")}`,
+    Authorization: `Bearer ${sessionStorage.VILOX_JWT}`,
   },
   ...timeoutConfig,
 });

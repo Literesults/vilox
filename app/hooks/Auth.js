@@ -6,7 +6,9 @@ import { addData } from '../Store/reducers/UsersReducer';
 export function SignInAuth(data, dispatch) {
   dispatch(addData(data?.data));
   Cookies.set('jwt', data?.data?.bearer_token)
+  sessionStorage['VILOX_JWT'] = data?.data?.bearer_token;
 }
+
 
 export function SignOut(dispatch) {
   dispatch(addData({}))

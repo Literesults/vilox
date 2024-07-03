@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-function UseFormHandler(props) {
+function useFormHandlerFormdata(props) {
     const formData = new FormData()
     const [value, setValues] = useState(props.initialValues || {})
     const [error, setError] = useState([])
@@ -67,6 +67,6 @@ function UseFormHandler(props) {
     return { value, setValues, handlerChange, submit, reset, error, proccessing, formData }
 }
 
-export default UseFormHandler
+export default useFormHandlerFormdata
 
 
