@@ -1,8 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.viloxapp.com/api/";
-
+const session = dynamic(() => sessionStorage.VILOX_JWT, { ssr: false })
 const timeoutConfig = {
   timeout: 30000,
   timeoutErrorMessage: "Server taking too long to respond. Try again.",
@@ -24,7 +25,7 @@ export const apiWithAuth = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: `Bearer ${sessionStorage.VILOX_JWT}`,
+    Authorization: `Bearer ${session}`,
   },
   ...timeoutConfig,
 });

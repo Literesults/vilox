@@ -1,12 +1,13 @@
 'use client'
 import Cookies from 'js-cookie';
 import { addData } from '../Store/reducers/UsersReducer';
+import dynamic from 'next/dynamic';
 
 
 export function SignInAuth(data, dispatch) {
   dispatch(addData(data?.data));
   Cookies.set('jwt', data?.data?.bearer_token)
-  sessionStorage['VILOX_JWT'] = data?.data?.bearer_token;
+  dynamic(() => sessionStorage['VILOX_JWT'] = data?.data?.bearer_token, { ssr: false })
 }
 
 
