@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { LiaEye } from 'react-icons/lia';
 
 function EFundChip({data}) {
-    console.log(data);
     return (
         <div className="px-4 py-4 space-y-4 border border-gray-200 rounded-md bg-white">
             <div className="">
