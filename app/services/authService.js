@@ -15,3 +15,7 @@ export const changeGiftCardStatus = (formData) => apiWithAuth.post("admin/giftca
 export const addCrypto = (formData) => apiWithAuth.post("admin/crypto/add_crypto", formData).then(getApiResponse).catch(getErrorResponse);
 export const updateCrypto = (formData) => apiWithAuth.post("admin/crypto/update_crypto", formData).then(getApiResponse).catch(getErrorResponse);
 export const fetchCrypto = (formData) => apiWithAuth.post("admin/crypto/fetch_crypto", formData).then(getApiResponse).catch(getErrorResponse);
+
+export const addEFund = (formData) => apiWithAuth.post("admin/efund/add_efund", formData).then(getApiResponse).catch(getErrorResponse);
+export const updateEFund = (formData) => apiWithAuth.post("admin/efund/update_efund", formData).then(getApiResponse).catch(getErrorResponse);
+export const fetchEFund = (formData) => apiWithAuth.post("admin/efund/fetch_efund", formData).then(getApiResponse).catch(getErrorResponse);

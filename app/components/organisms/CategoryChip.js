@@ -19,6 +19,7 @@ function CategoryChip({ data ,reload }) {
                     <div className="flex-grow">
                         <div className="w-12 h-12 rounded-full"><img src={data.icon} width={100} height={100} /></div>
                     </div>
+                    
                     <div className="relative">
                         <div onClick={() => setOpen(true)} className='w-8 h-8 cursor-pointer flex items-center justify-center text-2xl text-gray-500'><IoEllipsisHorizontalOutline /></div>
                         <div onMouseLeave={() => setOpen(false)} className={`absolute ${!optionOpen && "hidden"} bg-white w-44 font-[500] shadow-lg text-sm border border-gray-100 rounded-md top-0 p-1 right-0`}>
