@@ -26,8 +26,6 @@ function Page() {
   }
 
 
-
-
   const submit = async (e) => {
     e.preventDefault();
     const val = serialize(e.target)

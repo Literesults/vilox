@@ -15,7 +15,7 @@ export function SignOut(dispatch) {
   dispatch(addData({}))
   dispatch(businessData({}))
   dispatch(providerData(false))
-  Cookies.remove('jwt')
+  Cookies.remove('vilox_jwt')
 }
 
 export function Session(user) {
@@ -23,7 +23,7 @@ export function Session(user) {
     status: '',
     user
   }
-  if (Object.keys(user.value).length !== 0 && Cookies.get('jwt')) {
+  if (Object.keys(user.value).length !== 0 && Cookies.get('vilox_jwt')) {
     session.status = verifyJWT(user.value.bearer_token)
   } else {
     session.status = 'unauthenticated'
