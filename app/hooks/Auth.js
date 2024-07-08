@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 export function SignInAuth(data, dispatch) {
   dispatch(addData(data?.data));
   Cookies.set('jwt', data?.data?.bearer_token)
-  sessionStorage['VILOX_JWT'] = data?.data?.bearer_token
+  sessionStorage !== "undefined" && (sessionStorage['VILOX_JWT'] = data?.data?.bearer_token)
 }
 
 
