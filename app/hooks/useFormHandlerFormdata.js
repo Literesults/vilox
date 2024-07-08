@@ -45,17 +45,14 @@ function UseFormHandler(props) {
     }
 
 
-    const submit = async (e) => {
-        if (props.preProccess) {
-            props.preProccess()
-        }
-        e?.preventDefault()
+    const submit = async () => {
         let err = await validator()
         if (err.length <= 0) {
             setProccessing(true)
             await formInfo()
             await props.onSubmit(value)
             setProccessing(false)
+            // console.log(formData);
             return;
         }
     }
@@ -68,5 +65,3 @@ function UseFormHandler(props) {
 }
 
 export default UseFormHandler
-
-

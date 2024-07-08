@@ -1,7 +1,12 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.viloxapp.com/api/";
+// export const TOKEN =  `Bearer ${sessionStorage !== "undefined" && sessionStorage.VILOX_JWT}`
+export const TOKEN =  `Bearer ${Cookies.get("vilox_jwt")}`
+
+
+
+
 
 const timeoutConfig = {
   timeout: 30000,
@@ -10,8 +15,10 @@ const timeoutConfig = {
 
 export const apiWithOutAuth = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials:true, 
+  withCredentials: true,
   headers: {
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
     Accept: "application/json",
     "Content-Type": "application/json",
   },
@@ -20,17 +27,19 @@ export const apiWithOutAuth = axios.create({
 
 export const apiWithAuth = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials:true, 
+  withCredentials: true,
   headers: {
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: `Bearer ${Cookies.get("jwt")}`,
+    Authorization: TOKEN,
   },
   ...timeoutConfig,
 });
 
 export const getApiResponse = (data) => {
-// errors
+  // errors
   return {
     status: true,
     data: data.data,

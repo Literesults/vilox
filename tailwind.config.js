@@ -24,6 +24,7 @@ module.exports = {
     colors: {
       white: "#FFFFFF",
       danger: "#ef4444",
+      success : "#11c9a4",
       black: "#000000",
       blue: "#777fff",
       yellow : "#fff444",

@@ -4,17 +4,17 @@ import AppLayout from '@component/layouts/appLayout'
 import PersonalInfo from '@/app/components/molecules/settings/PersonalInfo';
 import ChangePassword from '@/app/components/molecules/settings/ChangePassword';
 import Notifications from '@/app/components/molecules/settings/Notifications';
-import Appearance from '@/app/components/molecules/settings/Appearance';
 import DeleteAccount from '@/app/components/molecules/settings/DeleteAccount';
+import Appearance from '@/app/components/molecules/settings/Appearance';
 
 function Page() {
-  const [activeTab, setActiveTab] = useState("personal-info");
+  const [activeTab, setActiveTab] = useState("change-password");
   const [showNav, setShowNav] = useState(true)
   const settingsTabs = [
-    {
-      title: "Personal Info",
-      id: "personal-info",
-    },
+    // {
+    //   title: "Personal Info",
+    //   id: "personal-info",
+    // },
     {
       title: "Change Password",
       id: "change-password",
@@ -52,7 +52,7 @@ function Page() {
               >
                 <div className="flex items-center">
                   <div className="flex-grow">{tab.title}</div>
-                  <div className="md:hidden"><i class="ri-arrow-right-s-line"></i></div>
+                  <div className="md:hidden"><i className="ri-arrow-right-s-line"></i></div>
                 </div>
               </div>
             ))}

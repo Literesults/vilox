@@ -1,19 +1,17 @@
-
-import dark from "@assets/image/dark.svg";
-import light from "@assets/image/light.svg";
+"use client"
 import { useState } from "react";
 
 const Appearance = ({ goBack }) => {
   const [theme, setTheme] = useState("light")
 
-  const handleThemeToggle = (selectedTheme) => {
-    setTheme(selectedTheme);
-  };
+  // const handleThemeToggle = (selectedTheme) => {
+  //   setTheme(selectedTheme);
+  // };
 
   return (
     <section>
       <div className="text-center dark:text-white-1 md:hidden py-4 relative">
-        <div onClick={() => goBack()} className="absolute p-2 top-3 cursor-pointer"><i class="ri-arrow-left-s-line"></i></div>
+        <div onClick={() => goBack()} className="absolute p-2 top-3 cursor-pointer"><i className="ri-arrow-left-s-line"></i></div>
         <div className="">Appearance</div>
       </div>
       <div className="hidden md:block border-[#CED2DA] border-b pb-4 mb-4">

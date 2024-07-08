@@ -2,13 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import AppLayout from '@component/layouts/appLayout'
 import AppCard from '@/app/components/organisms/AppCard'
-import { fetchUsers, suspendUsers, unsuspendUsers } from '@/app/services/authService'
+import Link from 'next/link'
+import AppInput from '@/app/components/organisms/AppInput'
+import { fetchStaffs, suspendStaffs, unsuspendStaffs } from '@/app/services/authService'
 import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
 
 function Page() {
+  const [showModal, setShowModal] = useState(false)
   const [topRank, setTopRank] = useState(["", "", "", "", ""])
+
 
   const [catego, setcate] = useState(["", "", "", "", "", "", "", "", "", "", ""])
   const [loading, setLoading] = useState(true)
@@ -16,26 +20,27 @@ function Page() {
   const [x, setX] = useState({})
 
   const fetch = async () => {
-    const { status, data } = await fetchUsers().catch(err => console.log(err))
+    const { status, data } = await fetchStaffs().catch(err => console.log(err))
     if (status) {
       setcate(data.data);
     }
     setLoading(false)
   }
 
+  
 
-  const submit = async (e) => {
+  const updateStatus = async (e) => {
     e.preventDefault();
     const val = serialize(e.target)
     setProcessing(true)
     if (val.status === "active") {
-      const { status, data } = await suspendUsers(val).catch(err => console.log(err))
+      const { status, data } = await suspendStaffs(val).catch(err => console.log(err))
       if (status) {
         fetch()
         setX({})
       }
     } else {
-      const { status, data } = await unsuspendUsers(val).catch(err => console.log(err))
+      const { status, data } = await unsuspendStaffs(val).catch(err => console.log(err))
       if (status) {
         fetch()
         setX({})
@@ -49,13 +54,12 @@ function Page() {
     fetch()
   }, [])
 
-
   return (
-    <AppLayout title={"Summary of Vilox users"}>
+    <AppLayout title={"Summary of Vilox staffs"}>
       {
         Object.keys(x).length > 0 && (
           <Modal closeModal={() => setX({})} size={"sm"} isOpen={Object.keys(x).length > 0}>
-            <form onSubmit={(e) => { submit(e) }} >
+            <form onSubmit={(e) => { updateStatus(e) }} >
               <div className='space-y-5'>
 
                 <div className="">
@@ -104,10 +108,18 @@ function Page() {
       <div className="grid xl:grid-cols-3 gap-5">
         <div className="xl:col-span-2 space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
-            <AppCard figure={4535} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Users" bg="bg-[#13f444]" />
-            <AppCard figure={53} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Users" bg="bg-[#ef4444]" />
+            <AppCard figure={4535} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Staffs" bg="bg-[#13f444]" />
+            <AppCard figure={53} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Staffs" bg="bg-[#ef4444]" />
           </div>
-          <div className="">
+          <div className="space-y-5">
+            <div className="flex">
+              <div className="flex-grow">
+                <div className="max-w-sm">
+                  <AppInput name="search" required label="Search" />
+                </div>
+              </div>
+              <div onClick={() => setShowModal(true)} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Staff</div>
+            </div>
             <table className='w-full'>
               <thead>
                 <tr>

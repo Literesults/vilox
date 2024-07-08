@@ -35,7 +35,7 @@ const DeleteAccount = ({ goBack }) => {
     <form onSubmit={(e) => {e.preventDefault(); deleteAccount.submit()}} className="flex gap-5 flex-col h-full md:h-auto">
       {/* {showModal && <DeleteAccountModal close={() => setShowModal(false)} />} */}
       <div className="text-center dark:text-white-1 md:hidden py-4 relative">
-        <div onClick={() => goBack()} className="absolute p-2 top-3 cursor-pointer"><i class="ri-arrow-left-s-line"></i></div>
+        <div onClick={() => goBack()} className="absolute p-2 top-3 cursor-pointer"><i className="ri-arrow-left-s-line"></i></div>
         <div className="">Delete Account</div>
       </div>
       <div className="hidden md:block border-[#CED2DA] border-b pb-4 mb-4">
