@@ -10,16 +10,17 @@ import serialize from '@/app/hooks/Serialize';
 function CryptoChip({ data }) {
     const [showModal, setShowModal] = useState(false)
     const val = Number(data.sell_rate_low)
+    const val2 = Number(data.sell_rate_high)
     const fee = Number(data.fee)
     const [showForm, setShowForm] = useState(false)
 
-    
+
     const updateCoin = async (e) => {
         e.preventDefault()
         const formData = new FormData();
-        formData.append("key",serialize(e.target))
+        formData.append("key", serialize(e.target))
         console.log(formData);
-        const {status, data} = await updateCrypto(serialize(e.target)).catch(err => console.log(err))
+        const { status, data } = await updateCrypto(serialize(e.target)).catch(err => console.log(err))
         console.log(data);
     }
 
@@ -41,9 +42,15 @@ function CryptoChip({ data }) {
                     </div>
                 </div>
                 <div className="">
-                    <div className=''>
-                        <div className='font-bold'>Current Price:</div>
-                        <div className='text-gray-500'>&#8358;{val.toLocaleString('en-US')}</div>
+                    <div className='grid grid-cols-2'>
+                        <div className=''>
+                            <div className='font-bold'>Sell rate low:</div>
+                            <div className='text-gray-500'>&#8358;{val.toLocaleString('en-US')}</div>
+                        </div>
+                        <div className=''>
+                            <div className='font-bold'>Sell rate high:</div>
+                            <div className='text-gray-500'>&#8358;{val2.toLocaleString('en-US')}</div>
+                        </div>
                     </div>
 
                     <div className=''>
@@ -62,7 +69,7 @@ function CryptoChip({ data }) {
                                 <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.symbol} name="symbol" required label="Symbol " />
                                 <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.network} name="network" required label="Network " />
                                 <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.sell_rate_low} name="sell_rate_low" required label="Sell rate low " />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.sell_rate_hight} name="sell_rate_hight" required label="Sell rate high " />
+                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.sell_rate_high} name="sell_rate_hight" required label="Sell rate high " />
                                 <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.wallet_address} name="wallet_address" required label="Wallet address " />
                                 <div className='flex gap-4 items-center'>
                                     <button className='bg-black text-white text-center flex-grow rounded-md py-2'>Save</button>
@@ -83,9 +90,15 @@ function CryptoChip({ data }) {
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <div className=''>
-                                        <div className='font-bold'>Current Price:</div>
-                                        <div className='text-gray-500'>&#8358;{val.toLocaleString('en-US')}</div>
+                                    <div className='grid grid-cols-2'>
+                                        <div className=''>
+                                            <div className='font-bold'>Sell rate low:</div>
+                                            <div className='text-gray-500'>&#8358;{val.toLocaleString('en-US')}</div>
+                                        </div>
+                                        <div className=''>
+                                            <div className='font-bold'>Sell rate high:</div>
+                                            <div className='text-gray-500'>&#8358;{val2.toLocaleString('en-US')}</div>
+                                        </div>
                                     </div>
 
                                     <div className=''>

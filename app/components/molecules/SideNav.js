@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import AppLink from "../organisms/AppLink";
 import logo from "@assets/images/viloxLogo.png"
+import { TbUserCircle } from "react-icons/tb";
 
 function SideNav() {
   return (
@@ -25,7 +26,7 @@ function SideNav() {
           />
           <AppLink
             text={"transactions"}
-            icon={<i class="ri-refund-line"></i>}
+            icon={<i className="ri-refund-line"></i>}
             subMenu={[
               { name: "withdrawal", extra: false },
               { name: "payment", extra: false }
@@ -44,6 +45,11 @@ function SideNav() {
             text={"users"}
             icon={<i className="ri-team-line"></i>}
           />
+          <AppLink
+            text={"staffs"}
+            icon={<TbUserCircle />}
+          />
+           
           <AppLink
             text={"notifications"}
             icon={<i className="ri-notification-3-line"></i>}

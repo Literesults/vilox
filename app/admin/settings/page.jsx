@@ -52,7 +52,7 @@ function Page() {
               >
                 <div className="flex items-center">
                   <div className="flex-grow">{tab.title}</div>
-                  <div className="md:hidden"><i class="ri-arrow-right-s-line"></i></div>
+                  <div className="md:hidden"><i className="ri-arrow-right-s-line"></i></div>
                 </div>
               </div>
             ))}

@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-function useFormHandlerFormdata(props) {
+function UseFormHandler(props) {
     const formData = new FormData()
     const [value, setValues] = useState(props.initialValues || {})
     const [error, setError] = useState([])
@@ -45,17 +45,14 @@ function useFormHandlerFormdata(props) {
     }
 
 
-    const submit = async (e) => {
-        if (props.preProccess) {
-            props.preProccess()
-        }
-        e?.preventDefault()
+    const submit = async () => {
         let err = await validator()
         if (err.length <= 0) {
             setProccessing(true)
             await formInfo()
             await props.onSubmit(value)
             setProccessing(false)
+            // console.log(formData);
             return;
         }
     }
@@ -67,6 +64,4 @@ function useFormHandlerFormdata(props) {
     return { value, setValues, handlerChange, submit, reset, error, proccessing, formData }
 }
 
-export default useFormHandlerFormdata
-
-
+export default UseFormHandler

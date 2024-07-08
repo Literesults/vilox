@@ -68,6 +68,8 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
           <input
             value={selected}
             readOnly
+            required={required}
+            name={name}
             id={label === "" ? "-" + figu : label}
             className="w-full border focus:border-black border-black placeholder-shown:border-gray-300 p-3 peer outline-none rounded-lg placeholder:text-transparent"
             placeholder={label}
@@ -87,8 +89,8 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
               {options?.map((e, i) => (
                 <div
                   key={i}
-                  onClick={() => setSelected(e)}
-                  className="hover:bg-gray-100 cursor-pointer rounded-lg p-2"
+                  onClick={() => {setSelected(e); onChange && onChange(e)}}
+                  className="hover:bg-gray-100 capitalize cursor-pointer rounded-lg p-2"
                 >
                   {e}
                 </div>

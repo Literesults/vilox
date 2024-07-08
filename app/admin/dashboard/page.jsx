@@ -17,9 +17,9 @@ function Page() {
       <div className="grid lg:grid-cols-3 gap-5">
         <div className="lg:col-span-2 space-y-5">
           <div className="grid sm:grid-cols-3 gap-5">
-            <AppCard figure={43053} icon={<i class="ri-group-line"></i>} color="text-[#777fff]" text="New Users" bg="bg-[#777fff]" />
-            <AppCard figure={20034535} icon={<i class="ri-exchange-funds-line"></i>} color="text-[#900235]" text="New Transactions" bg="bg-[#900235]" />
-            <AppCard figure={52344} icon={<i class="ri-discount-percent-line"></i>} color="text-[#fff444]" text="New Order" bg="bg-[#fff444]" />
+            <AppCard figure={43053} icon={<i className="ri-group-line"></i>} color="text-[#777fff]" text="New Users" bg="bg-[#777fff]" />
+            <AppCard figure={20034535} icon={<i className="ri-exchange-funds-line"></i>} color="text-[#900235]" text="New Transactions" bg="bg-[#900235]" />
+            <AppCard figure={52344} icon={<i className="ri-discount-percent-line"></i>} color="text-[#fff444]" text="New Order" bg="bg-[#fff444]" />
           </div>
           <div className="pb-2 bg-white rounded-lg">
             <div className="flex relative items-center px-6">

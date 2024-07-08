@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { LiaEye } from 'react-icons/lia';
 
 function EFundChip({data}) {
-    const fee = Number(data.sell_rate_high)
+    const sell_rate_high = Number(data.sell_rate_high)
+    const sell_rate_low = Number(data.sell_rate_low)
 
     return (
         <div className="px-4 py-4 space-y-4 border border-gray-200 rounded-md bg-white">
@@ -20,10 +21,14 @@ function EFundChip({data}) {
                     <div className="text-xl font-bold">{data.name}</div>
                 </div>
             </div>
-            <div className="">
+            <div className="grid grid-cols-2">
                 <div className=''>
-                    <div className='font-bold'>Current Price:</div>
-                    <div className='text-gray-500'>&#8358;{fee.toLocaleString('en-US')}</div>
+                    <div className='font-bold'>Sell rate high:</div>
+                    <div className='text-gray-500'>&#8358;{sell_rate_low.toLocaleString('en-US')}</div>
+                </div>
+                <div className=''>
+                    <div className='font-bold'>Sell rate high:</div>
+                    <div className='text-gray-500'>&#8358;{sell_rate_high.toLocaleString('en-US')}</div>
                 </div>
             </div>
         </div>
