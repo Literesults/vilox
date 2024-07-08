@@ -97,7 +97,7 @@ function Page() {
                 </div>
                 <input type='hidden' value={id} name='id' />
                 <AppInput type={"select"} onChange={(e) => setSelected(e)} options={["success", "rejected"]} name="status" required label="Status" />
-                {selected === "success" && <AppInput type={"number"} name="amount" required label="Amount" />}
+                {selected === "success" && <AppInput type={"number"} name="amount" required label="Comfirm amount" />}
                 {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
                 <div className='flex gap-4 items-center'>
                   <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
