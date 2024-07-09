@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { SignOut } from "../hooks/Auth";
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.viloxapp.com/api/";
 // export const TOKEN =  `Bearer ${sessionStorage !== "undefined" && sessionStorage.VILOX_JWT}`
 export const TOKEN =  `Bearer ${Cookies.get("vilox_jwt")}`
@@ -47,7 +48,10 @@ export const getApiResponse = (data) => {
 };
 
 export const getErrorResponse = (error) => {
-  // errors
+  if (error.response.status === 401) {
+    Cookies.remove('vilox_jwt')
+  }
+  
   return {
     status: false,
     data: error?.response?.data,
