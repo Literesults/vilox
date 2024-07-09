@@ -22,9 +22,9 @@ function Page() {
         setProccessing(false)
         if (status) {
             setErrMsg('')
-            console.log(data);
             SignInAuth(data, dispatch)
             router.push("/admin/dashboard")
+            window !== "undefined" && window.location.reload()
         } else {
             setErrMsg(data.message)
         }
