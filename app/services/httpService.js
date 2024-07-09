@@ -50,6 +50,7 @@ export const getApiResponse = (data) => {
 export const getErrorResponse = (error) => {
   if (error.response.status === 401) {
     Cookies.remove('vilox_jwt')
+    window !== "undefined" && window.location.reload()
   }
   
   return {
