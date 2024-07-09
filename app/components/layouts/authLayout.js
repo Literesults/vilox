@@ -4,10 +4,12 @@ import logo from "@assets/images/viloxLogo.png"
 import Image from "next/image";
 import { Session } from "@/app/hooks/Auth";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 function AuthLayout({ children, onSubmit, errMsg }) {
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);
+  const router = useRouter();
   const serialize = (form) => {
     var result = [];
     if (typeof form === "object" && form.nodeName === "FORM")
