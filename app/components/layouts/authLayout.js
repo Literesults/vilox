@@ -4,7 +4,7 @@ import logo from "@assets/images/viloxLogo.png"
 import Image from "next/image";
 import { Session } from "@/app/hooks/Auth";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function AuthLayout({ children, onSubmit, errMsg }) {
   const user = useSelector((state) => state.User);
