@@ -8,27 +8,40 @@ import { fetchStaffs, staffsSummary, suspendStaffs, unsuspendStaffs } from '@/ap
 import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
+import { BsCamera } from 'react-icons/bs'
+import Image from 'next/image'
+import axios from 'axios'
+import { API_BASE_URL, TOKEN } from '@/app/services/httpService'
 
 function Page() {
   const [showModal, setShowModal] = useState(false)
   const [topRank, setTopRank] = useState(["", "", "", "", ""])
-  const [summary , setSummary] = useState([])
-
+  const [summary, setSummary] = useState([])
+  const [selectedImage, setSelectedImage] = useState();
+  const [addStaff, setAddStaff] = useState(false)
+  const [errors, setErrors] = useState({})
 
   const [catego, setcate] = useState(["", "", "", "", "", "", "", "", "", "", ""])
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
+  const headers = { 'Authorization': TOKEN }
 
   const fetch = async () => {
     const { status, data } = await fetchStaffs().catch(err => console.log(err))
     if (status) {
       setcate(data.data);
     }
+    fetchSummary()
     setLoading(false)
   }
 
-  
+  const uploadImg = async (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  }
+
 
   const updateStatus = async (e) => {
     e.preventDefault();
@@ -51,8 +64,32 @@ function Page() {
   }
 
 
+  
+  const addNow = async (e) => {
+    e.preventDefault();
+    const data = serialize(e.target)
+    const staffData = new FormData()
+    setProcessing(true)
+    staffData.append('image', selectedImage)
+    staffData.append('name', data.name)
+    staffData.append('email', data.email)
+    staffData.append('phone', data.phone)
+    await axios.post(`${API_BASE_URL}admin/staff/add`, staffData, { headers }).then(async (res) => {
+      await fetch()
+      setSelectedImage()
+      setAddStaff(false)
+    }).catch((error) => {
+      error.response && setErrors(error.response.data.data);
+    })
+    setProcessing(false)
+  }
+
+
+
+
+
   const fetchSummary = async () => {
-    const {status,data} = await staffsSummary().catch(err => console.log(err))
+    const { status, data } = await staffsSummary().catch(err => console.log(err))
     if (status) {
       setSummary(data.data);
     }
@@ -65,6 +102,34 @@ function Page() {
 
   return (
     <AppLayout title={"Summary of Vilox staffs"}>
+      <Modal closeModal={() => { setAddStaff(false) }} size={"lg"} isOpen={addStaff}>
+        <form onSubmit={(e) => { addNow(e) }} >
+          <div className='space-y-5'>
+            <div className="h-24 w-24 rounded-full bg-gray-200 relative">
+              {selectedImage && (
+                <Image
+                  src={URL.createObjectURL(selectedImage)}
+                  alt="Thumb"
+                  className="w-full h-full rounded-full"
+                  width={'150'}
+                  height={'150'}
+                />
+              )}
+              <div onClick={() => document.querySelector('#img').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
+                <BsCamera />
+              </div>
+              <input name="image" required id="img" onChange={(e) => uploadImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+            </div>
+            <AppInput name="name" required label="Name" />
+            <AppInput name="email" required label="Email" type="email" />
+            <AppInput name="phone" required label="Phone" type="tell" />
+            <div className='flex gap-4 items-center'>
+              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
+              <div onClick={() => { setAddStaff(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+            </div>
+          </div>
+        </form>
+      </Modal>
       {
         Object.keys(x).length > 0 && (
           <Modal closeModal={() => setX({})} size={"sm"} isOpen={Object.keys(x).length > 0}>
@@ -107,7 +172,7 @@ function Page() {
                 <input type='hidden' value={x.status} name='status' />
                 <div className='flex gap-4 items-center'>
                   <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Updating..." : x.status === "active" ? "Suspend" : "Activate"}</button>
-                  <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+                  <div onClick={() => setX({})} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                 </div>
               </div>
             </form>
@@ -127,7 +192,7 @@ function Page() {
                   <AppInput name="search" required label="Search" />
                 </div>
               </div>
-              <div onClick={() => setShowModal(true)} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Staff</div>
+              <div onClick={() => { setAddStaff(true) }} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Staff</div>
             </div>
             <table className='w-full'>
               <thead>

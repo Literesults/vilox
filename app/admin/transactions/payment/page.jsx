@@ -21,6 +21,7 @@ function Page() {
     if (status) {
       setcate(data.data[0]);
     }
+    fetchSummary()
     setLoading(false)
   }
 
