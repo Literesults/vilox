@@ -4,7 +4,7 @@ import AppLayout from '@component/layouts/appLayout'
 import AppCard from '@/app/components/organisms/AppCard'
 import Link from 'next/link'
 import AppInput from '@/app/components/organisms/AppInput'
-import { fetchStaffs, suspendStaffs, unsuspendStaffs } from '@/app/services/authService'
+import { fetchStaffs, staffsSummary, suspendStaffs, unsuspendStaffs } from '@/app/services/authService'
 import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
@@ -12,6 +12,7 @@ import serialize from '@/app/hooks/Serialize'
 function Page() {
   const [showModal, setShowModal] = useState(false)
   const [topRank, setTopRank] = useState(["", "", "", "", ""])
+  const [summary , setSummary] = useState([])
 
 
   const [catego, setcate] = useState(["", "", "", "", "", "", "", "", "", "", ""])
@@ -46,11 +47,19 @@ function Page() {
         setX({})
       }
     }
-
     setProcessing(false)
   }
 
+
+  const fetchSummary = async () => {
+    const {status,data} = await staffsSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
@@ -108,8 +117,8 @@ function Page() {
       <div className="grid xl:grid-cols-3 gap-5">
         <div className="xl:col-span-2 space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
-            <AppCard figure={4535} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Staffs" bg="bg-[#13f444]" />
-            <AppCard figure={53} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Staffs" bg="bg-[#ef4444]" />
+            <AppCard figure={summary?.active} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Staffs" bg="bg-[#13f444]" />
+            <AppCard figure={summary?.suspended} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Staffs" bg="bg-[#ef4444]" />
           </div>
           <div className="space-y-5">
             <div className="flex">

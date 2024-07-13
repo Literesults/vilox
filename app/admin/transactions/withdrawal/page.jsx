@@ -7,7 +7,7 @@ import { CiCreditCardOff } from "react-icons/ci";
 import { PiFingerprintSimpleThin, PiHandWithdraw } from "react-icons/pi";
 import { MdOutlinePayments } from 'react-icons/md'
 import { TbMoneybag } from 'react-icons/tb'
-import { comfirmTransaction, fetchTransaction } from '@/app/services/authService'
+import { comfirmTransaction, fetchTransaction, transactionsWithdrawalSummary } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
@@ -17,6 +17,7 @@ function Page() {
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
+  const [summary , setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await fetchTransaction().catch(err => console.log(err))
@@ -41,7 +42,15 @@ function Page() {
   }
 
 
+  const fetchSummary = async () => {
+    const {status,data} = await transactionsWithdrawalSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
@@ -102,10 +111,10 @@ function Page() {
         )
       }
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={68} icon={<MdOutlinePayments />} color="text-[#777fff]" text="Total Payment Request" bg="bg-[#777fff]" />
-        <AppCard figure={27} icon={<PiHandWithdraw />} color="text-[#35C119]" text="Comfirmed Payment" bg="bg-[#35C119]" />
-        <AppCard figure={1573} icon={<TbMoneybag />} color="text-[#aaa9a4]" text="Pending Payment" bg="bg-[#aaa9a4]" />
-        <AppCard figure={37} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Declined Payment" bg="bg-[#ef4444]" />
+        <AppCard figure={summary?.total} icon={<MdOutlinePayments />} color="text-[#777fff]" text="Total Payment Request" bg="bg-[#777fff]" />
+        <AppCard figure={summary?.success} icon={<PiHandWithdraw />} color="text-[#35C119]" text="Comfirmed Payment" bg="bg-[#35C119]" />
+        <AppCard figure={summary?.proressing} icon={<TbMoneybag />} color="text-[#aaa9a4]" text="Pending Payment" bg="bg-[#aaa9a4]" />
+        <AppCard figure={summary?.failed} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Declined Payment" bg="bg-[#ef4444]" />
       </div>
       <div className="space-y-5">
         <div className="flex">
@@ -167,7 +176,6 @@ function Page() {
               }
             </tbody>
           </table>
-
           <AppPagination totalRecords={catego} newData={(e) => setcate(e)} />
         </div>
       </div>

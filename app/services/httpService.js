@@ -6,9 +6,6 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api
 export const TOKEN =  `Bearer ${Cookies.get("vilox_jwt")}`
 
 
-
-
-
 const timeoutConfig = {
   timeout: 30000,
   timeoutErrorMessage: "Server taking too long to respond. Try again.",

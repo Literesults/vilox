@@ -7,7 +7,7 @@ import CategoryChip from '@/app/components/organisms/CategoryChip'
 import { CiCreditCard1, CiCreditCardOff } from "react-icons/ci";
 import { PiCardsThree } from "react-icons/pi";
 import { LiaCreditCardSolid } from "react-icons/lia";
-import { addGiftCardCategory, fetchGiftCardCategory } from '@/app/services/authService'
+import { addGiftCardCategory, cryptoSummary, fetchGiftCardCategory } from '@/app/services/authService'
 import useFormHandlerFormdata from '@/app/hooks/useFormHandlerFormdata'
 import Modal from '@/app/components/organisms/Modal'
 import Image from 'next/image'
@@ -24,6 +24,7 @@ function Page() {
   const [showModal, setShowModal] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [errors, setErrors] = useState({})
+  const [summary , setSummary] = useState([])
 
   const headers = { 'Authorization': TOKEN }
 
@@ -59,9 +60,19 @@ function Page() {
     setProcessing(false)
   }
 
+
+  const fetchSummary = async () => {
+    const {status,data} = await cryptoSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
+
 
 
 

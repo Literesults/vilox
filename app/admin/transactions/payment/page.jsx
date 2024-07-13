@@ -7,13 +7,14 @@ import { CiCreditCardOff } from "react-icons/ci";
 import { PiFingerprintSimpleThin, PiHandWithdraw } from "react-icons/pi";
 import { MdOutlinePayments } from 'react-icons/md'
 import { TbMoneybag } from 'react-icons/tb'
-import { fetchTransaction } from '@/app/services/authService'
+import { fetchTransaction, transactionsPaymentSummary } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
 
 function Page() {
   const [showModal, setShowModal] = useState(false)
   const [catego, setcate] = useState(["", "", "", "", "", "", "", "", "", "", ""])
   const [loading, setLoading] = useState(true)
+  const [summary , setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await fetchTransaction().catch(err => console.log(err))
@@ -24,7 +25,15 @@ function Page() {
   }
 
 
+  const fetchSummary = async () => {
+    const {status,data} = await transactionsPaymentSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
@@ -32,10 +41,10 @@ function Page() {
   return (
     <AppLayout title="Summary Payment transaction">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={68} icon={<MdOutlinePayments />} color="text-[#777fff]" text="Total Payment Request" bg="bg-[#777fff]" />
-        <AppCard figure={27} icon={<PiHandWithdraw />} color="text-[#35C119]" text="Comfirmed Payment" bg="bg-[#35C119]" />
-        <AppCard figure={1573} icon={<TbMoneybag />} color="text-[#aaa9a4]" text="Pending Payment" bg="bg-[#aaa9a4]" />
-        <AppCard figure={37} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Declined Payment" bg="bg-[#ef4444]" />
+        <AppCard figure={summary?.total} icon={<MdOutlinePayments />} color="text-[#777fff]" text="Total Payment Request" bg="bg-[#777fff]" />
+        <AppCard figure={summary?.success} icon={<PiHandWithdraw />} color="text-[#35C119]" text="Comfirmed Payment" bg="bg-[#35C119]" />
+        <AppCard figure={summary?.proressing} icon={<TbMoneybag />} color="text-[#aaa9a4]" text="Pending Payment" bg="bg-[#aaa9a4]" />
+        <AppCard figure={summary?.failed} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Declined Payment" bg="bg-[#ef4444]" />
       </div>
       <div className="space-y-5">
         <div className="flex">

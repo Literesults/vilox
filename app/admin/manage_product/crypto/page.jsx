@@ -6,7 +6,7 @@ import AppInput from '@/app/components/organisms/AppInput'
 import { GiProfit, GiTrade } from "react-icons/gi";
 import CryptoChip from '@/app/components/organisms/CryptoChip'
 import { RiCoinsLine, RiHandCoinLine } from 'react-icons/ri'
-import { fetchCrypto } from '@/app/services/authService'
+import { cryptoSummary, fetchCrypto } from '@/app/services/authService'
 import Modal from '@/app/components/organisms/Modal'
 import Image from 'next/image'
 import serialize from '@/app/hooks/Serialize'
@@ -22,6 +22,7 @@ function Page() {
   const [selectedImage, setSelectedImage] = useState();
   const headers = { 'Authorization': TOKEN }
   const [errors, setErrors] = useState({})
+  const [summary , setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await fetchCrypto().catch(err => console.log(err))
@@ -37,7 +38,17 @@ function Page() {
     }
   }
 
+
+
+  const fetchSummary = async () => {
+    const {status,data} = await cryptoSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
