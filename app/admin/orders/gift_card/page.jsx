@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import AppLayout from '@component/layouts/appLayout'
 import AppCard from '@/app/components/organisms/AppCard'
-import { comfirmGiftCardOrder, orderFetchGiftCard } from '@/app/services/authService'
+import { comfirmGiftCardOrder, giftcardOrderSummary, orderFetchGiftCard } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
 import { PiFingerprintSimpleThin } from 'react-icons/pi'
 import Modal from '@/app/components/organisms/Modal'
@@ -16,12 +16,14 @@ function Page() {
   const [catego, setcate] = useState(["", "", "", ""])
   const [selected, setSelected] = useState("")
   const [x, setX] = useState({})
+  const [summary , setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await orderFetchGiftCard().catch(err => console.log(err))
     if (status) {
       setcate(data.data[0]);
     }
+    fetchSummary()
     setLoading(false)
   }
 
@@ -40,10 +42,19 @@ function Page() {
     setProcessing(false)
   }
 
+
+
+  const fetchSummary = async () => {
+    const {status,data} = await giftcardOrderSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
   
 
 
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
@@ -110,9 +121,9 @@ function Page() {
       }
 
       <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <AppCard figure={20034535} icon={<i className="ri-exchange-funds-line"></i>} color="text-[#000000]" text="Total Gift card orders" bg="bg-[#000000]" />
-        <AppCard figure={43053} icon={<i className="ri-pass-pending-line"></i>} color="text-[#fff444]" text="Pending Gift card orders" bg="bg-[#fff444]" />
-        <AppCard figure={52344} icon={<i className="ri-bard-line"></i>} color="text-[#11c9a4]" text="Completed Gift card orders" bg="bg-[#11c9a4]" />
+        <AppCard figure={summary?.total} icon={<i className="ri-exchange-funds-line"></i>} color="text-[#000000]" text="Total Gift card orders" bg="bg-[#000000]" />
+        <AppCard figure={summary?.proressing} icon={<i className="ri-pass-pending-line"></i>} color="text-[#fff444]" text="Pending Gift card orders" bg="bg-[#fff444]" />
+        <AppCard figure={summary?.success} icon={<i className="ri-bard-line"></i>} color="text-[#11c9a4]" text="Completed Gift card orders" bg="bg-[#11c9a4]" />
       </div>
       <div className="space-y-3">
         <table className='w-full'>

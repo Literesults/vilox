@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import AppLayout from '@component/layouts/appLayout'
 import AppCard from '@/app/components/organisms/AppCard'
-import { fetchUsers, suspendUsers, unsuspendUsers } from '@/app/services/authService'
+import { fetchUsers, suspendUsers, unsuspendUsers, usersSummary } from '@/app/services/authService'
 import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
@@ -14,6 +14,7 @@ function Page() {
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
+  const [summary , setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await fetchUsers().catch(err => console.log(err))
@@ -45,7 +46,18 @@ function Page() {
     setProcessing(false)
   }
 
+
+
+
+  const fetchSummary = async () => {
+    const {status,data} = await usersSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
@@ -104,8 +116,8 @@ function Page() {
       <div className="grid xl:grid-cols-3 gap-5">
         <div className="xl:col-span-2 space-y-5">
           <div className="grid sm:grid-cols-2 gap-5">
-            <AppCard figure={4535} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Users" bg="bg-[#13f444]" />
-            <AppCard figure={53} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Users" bg="bg-[#ef4444]" />
+            <AppCard figure={summary?.active} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Users" bg="bg-[#13f444]" />
+            <AppCard figure={summary?.suspended} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Users" bg="bg-[#ef4444]" />
           </div>
           <div className="">
             <table className='w-full'>

@@ -44,3 +44,13 @@ export const suspendStaffs = (formData) => apiWithAuth.post("admin/user/suspend"
 export const unsuspendStaffs = (formData) => apiWithAuth.post("admin/staff/unsuspend", formData).then(getApiResponse).catch(getErrorResponse);
 
 
+export const dashboardSummary = (formData) => apiWithAuth.post("admin/summary/dashboard", formData).then(getApiResponse).catch(getErrorResponse);
+export const staffsSummary = (formData) => apiWithAuth.post("admin/summary/staffs", formData).then(getApiResponse).catch(getErrorResponse);
+export const usersSummary = (formData) => apiWithAuth.post("admin/summary/users", formData).then(getApiResponse).catch(getErrorResponse);
+export const efundSummary = (formData) => apiWithAuth.post("admin/summary/efund", formData).then(getApiResponse).catch(getErrorResponse);
+export const cryptoSummary = (formData) => apiWithAuth.post("admin/summary/crypto", formData).then(getApiResponse).catch(getErrorResponse);
+export const summary = (formData) => apiWithAuth.post("admin/summary/transactions_payment", formData).then(getApiResponse).catch(getErrorResponse);
+export const transactionsPaymentSummary = (formData) => apiWithAuth.post("admin/summary/transactions_payment", formData).then(getApiResponse).catch(getErrorResponse);
+export const transactionsWithdrawalSummary = (formData) => apiWithAuth.post("admin/summary/transactions_withdrawal", formData).then(getApiResponse).catch(getErrorResponse);
+export const cryptoOrderSummary = (formData) => apiWithAuth.post("admin/summary/crypto_orders", formData).then(getApiResponse).catch(getErrorResponse);
+export const giftcardOrderSummary = (formData) => apiWithAuth.post("admin/summary/giftcard_orders", formData).then(getApiResponse).catch(getErrorResponse);

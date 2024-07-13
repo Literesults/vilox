@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import AppLayout from '@component/layouts/appLayout'
 import AppCard from '@/app/components/organisms/AppCard'
-import { comfirmOrderOrder, orderFetchOrder } from '@/app/services/authService'
+import { comfirmOrderOrder, cryptoOrderSummary, orderFetchOrder } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
 import { PiFingerprintSimpleThin } from 'react-icons/pi'
 import Modal from '@/app/components/organisms/Modal'
@@ -15,6 +15,7 @@ function Page() {
   const [processing, setProcessing] = useState(false)
   const [catego, setcate] = useState(["", "", "", ""])
   const [selected, setSelected] = useState("")
+  const [summary , setSummary] = useState([])
   const [x, setX] = useState({})
 
   const fetch = async () => {
@@ -22,6 +23,7 @@ function Page() {
     if (status) {
       setcate(data.data[0]);
     }
+    fetchSummary()
     setLoading(false)
   }
 
@@ -45,7 +47,15 @@ function Page() {
 
 
 
+  const fetchSummary = async () => {
+    const {status,data} = await cryptoOrderSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
   return (
@@ -111,9 +121,9 @@ function Page() {
       }
 
       <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <AppCard figure={234535} icon={<i className="ri-exchange-funds-line"></i>} color="text-[#000000]" text="Total Crypto orders" bg="bg-[#000000]" />
-        <AppCard figure={3053} icon={<i className="ri-pass-pending-line"></i>} color="text-[#fff444]" text="Pending Crypto orders" bg="bg-[#fff444]" />
-        <AppCard figure={34524} icon={<i className="ri-bard-line"></i>} color="text-[#11c9a4]" text="Completed Crypto orders" bg="bg-[#11c9a4]" />
+        <AppCard figure={summary?.total} icon={<i className="ri-exchange-funds-line"></i>} color="text-[#000000]" text="Total Crypto orders" bg="bg-[#000000]" />
+        <AppCard figure={summary?.proressing} icon={<i className="ri-pass-pending-line"></i>} color="text-[#fff444]" text="Pending Crypto orders" bg="bg-[#fff444]" />
+        <AppCard figure={summary?.success} icon={<i className="ri-bard-line"></i>} color="text-[#11c9a4]" text="Completed Crypto orders" bg="bg-[#11c9a4]" />
       </div>
       <div className="space-y-3">
         <table className='w-full'>
