@@ -1,8 +1,24 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import AppLayout from '@component/layouts/appLayout'
 import NotificationChip from '@/app/components/organisms/NotificationChip'
+import { fetchNotification } from '@/app/services/authService'
 
 function Page() {
+  const [notification, setNotification] = useState([])
+
+  const getNotification = async () => {
+    const { status, data } = await fetchNotification().catch(err => console.log(err))
+    if (status) {
+      console.log(data.data)
+      setNotification(data.data)
+    }
+  }
+
+  useEffect(() => {
+    getNotification()
+  }, [])
+
   return (
     <AppLayout>
       <div className="relative dark:bg-[#202B37]">
@@ -10,7 +26,7 @@ function Page() {
           <div className="text-black-1 text-center font-bold dark:text-white-1 text-lg md:text-left">Notification</div>
           <div className="">
             {
-              ["","","","",""].map((notifiktion, i) => (
+              notification?.notifications.map((notifiktion, i) => (
                 <div key={i}><NotificationChip data={notifiktion} /></div>
               ))
             }
