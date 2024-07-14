@@ -25,7 +25,7 @@ function AppLayout({ children, title }) {
     return (
       <>
         <div className={`bg-gray-50 z-50 transition-all ${showNav ? "left-0" : "-left-64 md:left-0"} duration-300  relative`}>
-          <SideNav />
+          <SideNav user={user} />
         </div>
         <div className={`p-4 pb-8 md:ml-64 relative space-y-5 bg-gray-50 transition-all duration-300 select-none min-h-screen`}>
           {title?.length > 0 && (<div className="">

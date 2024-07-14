@@ -38,7 +38,6 @@ export const suspendUsers = (formData) => apiWithAuth.post("admin/user/suspend",
 export const unsuspendUsers = (formData) => apiWithAuth.post("admin/staff/unsuspend", formData).then(getApiResponse).catch(getErrorResponse);
 
 
-
 export const fetchStaffs = (formData) => apiWithAuth.post("admin/staff/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const suspendStaffs = (formData) => apiWithAuth.post("admin/user/suspend", formData).then(getApiResponse).catch(getErrorResponse);
 export const unsuspendStaffs = (formData) => apiWithAuth.post("admin/staff/unsuspend", formData).then(getApiResponse).catch(getErrorResponse);
@@ -54,3 +53,9 @@ export const transactionsPaymentSummary = (formData) => apiWithAuth.post("admin/
 export const transactionsWithdrawalSummary = (formData) => apiWithAuth.post("admin/summary/transactions_withdrawal", formData).then(getApiResponse).catch(getErrorResponse);
 export const cryptoOrderSummary = (formData) => apiWithAuth.post("admin/summary/crypto_orders", formData).then(getApiResponse).catch(getErrorResponse);
 export const giftcardOrderSummary = (formData) => apiWithAuth.post("admin/summary/giftcard_orders", formData).then(getApiResponse).catch(getErrorResponse);
+
+
+export const fetchNotification = (formData) => apiWithAuth.post("admin/profile/fetch_notifications", formData).then(getApiResponse).catch(getErrorResponse);
+export const changePassword = (formData) => apiWithAuth.post("admin/profile/update_password", formData).then(getApiResponse).catch(getErrorResponse);
+export const changeAvatar = (formData) => apiWithAuth.post("admin/profile/change_avatar", formData).then(getApiResponse).catch(getErrorResponse);
+export const changeUserName = (formData) => apiWithAuth.post("admin/profile/update", formData).then(getApiResponse).catch(getErrorResponse);
