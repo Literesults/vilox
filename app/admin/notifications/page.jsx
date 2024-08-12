@@ -26,7 +26,7 @@ function Page() {
           <div className="text-black-1 text-center font-bold dark:text-white-1 text-lg md:text-left">Notification</div>
           <div className="">
             {
-              notification?.notifications.map((notifiktion, i) => (
+              notification?.notifications?.map((notifiktion, i) => (
                 <div key={i}><NotificationChip data={notifiktion} /></div>
               ))
             }
