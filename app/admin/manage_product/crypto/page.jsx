@@ -22,7 +22,7 @@ function Page() {
   const [selectedImage, setSelectedImage] = useState();
   const headers = { 'Authorization': TOKEN }
   const [errors, setErrors] = useState({})
-  const [summary , setSummary] = useState([])
+  const [summary, setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await fetchCrypto().catch(err => console.log(err))
@@ -42,7 +42,7 @@ function Page() {
 
 
   const fetchSummary = async () => {
-    const {status,data} = await cryptoSummary().catch(err => console.log(err))
+    const { status, data } = await cryptoSummary().catch(err => console.log(err))
     if (status) {
       setSummary(data.data);
     }
@@ -132,6 +132,33 @@ function Page() {
               <CryptoChip data={cat} key={i} />
             ))
           }
+
+          {
+            loading && ["", "", "", "", "", ""].map((data, i) => (
+              <div className="px-4 h-56 py-4 space-y-3 border border-gray-200 rounded-md bg-white">
+                <div className="space-y-2">
+                  <div className="w-10 h-10 preload"></div>
+                  <div className="py-2 preload w-1/3"></div>
+                  <div className="pt-3 preload w-1/2"></div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-1">
+                    <div className="py-3 preload w-3/4"></div>
+                    <div className="w-1/2 preload py-2"></div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="py-3 preload w-3/4"></div>
+                    <div className="w-1/2 preload py-2"></div>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <div className="py-3 preload w-2/4"></div>
+                  <div className="w-4/5 preload py-2"></div>
+                </div>
+              </div>
+            ))
+          }
+
         </div>
       </div>
     </AppLayout>

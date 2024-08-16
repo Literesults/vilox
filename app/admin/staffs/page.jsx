@@ -235,6 +235,37 @@ function Page() {
                     </tr>
                   ))
                 }
+
+{
+                  loading && ["", "", "", "", "", ""].map((data, i) => (
+                    <tr className='odd:bg-white' key={i}>
+                      <td className='px-3 py-2 text-[10px] text-left flex' scope="">
+                        <div className="flex-grow flex items-center gap-2">
+                          <div className="">
+                            <div className="w-8 bg-gray-100 preload rounded-full h-8"></div>
+                          </div>
+                          <div className="w-full space-y-2">
+                            <div className="font-bold preload py-2 w-1/3"></div>
+                            <div className="text-xs text-gray-400 preload py-1 w-2/3"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className='px-3 py-2 text-left hidden sm:table-cell' scope="">
+                        <div className="preload py-2 w-2/3"></div>
+                      </td>
+                      <td className='px-3 py-2 text-left hidden lg:table-cell' scope="">
+                        <div className="preload py-2 w-2/3"></div>
+                      </td>
+                      <td className='px-3 py-2 text-left hidden sm:table-cell' scope="">
+                        <div className="flex items-center gap-3">
+                          <div className="flex-grow">
+                            <div className={`text-[9px] px-7 inline py-[2px] rounded-lg bg-opacity-10 preload`}></div>
+                          </div> <div className="w-7 h-7 preload cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "></div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                }
               </tbody>
             </table>
           </div>

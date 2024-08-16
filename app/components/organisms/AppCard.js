@@ -10,7 +10,14 @@ function AppCard({ color, bg, text, icon, figure }) {
                 <div></div>
             </div>
             <div className='text-gray-400 text-xs'>{text}</div>
-            <div className='text-3xl font-bold'>{figure?.toLocaleString('en-US')}</div>
+            {
+                figure?.toLocaleString('en-US') === undefined ? (
+                    <div className='preload w-7 h-7'></div>
+                ) : (
+                    <div className='text-3xl font-bold'>{figure?.toLocaleString('en-US')}</div>
+                )
+            }
+            
         </div>
     )
 }

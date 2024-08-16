@@ -54,7 +54,7 @@ function Page({ params }) {
     formdata.append('sell_rate_low', data.sell_rate_low)
     formdata.append('sell_rate_high', data.sell_rate_high)
     formdata.append('gift_card_category_id', data.gift_card_category_id)
-    
+
     await axios.post(`${API_BASE_URL}admin/giftcard/add_gift_card`, formdata, { headers }).then(async (res) => {
       await fetch()
       setSelectedImage()
@@ -94,7 +94,7 @@ function Page({ params }) {
             <AppInput name="name" required label="Name" />
             <AppInput name="sell_rate_low" required label="Sell rate low " />
             <AppInput name="sell_rate_high" required label="Sell rate high " />
-            <AppInput type={"select"} options={["hot","normal"]} name="speed" required label="Speed" />
+            <AppInput type={"select"} options={["hot", "normal"]} name="speed" required label="Speed" />
             <div className='flex gap-4 items-center'>
               <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
               <div onClick={() => { setShowModal(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
@@ -102,17 +102,12 @@ function Page({ params }) {
           </div>
         </form>
       </Modal>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={7} icon={<TbGiftCard />} color="text-[#1f4a41]" text={`Total ${params.giftCard} Gift Card`} bg="bg-[#1f4a41]" />
-        <AppCard figure={63} icon={<MdCardGiftcard />} color="text-[#abc444]" text={`Total ${params.giftCard} Trading`} bg="bg-[#abc444]" />
-        <AppCard figure={729} icon={<CiCreditCard2 />} color="text-[#123abc]" text={`Total Active Gift Card`} bg="bg-[#123abc]" />
-        <AppCard figure={2189.89} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Total Inactive Gift Card" bg="bg-[#ef4444]" />
-      </div>
+
       <div className="space-y-5">
         <div className="flex">
           <div className="flex-grow">
             <div className="max-w-sm">
-              <AppInput name="search" required label="Search Category" />
+              {/* <AppInput name="search" required label="Search Category" /> */}
             </div>
           </div>
           <div onClick={() => setShowModal(true)} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Gift Card</div>
@@ -121,6 +116,28 @@ function Page({ params }) {
           {
             !loading && catego.map((cat, i) => (
               <GiftCardChip refresh={() => fetch()} data={cat} key={i} />
+            ))
+          }
+
+          {
+            loading && ["", "", "", "", "", ""].map((data, i) => (
+              <div className="px-4 h-52 py-4 space-y-3 border border-gray-200 rounded-md bg-white">
+                <div className="space-y-2">
+                  <div className="w-14 h-14 preload"></div>
+                  <div className="py-3 preload w-1/3"></div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-1">
+                    <div className="py-3 preload w-3/4"></div>
+                    <div className="w-1/2 preload py-2"></div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="py-3 preload w-3/4"></div>
+                    <div className="w-1/2 preload py-2"></div>
+                  </div>
+                </div>
+                <div className="preload rounded-lg w-1/5 py-2"></div>
+              </div>
             ))
           }
         </div>
