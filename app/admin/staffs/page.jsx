@@ -64,7 +64,7 @@ function Page() {
   }
 
 
-  
+
   const addNow = async (e) => {
     e.preventDefault();
     const data = serialize(e.target)
@@ -236,7 +236,7 @@ function Page() {
                   ))
                 }
 
-{
+                {
                   loading && ["", "", "", "", "", ""].map((data, i) => (
                     <tr className='odd:bg-white' key={i}>
                       <td className='px-3 py-2 text-[10px] text-left flex' scope="">
@@ -270,27 +270,29 @@ function Page() {
             </table>
           </div>
         </div>
-        <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
-          <div className="flex">
-            <div className="flex-grow font-semibold">Top Users</div>
-          </div>
-          <div className="divide-y divide-gray-200">
-            {
-              topRank.map((user, i) => (
-                <div key={i} className="flex py-2 items-center">
-                  <div className="flex-grow flex items-center gap-2">
-                    <div className="">
-                      <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+        <div className="">
+          <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
+            <div className="flex">
+              <div className="flex-grow font-semibold">Top Users</div>
+            </div>
+            <div className="divide-y divide-gray-200">
+              {
+                topRank.map((user, i) => (
+                  <div key={i} className="flex py-2 items-center">
+                    <div className="flex-grow flex items-center gap-2">
+                      <div className="">
+                        <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                      </div>
+                      <div className="">
+                        <div className="text-xs font-bold">Ebube Roderick</div>
+                        <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
+                      </div>
                     </div>
-                    <div className="">
-                      <div className="text-xs font-bold">Ebube Roderick</div>
-                      <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
-                    </div>
+                    <div className="text-sm">&#8358; 34,535</div>
                   </div>
-                  <div className="text-sm">&#8358; 34,535</div>
-                </div>
-              ))
-            }
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>
