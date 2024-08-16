@@ -135,7 +135,7 @@ function Page() {
 
           {
             loading && ["", "", "", "", "", ""].map((data, i) => (
-              <div className="px-4 h-56 py-4 space-y-3 border border-gray-200 rounded-md bg-white">
+              <div key={i} className="px-4 h-56 py-4 space-y-3 border border-gray-200 rounded-md bg-white">
                 <div className="space-y-2">
                   <div className="w-10 h-10 preload"></div>
                   <div className="py-2 preload w-1/3"></div>
