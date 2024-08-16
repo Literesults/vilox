@@ -19,18 +19,18 @@ function Page() {
       title: "Change Password",
       id: "change-password",
     },
-    {
-      title: "Notifications",
-      id: "notifications",
-    },
-    {
-      title: "Appearance",
-      id: "appearance",
-    },
-    {
-      title: "Delete Account",
-      id: "delete-account",
-    },
+    // {
+    //   title: "Notifications",
+    //   id: "notifications",
+    // },
+    // {
+    //   title: "Appearance",
+    //   id: "appearance",
+    // },
+    // {
+    //   title: "Delete Account",
+    //   id: "delete-account",
+    // },
   ];
 
 

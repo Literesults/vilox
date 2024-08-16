@@ -14,7 +14,7 @@ function Page() {
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
-  const [summary , setSummary] = useState([])
+  const [summary, setSummary] = useState([])
 
   const fetch = async () => {
     const { status, data } = await fetchUsers().catch(err => console.log(err))
@@ -50,7 +50,7 @@ function Page() {
 
 
   const fetchSummary = async () => {
-    const {status,data} = await usersSummary().catch(err => console.log(err))
+    const { status, data } = await usersSummary().catch(err => console.log(err))
     if (status) {
       setSummary(data.data);
     }
@@ -69,7 +69,6 @@ function Page() {
           <Modal closeModal={() => setX({})} size={"sm"} isOpen={Object.keys(x).length > 0}>
             <form onSubmit={(e) => { submit(e) }} >
               <div className='space-y-5'>
-
                 <div className="">
                   <div className="grid grid-cols-2">
                     <div className=''>
@@ -161,31 +160,64 @@ function Page() {
                     </tr>
                   ))
                 }
+
+                {
+                  loading && ["", "", "", "", "", ""].map((data, i) => (
+                    <tr className='odd:bg-white' key={i}>
+                      <td className='px-3 py-2 text-[10px] text-left flex' scope="">
+                        <div className="flex-grow flex items-center gap-2">
+                          <div className="">
+                            <div className="w-8 bg-gray-100 preload rounded-full h-8"></div>
+                          </div>
+                          <div className="w-full space-y-2">
+                            <div className="font-bold preload py-2 w-1/3"></div>
+                            <div className="text-xs text-gray-400 preload py-1 w-2/3"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className='px-3 py-2 text-left hidden sm:table-cell' scope="">
+                        <div className="preload py-2 w-2/3"></div>
+                      </td>
+                      <td className='px-3 py-2 text-left hidden lg:table-cell' scope="">
+                        <div className="preload py-2 w-2/3"></div>
+                      </td>
+                      <td className='px-3 py-2 text-left hidden sm:table-cell' scope="">
+                        <div className="flex items-center gap-3">
+                          <div className="flex-grow">
+                            <div className={`text-[9px] px-7 inline py-[2px] rounded-lg bg-opacity-10 preload`}></div>
+                          </div> <div className="w-7 h-7 preload cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "></div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                }
               </tbody>
             </table>
           </div>
         </div>
-        <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
-          <div className="flex">
-            <div className="flex-grow font-semibold">Top Users</div>
-          </div>
-          <div className="divide-y divide-gray-200">
-            {
-              topRank.map((user, i) => (
-                <div key={i} className="flex py-2 items-center">
-                  <div className="flex-grow flex items-center gap-2">
-                    <div className="">
-                      <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+        <div className="">
+          <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
+            <div className="flex">
+              <div className="flex-grow font-semibold">Top Users</div>
+            </div>
+            <div className="divide-y divide-gray-200">
+              {
+                topRank.map((user, i) => (
+                  <div key={i} className="flex py-2 items-center">
+                    <div className="flex-grow flex items-center gap-2">
+                      <div className="">
+                        <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                      </div>
+                      <div className="">
+                        <div className="text-xs font-bold">Ebube Roderick</div>
+                        <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
+                      </div>
                     </div>
-                    <div className="">
-                      <div className="text-xs font-bold">Ebube Roderick</div>
-                      <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
-                    </div>
+                    <div className="text-sm">&#8358; 34,535</div>
                   </div>
-                  <div className="text-sm">&#8358; 34,535</div>
-                </div>
-              ))
-            }
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>

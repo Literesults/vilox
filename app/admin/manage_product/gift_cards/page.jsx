@@ -24,7 +24,7 @@ function Page() {
   const [showModal, setShowModal] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [errors, setErrors] = useState({})
-  const [summary , setSummary] = useState([])
+  const [summary, setSummary] = useState([])
 
   const headers = { 'Authorization': TOKEN }
 
@@ -43,7 +43,7 @@ function Page() {
     }
   }
 
-  
+
   const submit = async (e) => {
     e.preventDefault();
     const data = serialize(e.target)
@@ -63,7 +63,7 @@ function Page() {
 
 
   const fetchSummary = async () => {
-    const {status,data} = await cryptoSummary().catch(err => console.log(err))
+    const { status, data } = await cryptoSummary().catch(err => console.log(err))
     if (status) {
       setSummary(data.data);
     }
@@ -126,6 +126,19 @@ function Page() {
           {
             !loading && catego.map((cat, i) => (
               <CategoryChip reload={() => fetch()} data={cat} key={i} />
+            ))
+          }
+
+          {
+            loading && ["", "", "", "", "", ""].map((data, i) => (
+              <div className="px-4 h-44 py-4 space-y-4 border border-gray-200 rounded-md bg-white">
+                <div className="space-y-2">
+                  <div className="w-14 h-14 preload"></div>
+                  <div className="py-3 preload w-1/3"></div>
+                  <div className="py-2 w-1/6 preload rounded-lg"></div>
+                </div>
+                <div className="preload w-1/2 py-2"></div>
+              </div>
             ))
           }
         </div>
