@@ -93,7 +93,7 @@ function SideNav({ user }) {
               <div className="text-xs text-gray-400">{user.value.user.email}</div>
             </div>
             <div>
-              <div className="w-8 h-8 flex items-center justify-center cursor-pointer"><IoEllipsisVerticalOutline /></div>
+              {/* <div className="w-8 h-8 flex items-center justify-center cursor-pointer"><IoEllipsisVerticalOutline /></div> */}
             </div>
           </div>
         </div>

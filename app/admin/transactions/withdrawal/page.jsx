@@ -160,7 +160,7 @@ function Page() {
                       </div>
                     </td>
                     <td className='px-3 py-2 text-left capitalize hidden sm:table-cell' scope="">{data.type}</td>
-                    <td className='px-3 py-2 text-left hidden lg:table-cell' scope="">&#8358;{data?.amount}</td>
+                    <td className='px-3 py-2 text-left hidden lg:table-cell' scope="">&#8358;{new Intl.NumberFormat().format(data?.amount)}</td>
                     <td className='px-3 py-2 text-left hidden lg:table-cell' scope="">{data?.transaction_id}</td>
                     <td className='px-3 py-2 text-left hidden sm:table-cell' scope="">
                       <div className="flex items-center gap-3">

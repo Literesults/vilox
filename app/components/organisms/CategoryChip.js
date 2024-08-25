@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react'
 import { IoEllipsisHorizontalOutline } from "react-icons/io5";
 
-function CategoryChip({ data, reload }) {
+function CategoryChip({ data, reload, setUpdateItem }) {
     const [optionOpen, setOpen] = useState(false)
     const changeStatus = async (id) => {
         const { status, data } = await changeGiftCardCategoryStatus({ id }).catch(err => console.log(err))
@@ -25,7 +25,7 @@ function CategoryChip({ data, reload }) {
                             <Link href={`gift_cards/${data?.id}`}>
                                 <div className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-gray-500'>View</div>
                             </Link>
-                            <div className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-gray-500'>Edit Category Info</div>
+                            <div onClick={() => setUpdateItem(data)} className='hover:bg-gray-50 py-2 px-3 rounded-md cursor-pointer text-gray-500'>Edit Category Info</div>
                             <div onClick={() => changeStatus(data.id)}>
                                 {
                                     data?.status === "active" ? (

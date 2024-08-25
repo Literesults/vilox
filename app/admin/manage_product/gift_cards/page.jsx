@@ -21,8 +21,10 @@ function Page() {
   const [catego, setcate] = useState(["", "", "", ""])
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedUpdateImage, setSelectedUpdateImage] = useState();
   const [showModal, setShowModal] = useState(false)
   const [processing, setProcessing] = useState(false)
+  const [updateItem,setUpdateItem] = useState({})
   const [errors, setErrors] = useState({})
   const [summary, setSummary] = useState([])
 
@@ -37,6 +39,23 @@ function Page() {
     setLoading(false)
   }
 
+  const updateFn = async (e) => {
+    e.preventDefault();
+    // const data = serialize(e.target)
+    // const formdata = new FormData()
+    // setProcessing(true)
+    // formdata.append('image', selectedImage)
+    // formdata.append('name', data.name)
+    // await axios.post(`${API_BASE_URL}admin/giftcard/add_giftcard_category`, formdata, { headers }).then(async (res) => {
+    //   await fetch()
+    //   setSelectedImage()
+    //   setShowModal(false)
+    // }).catch((error) => {
+    //   error.response && setErrors(error.response.data.data);
+    // })
+    // setProcessing(false)
+  }
+
   const uploadImg = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
@@ -44,6 +63,13 @@ function Page() {
   }
 
 
+  const uploadUpdateImg = async (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedUpdateImage(e.target.files[0]);
+    }
+  }
+
+  
   const submit = async (e) => {
     e.preventDefault();
     const data = serialize(e.target)
@@ -95,7 +121,7 @@ function Page() {
               <div onClick={() => document.querySelector('#img').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
                 <BsCamera />
               </div>
-              <input name="image" id="img" onChange={(e) => uploadImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+              <input name="image" id="img" onChange={(e) => uploadUpdateImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
             </div>
 
             <AppInput name="name" required label="Name" />
@@ -106,6 +132,37 @@ function Page() {
           </div>
         </form>
       </Modal>
+
+      <Modal closeModal={() => { setUpdateItem({}) }} size={"lg"} isOpen={Object.keys(updateItem).length > 0}>
+        {console.log(updateItem)}
+        <form onSubmit={(e) => { updateFn(e) }} enctype="multipart/form-data">
+          <div className='space-y-5'>
+            <div className="h-24 w-24 rounded-full bg-gray-200 relative">
+              {selectedUpdateImage && (
+                <Image
+                  src={selectedUpdateImage}
+                  alt="Thumb"
+                  className="w-full h-full rounded-full"
+                  width={'150'}
+                  height={'150'}
+                />
+              )}
+              <div onClick={() => document.querySelector('#img').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
+                <BsCamera />
+              </div>
+              <input name="image" id="img" onChange={(e) => uploadImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+            </div>
+
+            <AppInput name="name" defaultValue={updateItem.name} required label="Name" />
+            <div className='flex gap-4 items-center'>
+              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Updating..." : "Update"}</button>
+              <div onClick={() => { setShowModal(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+            </div>
+          </div>
+        </form>
+      </Modal>
+
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <AppCard figure={23} icon={<PiCardsThree />} color="text-[#777fff]" text="Gift Card Categories" bg="bg-[#777fff]" />
         <AppCard figure={1603} icon={<LiaCreditCardSolid />} color="text-[#900235]" text="Total Gift Cards" bg="bg-[#900235]" />
@@ -125,7 +182,7 @@ function Page() {
         <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
           {
             !loading && catego.map((cat, i) => (
-              <CategoryChip reload={() => fetch()} data={cat} key={i} />
+              <CategoryChip setUpdateItem={e => {setUpdateItem(e) ;setSelectedUpdateImage(e.image) }} reload={() => fetch()} data={cat} key={i} />
             ))
           }
 
