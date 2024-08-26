@@ -8,11 +8,14 @@ function Page() {
   const [notification, setNotification] = useState([])
 
   const getNotification = async () => {
+    const list = []
     const { status, data } = await fetchNotification().catch(err => console.log(err))
     if (status) {
-      console.log(data.data)
-      setNotification(data.data)
+      await data.data.notifications.forEach(element => {
+        list.push(JSON.parse(element.data));
+      });
     }
+    setNotification(list)
   }
 
   useEffect(() => {
@@ -26,7 +29,7 @@ function Page() {
           <div className="text-black-1 text-center font-bold dark:text-white-1 text-lg md:text-left">Notification</div>
           <div className="">
             {
-              notification?.notifications?.map((notifiktion, i) => (
+              notification?.map((notifiktion, i) => (
                 <div key={i}><NotificationChip data={notifiktion} /></div>
               ))
             }
