@@ -17,7 +17,7 @@ function CategoryChip({ data, reload, setUpdateItem }) {
             <div className="">
                 <div className="flex items-start">
                     <div className="flex-grow">
-                        <div className="w-12 h-12 rounded-full"><img src={data.image} width={100} height={100} /></div>
+                        <div className="w-12 h-12 rounded-full"><img src={data.image} className='bg-contain' width={100} height={100} /></div>
                     </div>
                     <div className="relative">
                         <div onClick={() => setOpen(true)} className='w-8 h-8 cursor-pointer flex items-center justify-center text-2xl text-gray-500'><IoEllipsisHorizontalOutline /></div>

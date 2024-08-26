@@ -17,6 +17,8 @@ import { BsCamera } from 'react-icons/bs'
 import Image from 'next/image'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
+import { IoIosArrowRoundBack } from 'react-icons/io'
+import { useRouter } from 'next/navigation'
 
 function Page({ params }) {
   const [catego, setcate] = useState(["", "", "", ""])
@@ -27,6 +29,7 @@ function Page({ params }) {
   const [errors, setErrors] = useState({})
 
   const headers = { 'Authorization': TOKEN }
+  const router = useRouter()
 
   const fetch = async () => {
     const { status, data } = await fetchGiftCard({ gift_card_category_id: params.giftCard }).catch(err => console.log(err))
@@ -69,7 +72,6 @@ function Page({ params }) {
     fetch()
   }, [])
 
-  fetchGiftCard
   return (
     <AppLayout title={`Details of ${params.giftCard}`}>
       <Modal closeModal={() => { setShowModal(false) }} size={"lg"} isOpen={showModal}>
@@ -104,10 +106,10 @@ function Page({ params }) {
       </Modal>
 
       <div className="space-y-5">
-        <div className="flex">
-          <div className="flex-grow">
-            <div className="max-w-sm">
-              {/* <AppInput name="search" required label="Search Category" /> */}
+        <div className="flex items-center">
+          <div className="flex-grow flex">
+            <div onClick={() => router.back() } className="cursor-pointer flex items-center gap-1">
+              <IoIosArrowRoundBack /> Back
             </div>
           </div>
           <div onClick={() => setShowModal(true)} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Gift Card</div>

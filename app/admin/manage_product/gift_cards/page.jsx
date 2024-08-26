@@ -39,6 +39,7 @@ function Page() {
     setLoading(false)
   }
 
+
   const updateFn = async (e) => {
     e.preventDefault();
     // const data = serialize(e.target)
@@ -92,6 +93,7 @@ function Page() {
     const { status, data } = await cryptoSummary().catch(err => console.log(err))
     if (status) {
       setSummary(data.data);
+      console.log(data.data);
     }
   }
 
@@ -164,10 +166,10 @@ function Page() {
 
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={23} icon={<PiCardsThree />} color="text-[#777fff]" text="Gift Card Categories" bg="bg-[#777fff]" />
-        <AppCard figure={1603} icon={<LiaCreditCardSolid />} color="text-[#900235]" text="Total Gift Cards" bg="bg-[#900235]" />
-        <AppCard figure={1573} icon={<CiCreditCard1 />} color="text-[#11c9a4]" text="Active Gift Cards" bg="bg-[#11c9a4]" />
-        <AppCard figure={37} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Inactive Gift Cards" bg="bg-[#ef4444]" />
+        <AppCard figure={catego.length} icon={<PiCardsThree />} color="text-[#777fff]" text="Gift Card Categories" bg="bg-[#777fff]" />
+        <AppCard figure={summary?.total} icon={<LiaCreditCardSolid />} color="text-[#900235]" text="Total Gift Cards" bg="bg-[#900235]" />
+        <AppCard figure={summary?.active} icon={<CiCreditCard1 />} color="text-[#11c9a4]" text="Active Gift Cards" bg="bg-[#11c9a4]" />
+        <AppCard figure={summary?.inactive} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Inactive Gift Cards" bg="bg-[#ef4444]" />
       </div>
       <div className="space-y-5">
         <div className="flex">
