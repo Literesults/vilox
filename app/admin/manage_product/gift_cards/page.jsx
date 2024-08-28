@@ -21,9 +21,12 @@ function Page() {
   const [catego, setcate] = useState(["", "", "", ""])
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedUpdateImage, setSelectedUpdateImage] = useState();
   const [showModal, setShowModal] = useState(false)
   const [processing, setProcessing] = useState(false)
+  const [updateItem, setUpdateItem] = useState({})
   const [errors, setErrors] = useState({})
+  const [changed, setChanged] = useState(false)
   const [summary, setSummary] = useState([])
 
   const headers = { 'Authorization': TOKEN }
@@ -37,9 +40,40 @@ function Page() {
     setLoading(false)
   }
 
+
+  const updateFn = async (e) => {
+    e.preventDefault();
+    const data = serialize(e.target)
+    const formdata = new FormData()
+    setProcessing(true)
+    if (changed) {
+      formdata.append('image', selectedUpdateImage)
+    }
+    formdata.append('name', data.name)
+    formdata.append('id', updateItem.id)
+    formdata.append('status', updateItem.status)
+    await axios.post(`${API_BASE_URL}admin/giftcard/update_giftcard_category`, formdata, { headers }).then(async (res) => {
+      await fetch()
+      setUpdateItem({}) 
+      setChanged(false)
+      selectedUpdateImage()
+    }).catch((error) => {
+      error.response && setErrors(error.response.data.data);
+    })
+    setProcessing(false)
+  }
+
   const uploadImg = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
+    }
+  }
+
+
+  const uploadUpdateImg = async (e) => {
+    setChanged(true)
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedUpdateImage(e.target.files[0]);
     }
   }
 
@@ -106,11 +140,41 @@ function Page() {
           </div>
         </form>
       </Modal>
+
+      <Modal closeModal={() => { setUpdateItem({}); setChanged(false) }} size={"lg"} isOpen={Object.keys(updateItem).length > 0}>
+        <form onSubmit={(e) => { updateFn(e) }} enctype="multipart/form-data">
+          <div className='space-y-5'>
+            <div className="h-24 w-24 rounded-full bg-gray-200 relative">
+              {selectedUpdateImage && (
+                <Image
+                  src={changed ? URL.createObjectURL(selectedUpdateImage) : selectedUpdateImage}
+                  alt="Thumb"
+                  className="w-full h-full rounded-full"
+                  width={'150'}
+                  height={'150'}
+                />
+              )}
+              <div onClick={() => document.querySelector('#imgTwo').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
+                <BsCamera />
+              </div>
+              <input name="image" id="imgTwo" onChange={(e) => uploadUpdateImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+            </div>
+
+            <AppInput name="name" defaultValue={updateItem.name} required label="Name" />
+            <div className='flex gap-4 items-center'>
+              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Updating..." : "Update"}</button>
+              <div onClick={() => { setUpdateItem({}); setChanged(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+            </div>
+          </div>
+        </form>
+      </Modal>
+
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={23} icon={<PiCardsThree />} color="text-[#777fff]" text="Gift Card Categories" bg="bg-[#777fff]" />
-        <AppCard figure={1603} icon={<LiaCreditCardSolid />} color="text-[#900235]" text="Total Gift Cards" bg="bg-[#900235]" />
-        <AppCard figure={1573} icon={<CiCreditCard1 />} color="text-[#11c9a4]" text="Active Gift Cards" bg="bg-[#11c9a4]" />
-        <AppCard figure={37} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Inactive Gift Cards" bg="bg-[#ef4444]" />
+        <AppCard figure={catego.length} icon={<PiCardsThree />} color="text-[#777fff]" text="Gift Card Categories" bg="bg-[#777fff]" />
+        <AppCard figure={summary?.total} icon={<LiaCreditCardSolid />} color="text-[#900235]" text="Total Gift Cards" bg="bg-[#900235]" />
+        <AppCard figure={summary?.active} icon={<CiCreditCard1 />} color="text-[#11c9a4]" text="Active Gift Cards" bg="bg-[#11c9a4]" />
+        <AppCard figure={summary?.inactive} icon={<CiCreditCardOff />} color="text-[#ef4444]" text="Inactive Gift Cards" bg="bg-[#ef4444]" />
       </div>
       <div className="space-y-5">
         <div className="flex">
@@ -125,7 +189,7 @@ function Page() {
         <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
           {
             !loading && catego.map((cat, i) => (
-              <CategoryChip reload={() => fetch()} data={cat} key={i} />
+              <CategoryChip setUpdateItem={e => { setUpdateItem(e); setSelectedUpdateImage(e.image) }} reload={() => fetch()} data={cat} key={i} />
             ))
           }
 

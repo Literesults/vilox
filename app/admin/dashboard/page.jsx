@@ -96,7 +96,7 @@ function Page() {
                             <div className="text-gray-400 text-xs">{giftCard.user.email}</div>
                           </div>
                         </div>
-                        <div className="text-sm">&#8358;{giftCard.amount_to_pay}</div>
+                        {/* <div className="text-sm">&#8358;{giftCard?.amount_to_pay?.toLocaleString('en-US')}</div> */}
                       </div>
                     ))
                   }
@@ -118,7 +118,7 @@ function Page() {
                             <div className="text-gray-400 text-xs">{crypto.user.email}</div>
                           </div>
                         </div>
-                        <div className="text-sm">&#8358;{crypto.amount_to_pay}</div>
+                        {/* <div className="text-sm">&#8358;{crypto?.amount_to_pay?.toLocaleString('en-US')}</div> */}
                       </div>
                     ))
                   }
