@@ -6,6 +6,7 @@ import { fetchUsers, suspendUsers, unsuspendUsers, usersSummary } from '@/app/se
 import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
+import AppPagination from '@/app/components/organisms/AppPagination'
 
 function Page() {
   const [topRank, setTopRank] = useState(["", "", "", "", ""])
@@ -130,7 +131,7 @@ function Page() {
               </thead>
               <tbody>
                 {
-                  !loading && catego.map((data, i) => (
+                  !loading && catego?.data.map((data, i) => (
                     <tr className='odd:bg-white' key={i}>
                       <td className='px-3 py-2 text-[10px] text-left flex' scope="">
                         <div className="flex-grow flex items-center gap-2">
@@ -193,6 +194,7 @@ function Page() {
                 }
               </tbody>
             </table>
+            <AppPagination totalRecords={catego} newData={(e) => setcate(e)} />
           </div>
         </div>
         <div className="">

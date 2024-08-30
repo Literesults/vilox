@@ -7,7 +7,7 @@ import { CiCreditCardOff } from "react-icons/ci";
 import { PiFingerprintSimpleThin, PiHandWithdraw } from "react-icons/pi";
 import { MdOutlinePayments } from 'react-icons/md'
 import { TbMoneybag } from 'react-icons/tb'
-import { fetchTransaction, transactionsPaymentSummary } from '@/app/services/authService'
+import { fetchPaymentTransaction, fetchTransaction, transactionsPaymentSummary } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
 
 function Page() {
@@ -17,7 +17,7 @@ function Page() {
   const [summary, setSummary] = useState([])
 
   const fetch = async () => {
-    const { status, data } = await fetchTransaction().catch(err => console.log(err))
+    const { status, data } = await fetchPaymentTransaction().catch(err => console.log(err))
     if (status) {
       setcate(data.data[0]);
     }
