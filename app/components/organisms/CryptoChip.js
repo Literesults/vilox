@@ -65,12 +65,12 @@ function CryptoChip({ data }) {
                         showForm ? (
                             <div className='space-y-5'>
                                 <input type='hidden' name='id' value={data.id} />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.name} name="name" required label="Name" />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.symbol} name="symbol" required label="Symbol " />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.network} name="network" required label="Network " />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.sell_rate_low} name="sell_rate_low" required label="Sell rate low " />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.sell_rate_high} name="sell_rate_hight" required label="Sell rate high " />
-                                <AppInput onChange={(e) => console.log(e.target.value)} defaultValue={data.wallet_address} name="wallet_address" required label="Wallet address " />
+                                <AppInput defaultValue={data.name} name="name" required label="Name" />
+                                <AppInput defaultValue={data.symbol} name="symbol" required label="Symbol " />
+                                <AppInput defaultValue={data.network} name="network" required label="Network " />
+                                <AppInput defaultValue={data.sell_rate_low} name="sell_rate_low" required label="Sell rate low " />
+                                <AppInput defaultValue={data.sell_rate_high} name="sell_rate_hight" required label="Sell rate high " />
+                                <AppInput defaultValue={data.wallet_address} name="wallet_address" required label="Wallet address " />
                                 <div className='flex gap-4 items-center'>
                                     <button className='bg-black text-white text-center flex-grow rounded-md py-2'>Save</button>
                                     <div onClick={() => { setShowModal(false); setShowForm(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
