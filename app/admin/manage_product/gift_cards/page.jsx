@@ -7,7 +7,7 @@ import CategoryChip from '@/app/components/organisms/CategoryChip'
 import { CiCreditCard1, CiCreditCardOff } from "react-icons/ci";
 import { PiCardsThree } from "react-icons/pi";
 import { LiaCreditCardSolid } from "react-icons/lia";
-import { addGiftCardCategory, cryptoSummary, fetchGiftCardCategory } from '@/app/services/authService'
+import { addGiftCardCategory, cryptoSummary, fetchGiftCardCategory, giftcardOrderSummary, giftcardSummary } from '@/app/services/authService'
 import useFormHandlerFormdata from '@/app/hooks/useFormHandlerFormdata'
 import Modal from '@/app/components/organisms/Modal'
 import Image from 'next/image'
@@ -97,7 +97,7 @@ function Page() {
 
 
   const fetchSummary = async () => {
-    const { status, data } = await cryptoSummary().catch(err => console.log(err))
+    const { status, data } = await giftcardSummary().catch(err => console.log(err))
     if (status) {
       setSummary(data.data);
     }

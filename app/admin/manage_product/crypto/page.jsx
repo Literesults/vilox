@@ -109,11 +109,11 @@ function Page() {
           </div>
         </form>
       </Modal>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={4535} icon={<RiCoinsLine />} color="text-[#1f4a41]" text="Total Coin" bg="bg-[#1f4a41]" />
-        <AppCard figure={53} icon={<RiHandCoinLine />} color="text-[#13f444]" text="Total Trading" bg="bg-[#13f444]" />
-        <AppCard figure={8234} icon={<GiTrade />} color="text-[#abc444]" text="Total Amount Traded " bg="bg-[#abc444]" />
-        <AppCard figure={13316.89} icon={<GiProfit />} color="text-[#123abc]" text="Revenue" bg="bg-[#123abc]" />
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <AppCard figure={summary.total} icon={<RiCoinsLine />} color="text-[#1f4a41]" text="Total Coin" bg="bg-[#1f4a41]" />
+        <AppCard figure={summary.active} icon={<RiHandCoinLine />} color="text-[#13f444]" text="Total Active" bg="bg-[#13f444]" />
+        <AppCard figure={summary.inactive} icon={<GiTrade />} color="text-[#abc444]" text="Total In-active" bg="bg-[#abc444]" />
+        {/* <AppCard figure={13316.89} icon={<GiProfit />} color="text-[#123abc]" text="Revenue" bg="bg-[#123abc]" /> */}
       </div>
       <div className="space-y-5">
         <div className="flex">

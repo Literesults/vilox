@@ -6,7 +6,7 @@ import AppInput from '@/app/components/organisms/AppInput'
 import { RiCoinsLine, RiHandCoinLine } from 'react-icons/ri'
 import EFundChip from '@/app/components/organisms/EFundChip'
 import { GiProfit, GiTrade } from 'react-icons/gi'
-import { fetchEFund } from '@/app/services/authService'
+import { efundSummary, fetchEFund } from '@/app/services/authService'
 import Modal from '@/app/components/organisms/Modal'
 import Image from 'next/image'
 import axios from 'axios'
@@ -20,6 +20,7 @@ function Page() {
   const [loading, setLoading] = useState(true)
   const headers = { 'Authorization': TOKEN }
   const [selectedImage, setSelectedImage] = useState();
+  const [summary, setSummary] = useState([])
   const [processing, setProcessing] = useState(false)
   const [errors, setErrors] = useState({})
 
@@ -28,10 +29,9 @@ function Page() {
     if (status) {
       setcate(data.data[0]);
     }
-    // fetchSummary()
+    fetchSummary()
     setLoading(false)
   }
-
 
   const uploadImg = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -39,8 +39,17 @@ function Page() {
     }
   }
 
+  
+  const fetchSummary = async () => {
+    const { status, data } = await efundSummary().catch(err => console.log(err))
+    if (status) {
+      setSummary(data.data);
+    }
+  }
+
 
   useEffect(() => {
+    fetchSummary()
     fetch()
   }, [])
 
@@ -96,11 +105,10 @@ function Page() {
           </div>
         </form>
       </Modal>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <AppCard figure={19} icon={<RiCoinsLine />} color="text-[#1f4a41]" text="Total Coin" bg="bg-[#1f4a41]" />
-        <AppCard figure={63} icon={<RiHandCoinLine />} color="text-[#13f444]" text="Total Trading" bg="bg-[#13f444]" />
-        <AppCard figure={729} icon={<GiTrade />} color="text-[#abc444]" text="Total Amount Traded " bg="bg-[#abc444]" />
-        <AppCard figure={2189.89} icon={<GiProfit />} color="text-[#123abc]" text="Revenue" bg="bg-[#123abc]" />
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <AppCard figure={summary.total} icon={<RiCoinsLine />} color="text-[#1f4a41]" text="Total Coin" bg="bg-[#1f4a41]" />
+        <AppCard figure={summary.active} icon={<RiHandCoinLine />} color="text-[#13f444]" text="Total Active" bg="bg-[#13f444]" />
+        <AppCard figure={summary.inactive} icon={<GiTrade />} color="text-[#abc444]" text="Total In-active " bg="bg-[#abc444]" />
       </div>
       <div className="space-y-5">
         <div className="flex">

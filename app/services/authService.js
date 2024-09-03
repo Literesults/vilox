@@ -19,7 +19,7 @@ export const updateCrypto = (formData) => apiWithAuth.post("admin/crypto/update_
 export const fetchCrypto = (formData) => apiWithAuth.post("admin/crypto/fetch_crypto", formData).then(getApiResponse).catch(getErrorResponse);
 
 export const addEFund = (formData) => apiWithAuth.post("admin/efund/add_efund", formData).then(getApiResponse).catch(getErrorResponse);
-export const updateEFund = (formData) => apiWithAuth.post("admin/efund/update_efund", formData).then(getApiResponse).catch(getErrorResponse);
+export const updateEFud = (formData) => apiWithAuth.post("admin/efund/update_efund", formData).then(getApiResponse).catch(getErrorResponse);
 export const fetchEFund = (formData) => apiWithAuth.post("admin/efund/fetch_efund", formData).then(getApiResponse).catch(getErrorResponse);
 
 export const orderFetchGiftCard = (formData) => apiWithAuth.post("admin/order/giftcard/fetch", formData).then(getApiResponse).catch(getErrorResponse);
@@ -29,6 +29,7 @@ export const orderFetchOrder = (formData) => apiWithAuth.post("admin/order/crypt
 export const comfirmOrderOrder = (formData) => apiWithAuth.post("admin/order/crypto/confirm_order", formData).then(getApiResponse).catch(getErrorResponse);
 
 
+export const fetchPaymentTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const fetchTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const comfirmTransaction = (formData) => apiWithAuth.post("admin/transaction/confirm", formData).then(getApiResponse).catch(getErrorResponse);
 
@@ -48,6 +49,7 @@ export const staffsSummary = (formData) => apiWithAuth.post("admin/summary/staff
 export const usersSummary = (formData) => apiWithAuth.post("admin/summary/users", formData).then(getApiResponse).catch(getErrorResponse);
 export const efundSummary = (formData) => apiWithAuth.post("admin/summary/efund", formData).then(getApiResponse).catch(getErrorResponse);
 export const cryptoSummary = (formData) => apiWithAuth.post("admin/summary/crypto", formData).then(getApiResponse).catch(getErrorResponse);
+export const giftcardSummary = (formData) => apiWithAuth.post("admin/summary/crypto", formData).then(getApiResponse).catch(getErrorResponse);
 export const summary = (formData) => apiWithAuth.post("admin/summary/transactions_payment", formData).then(getApiResponse).catch(getErrorResponse);
 export const transactionsPaymentSummary = (formData) => apiWithAuth.post("admin/summary/transactions_payment", formData).then(getApiResponse).catch(getErrorResponse);
 export const transactionsWithdrawalSummary = (formData) => apiWithAuth.post("admin/summary/transactions_withdrawal", formData).then(getApiResponse).catch(getErrorResponse);
