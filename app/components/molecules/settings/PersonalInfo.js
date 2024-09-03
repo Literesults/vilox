@@ -42,7 +42,7 @@ const PersonalInfo = ({ goBack }) => {
         <div onClick={() => document.querySelector('#imgTwo').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
           <BsCamera />
         </div>
-        <input name="image" id="imgTwo" onChange={(e) => uploadUpdateImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+        <input name="image" id="imgTwo" onChange={(e) => uploadUpdateImg(e)} type="file" className="opacity-0" accept="image/png, image/gif, image/jpeg" />
       </div>
       <div className="px-4 md:px-0 text-danger text-sm">{formError}</div>
       <div className="px-4 space-y-6 pt-5 flex-grow md:px-0 md:w-[65%]">

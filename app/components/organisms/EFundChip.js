@@ -5,28 +5,37 @@ import Modal from './Modal';
 import AppInput from './AppInput';
 import serialize from '@/app/hooks/Serialize';
 import { updateEFud } from '@/app/services/authService';
+import ResponseModal from './ResponseModal';
 
 function EFundChip({ data }) {
     const [showModal, setShowModal] = useState(false)
+    const [processing, setProcessing] = useState(false)
     const [showForm, setShowForm] = useState(false)
     const sell_rate_high = Number(data.sell_rate_high)
     const sell_rate_low = Number(data.sell_rate_low)
     const fee = Number(data.fee)
+    const [alertMsg, setAlert] = useState(false)
+    const [alertMsgData, setAlertData] = useState(false)
 
 
     const updateEFund = async (e) => {
         e.preventDefault()
+        setProcessing(true)
         const formData = new FormData();
         formData.append("key", serialize(e.target))
-        console.log(formData);
         const { status, data } = await updateEFud(serialize(e.target)).catch(err => console.log(err))
-        setShowModal(false)
-        console.log(data);
+        if (status) {
+            setShowModal(false)
+        }
+        setProcessing(false)
+        setAlert(true)
+        setAlertData(data)
+        setShowForm(false)
     }
 
     return (
         <div className="px-4 py-4 space-y-4 border border-gray-200 rounded-md bg-white">
-            <Modal closeModal={() => { setShowModal(false) }} size={"lg"} isOpen={showModal}>
+            <Modal closeModal={() => { setShowModal(false); setShowForm(false) }} size={"lg"} isOpen={showModal}>
                 <form onSubmit={(e) => updateEFund(e)} enctype="multipart/form-data">
                     {
                         showForm ? (
@@ -36,7 +45,7 @@ function EFundChip({ data }) {
                                 <AppInput defaultValue={data.sell_rate_low} name="sell_rate_low" required label="Sell rate low " />
                                 <AppInput defaultValue={data.sell_rate_high} name="sell_rate_high" required label="Sell rate high " />
                                 <div className='flex gap-4 items-center'>
-                                    <button className='bg-black text-white text-center flex-grow rounded-md py-2'>Save</button>
+                                    <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Updating..." : "Update"}</button>
                                     <div onClick={() => { setShowModal(false); setShowForm(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                                 </div>
                             </div>
@@ -50,7 +59,7 @@ function EFundChip({ data }) {
                                     </div>
                                     <div>
                                         <div className="text-xl uppercase font-bold">{data.name}</div>
-                                        <div className={`text-xs bg-opacity-10 inline-block px-5 rounded-lg pb-1 ${data.status === "active" ? "bg-success text-success": "bg-danger text-danger"}`}>{data.status}</div>
+                                        <div className={`text-xs bg-opacity-10 inline-block px-5 rounded-lg pb-1 ${data.status === "active" ? "bg-success text-success" : "bg-danger text-danger"}`}>{data.status}</div>
                                     </div>
                                 </div>
                                 <div className="space-y-2">
@@ -100,6 +109,12 @@ function EFundChip({ data }) {
                     <div className='text-gray-500'>&#8358;{sell_rate_high.toLocaleString('en-US')}</div>
                 </div>
             </div>
+            <ResponseModal
+                status={alertMsgData?.success}
+                isOpen={alertMsg}
+                onClose={() => setAlert(false)}
+                message={alertMsgData?.message}
+            />
         </div>
     )
 }

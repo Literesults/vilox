@@ -11,6 +11,7 @@ import { comfirmTransaction, fetchTransaction, transactionsWithdrawalSummary } f
 import AppPagination from '@/app/components/organisms/AppPagination'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
+import ResponseModal from '@/app/components/organisms/ResponseModal'
 
 function Page() {
   const [catego, setcate] = useState(["", "", "", "", "", "", "", "", "", "", ""])
@@ -18,6 +19,8 @@ function Page() {
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
   const [summary, setSummary] = useState([])
+  const [alertMsg, setAlert] = useState(false)
+  const [alertMsgData, setAlertData] = useState(false)
 
   const fetch = async () => {
     const { status, data } = await fetchTransaction().catch(err => console.log(err))
@@ -40,6 +43,8 @@ function Page() {
       setX({})
     }
     setProcessing(false)
+    setAlert(true)
+    setAlertData(data)
   }
 
 
@@ -66,11 +71,11 @@ function Page() {
 
                 <div className="">
                   <div className="grid grid-cols-2">
-                    <div className=''>
+                    <div className='col-span-2'>
                       <div className='font-bold'>Name:</div>
                       <div className='text-gray-500'>{x?.user.name}</div>
                     </div>
-                    <div className=''>
+                    <div className='col-span-2'>
                       <div className='font-bold'>Email:</div>
                       <div className='text-gray-500'>{x?.user.email}</div>
                     </div>
@@ -104,7 +109,7 @@ function Page() {
                 <AppInput type={"select"} options={["confirm", "cancel"]} name="status" required label="Status" />
                 <div className='flex gap-4 items-center'>
                   <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
-                  <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+                  <div onClick={() => { setX({}) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                 </div>
               </div>
             </form>
@@ -177,7 +182,7 @@ function Page() {
               }
 
               {
-                loading && ["","","","","",""].map((data, i) => (
+                loading && ["", "", "", "", "", ""].map((data, i) => (
                   <tr className='odd:bg-white' key={i}>
                     <td className='px-3 py-2 text-[10px] text-left flex' scope="">
                       <div className="flex-grow flex items-center gap-2">
@@ -214,6 +219,12 @@ function Page() {
           <AppPagination totalRecords={catego} newData={(e) => setcate(e)} />
         </div>
       </div>
+      <ResponseModal
+        status={alertMsgData?.success}
+        isOpen={alertMsg}
+        onClose={() => setAlert(false)}
+        message={alertMsgData?.message}
+      />
     </AppLayout>
   )
 }

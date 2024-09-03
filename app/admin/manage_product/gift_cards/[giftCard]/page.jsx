@@ -19,6 +19,7 @@ import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
 import { IoIosArrowRoundBack } from 'react-icons/io'
 import { useRouter } from 'next/navigation'
+import ResponseModal from '@/app/components/organisms/ResponseModal'
 
 function Page({ params }) {
   const [catego, setcate] = useState(["", "", "", ""])
@@ -27,6 +28,8 @@ function Page({ params }) {
   const [showModal, setShowModal] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [errors, setErrors] = useState({})
+  const [alertMsg, setAlert] = useState(false)
+  const [alertMsgData, setAlertData] = useState(false)
 
   const headers = { 'Authorization': TOKEN }
   const router = useRouter()
@@ -62,8 +65,12 @@ function Page({ params }) {
       await fetch()
       setSelectedImage()
       setShowModal(false)
+      setAlert(true)
+      setAlertData(res.data)
     }).catch((error) => {
       error.response && setErrors(error.response.data.data);
+      setAlert(true)
+      error.response && setAlertData(error.response.data)
     })
     setProcessing(false)
   }
@@ -90,7 +97,7 @@ function Page({ params }) {
               <div onClick={() => document.querySelector('#img').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
                 <BsCamera />
               </div>
-              <input name="image" required id="img" onChange={(e) => uploadImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+              <input name="image" required id="img" onChange={(e) => uploadImg(e)} type="file" className="opacity-0" accept="image/png, image/gif, image/jpeg" />
             </div>
             <input type='hidden' value={params.giftCard} name='gift_card_category_id' />
             <AppInput name="name" required label="Name" />
@@ -144,6 +151,12 @@ function Page({ params }) {
           }
         </div>
       </div>
+      <ResponseModal
+        status={alertMsgData?.success}
+        isOpen={alertMsg}
+        onClose={() => setAlert(false)}
+        message={alertMsgData?.message}
+      />
     </AppLayout>
   )
 }
