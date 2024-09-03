@@ -8,6 +8,7 @@ import { PiFingerprintSimpleThin } from 'react-icons/pi'
 import Modal from '@/app/components/organisms/Modal'
 import AppInput from '@/app/components/organisms/AppInput'
 import serialize from '@/app/hooks/Serialize'
+import ResponseModal from '@/app/components/organisms/ResponseModal'
 
 function Page() {
   const [loading, setLoading] = useState(true)
@@ -17,6 +18,8 @@ function Page() {
   const [selected, setSelected] = useState("")
   const [x, setX] = useState({})
   const [summary, setSummary] = useState([])
+  const [alertMsg, setAlert] = useState(false)
+  const [alertMsgData, setAlertData] = useState(false)
 
   const fetch = async () => {
     const { status, data } = await orderFetchGiftCard().catch(err => console.log(err))
@@ -40,6 +43,8 @@ function Page() {
       setX({})
     }
     setProcessing(false)
+    setAlert(true)
+    setAlertData(data)
   }
 
 
@@ -111,7 +116,7 @@ function Page() {
                 {selected === "success" && <AppInput type={"number"} name="amount" required label="Comfirm amount" />}
                 {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
                 <div className='flex gap-4 items-center'>
-                  <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
+                  <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
                   <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                 </div>
               </div>
@@ -214,6 +219,13 @@ function Page() {
 
         <AppPagination totalRecords={catego} newData={(e) => setcate(e)} />
       </div>
+
+      <ResponseModal
+        status={alertMsgData?.success}
+        isOpen={alertMsg}
+        onClose={() => setAlert(false)}
+        message={alertMsgData?.message}
+      />
     </AppLayout>
   )
 }

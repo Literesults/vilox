@@ -13,6 +13,7 @@ import serialize from '@/app/hooks/Serialize'
 import { BsCamera } from 'react-icons/bs'
 import axios from 'axios'
 import { API_BASE_URL, TOKEN } from '@/app/services/httpService'
+import ResponseModal from '@/app/components/organisms/ResponseModal'
 
 function Page() {
   const [showModal, setShowModal] = useState(false)
@@ -23,6 +24,8 @@ function Page() {
   const headers = { 'Authorization': TOKEN }
   const [errors, setErrors] = useState({})
   const [summary, setSummary] = useState([])
+  const [alertMsg, setAlert] = useState(false)
+  const [alertMsgData, setAlertData] = useState(false)
 
   const fetch = async () => {
     const { status, data } = await fetchCrypto().catch(err => console.log(err))
@@ -69,8 +72,12 @@ function Page() {
       await fetch()
       setSelectedImage()
       setShowModal(false)
+      setAlert(true)
+      setAlertData(res.data)
     }).catch((error) => {
       error.response && setErrors(error.response.data.data);
+      setAlert(true)
+      error.response && setAlertData(error.response.data)
     })
     setProcessing(false)
   }
@@ -94,7 +101,7 @@ function Page() {
               <div onClick={() => document.querySelector('#img').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
                 <BsCamera />
               </div>
-              <input name="image" id="img" onChange={(e) => uploadImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+              <input name="image" id="img" onChange={(e) => uploadImg(e)} type="file" className="opacity-0" accept="image/png, image/gif, image/jpeg" />
             </div>
             <AppInput name="name" required label="Name" />
             <AppInput name="symbol" required label="Symbol " />
@@ -161,6 +168,12 @@ function Page() {
 
         </div>
       </div>
+      <ResponseModal
+        status={alertMsgData?.success}
+        isOpen={alertMsg}
+        onClose={() => setAlert(false)}
+        message={alertMsgData?.message}
+      />
     </AppLayout>
   )
 }

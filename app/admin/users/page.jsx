@@ -7,6 +7,7 @@ import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
 import AppPagination from '@/app/components/organisms/AppPagination'
+import ResponseModal from '@/app/components/organisms/ResponseModal'
 
 function Page() {
   const [topRank, setTopRank] = useState(["", "", "", "", ""])
@@ -16,12 +17,15 @@ function Page() {
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
   const [summary, setSummary] = useState([])
+  const [alertMsg, setAlert] = useState(false)
+  const [alertMsgData, setAlertData] = useState(false)
 
   const fetch = async () => {
     const { status, data } = await fetchUsers().catch(err => console.log(err))
     if (status) {
       setcate(data.data);
     }
+    fetchSummary()
     setLoading(false)
   }
 
@@ -36,19 +40,20 @@ function Page() {
         fetch()
         setX({})
       }
+      setAlert(true)
+      setAlertData(data)
     } else {
       const { status, data } = await unsuspendUsers(val).catch(err => console.log(err))
       if (status) {
         fetch()
         setX({})
       }
+      setAlert(true)
+      setAlertData(data)
     }
 
     setProcessing(false)
   }
-
-
-
 
   const fetchSummary = async () => {
     const { status, data } = await usersSummary().catch(err => console.log(err))
@@ -71,12 +76,12 @@ function Page() {
             <form onSubmit={(e) => { submit(e) }} >
               <div className='space-y-5'>
                 <div className="">
-                  <div className="grid grid-cols-2">
-                    <div className=''>
+                  <div className="grid gap-y-4 grid-cols-2">
+                    <div className='col-span-2'>
                       <div className='font-bold'>Name:</div>
                       <div className='text-gray-500'>{x?.name}</div>
                     </div>
-                    <div className=''>
+                    <div className='col-span-2'>
                       <div className='font-bold'>Email:</div>
                       <div className='text-gray-500'>{x?.email}</div>
                     </div>
@@ -96,7 +101,7 @@ function Page() {
                       <div className='font-bold'>Status:</div>
                       <div className='text-gray-500'>{x?.status}</div>
                     </div>
-                    <div className=''>
+                    <div className='col-span-2'>
                       <div className='font-bold'>Address:</div>
                       <div className='text-gray-500'>{x?.address}</div>
                     </div>
@@ -223,6 +228,12 @@ function Page() {
           </div>
         </div>
       </div>
+      <ResponseModal
+        status={alertMsgData?.success}
+        isOpen={alertMsg}
+        onClose={() => setAlert(false)}
+        message={alertMsgData?.message}
+      />
     </AppLayout>
   )
 }

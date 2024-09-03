@@ -6,6 +6,7 @@ import Modal from './Modal';
 import AppInput from './AppInput';
 import { updateCrypto } from '@/app/services/authService';
 import serialize from '@/app/hooks/Serialize';
+import ResponseModal from './ResponseModal';
 
 function CryptoChip({ data }) {
     const [showModal, setShowModal] = useState(false)
@@ -13,6 +14,8 @@ function CryptoChip({ data }) {
     const val2 = Number(data.sell_rate_high)
     const fee = Number(data.fee)
     const [showForm, setShowForm] = useState(false)
+    const [alertMsg, setAlert] = useState(false)
+    const [alertMsgData, setAlertData] = useState(false)
 
 
     const updateCoin = async (e) => {
@@ -21,7 +24,11 @@ function CryptoChip({ data }) {
         formData.append("key", serialize(e.target))
         console.log(formData);
         const { status, data } = await updateCrypto(serialize(e.target)).catch(err => console.log(err))
-        console.log(data);
+        if (status) {
+
+        }
+        setAlert(true)
+        setAlertData(data)
     }
 
     return (
@@ -30,7 +37,7 @@ function CryptoChip({ data }) {
                 <div className="">
                     <div className="flex items-start">
                         <div className="flex-grow">
-                            <div className="w-12 h-12 rounded-full"><img src={data.icon} width={100} height={100} /></div>
+                            <div className="w-12 h-12 overflow-hidden rounded-full"><img src={data.icon} width={100} height={100} /></div>
                         </div>
                         <div>
                             <div onClick={() => setShowModal(true)} className='w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer'><LiaEye /></div>
@@ -65,11 +72,12 @@ function CryptoChip({ data }) {
                         showForm ? (
                             <div className='space-y-5'>
                                 <input type='hidden' name='id' value={data.id} />
+                                <input type='hidden' name='status' value={data.status} />
                                 <AppInput defaultValue={data.name} name="name" required label="Name" />
                                 <AppInput defaultValue={data.symbol} name="symbol" required label="Symbol " />
                                 <AppInput defaultValue={data.network} name="network" required label="Network " />
                                 <AppInput defaultValue={data.sell_rate_low} name="sell_rate_low" required label="Sell rate low " />
-                                <AppInput defaultValue={data.sell_rate_high} name="sell_rate_hight" required label="Sell rate high " />
+                                <AppInput defaultValue={data.sell_rate_high} name="sell_rate_high" required label="Sell rate high " />
                                 <AppInput defaultValue={data.wallet_address} name="wallet_address" required label="Wallet address " />
                                 <div className='flex gap-4 items-center'>
                                     <button className='bg-black text-white text-center flex-grow rounded-md py-2'>Save</button>
@@ -123,6 +131,12 @@ function CryptoChip({ data }) {
 
                 </form>
             </Modal>
+            <ResponseModal
+                status={alertMsgData?.success}
+                isOpen={alertMsg}
+                onClose={() => setAlert(false)}
+                message={alertMsgData?.message}
+            />
         </>
     )
 }

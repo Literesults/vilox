@@ -16,6 +16,7 @@ import { BsCamera } from 'react-icons/bs'
 import axios from 'axios'
 import { API_BASE_URL, TOKEN } from '@/app/services/httpService'
 import serialize from '@/app/hooks/Serialize'
+import ResponseModal from '@/app/components/organisms/ResponseModal'
 
 function Page() {
   const [catego, setcate] = useState(["", "", "", ""])
@@ -28,6 +29,8 @@ function Page() {
   const [errors, setErrors] = useState({})
   const [changed, setChanged] = useState(false)
   const [summary, setSummary] = useState([])
+  const [alertMsg, setAlert] = useState(false)
+  const [alertMsgData, setAlertData] = useState(false)
 
   const headers = { 'Authorization': TOKEN }
 
@@ -54,11 +57,15 @@ function Page() {
     formdata.append('status', updateItem.status)
     await axios.post(`${API_BASE_URL}admin/giftcard/update_giftcard_category`, formdata, { headers }).then(async (res) => {
       await fetch()
-      setUpdateItem({}) 
+      setAlert(true)
+      setAlertData(res.data)
+      setUpdateItem({})
       setChanged(false)
       selectedUpdateImage()
     }).catch((error) => {
       error.response && setErrors(error.response.data.data);
+      setAlert(true)
+      error.response && setAlertData(error?.response?.data)
     })
     setProcessing(false)
   }
@@ -89,8 +96,12 @@ function Page() {
       await fetch()
       setSelectedImage()
       setShowModal(false)
+      setAlert(true)
+      setAlertData(res.data)
     }).catch((error) => {
       error.response && setErrors(error.response.data.data);
+      setAlert(true)
+      setAlertData(error?.response?.data)
     })
     setProcessing(false)
   }
@@ -129,7 +140,7 @@ function Page() {
               <div onClick={() => document.querySelector('#img').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
                 <BsCamera />
               </div>
-              <input name="image" id="img" onChange={(e) => uploadImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+              <input name="image" id="img" onChange={(e) => uploadImg(e)} type="file" className="opacity-0" accept="image/png, image/gif, image/jpeg" />
             </div>
 
             <AppInput name="name" required label="Name" />
@@ -157,7 +168,7 @@ function Page() {
               <div onClick={() => document.querySelector('#imgTwo').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
                 <BsCamera />
               </div>
-              <input name="image" id="imgTwo" onChange={(e) => uploadUpdateImg(e)} type="file" className="hidden" accept="image/png, image/gif, image/jpeg" />
+              <input name="image" id="imgTwo" onChange={(e) => uploadUpdateImg(e)} type="file" className="opacity-0" accept="image/png, image/gif, image/jpeg" />
             </div>
 
             <AppInput name="name" defaultValue={updateItem.name} required label="Name" />
@@ -207,6 +218,12 @@ function Page() {
           }
         </div>
       </div>
+      <ResponseModal
+        status={alertMsgData?.success}
+        isOpen={alertMsg}
+        onClose={() => setAlert(false)}
+        message={alertMsgData?.message}
+      />
     </AppLayout>
   )
 }
