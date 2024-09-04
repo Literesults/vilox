@@ -217,7 +217,7 @@ function Page() {
           </tbody>
         </table>
 
-        <AppPagination totalRecords={catego} newData={(e) => setcate(e)} />
+        <AppPagination totalRecords={catego} newData={(e) => setcate(e[0])} />
       </div>
 
       <ResponseModal

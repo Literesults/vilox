@@ -5,7 +5,7 @@ import { pagination } from '@/app/services/authService';
 function AppPagination({ totalRecords, newData }) {
     const goto = async (url) => {
         const { status, data } = await pagination(url).catch(err => console.log(err))
-        newData(data.data[0])
+        newData(data.data)
     }
     return (
         <div className="flex flex-wrap gap-4">
