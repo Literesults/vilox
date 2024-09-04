@@ -145,7 +145,7 @@ function Page() {
                           </div>
                           <div className="">
                             <div className="font-bold">{data.name}</div>
-                            <div className="text-xs text-gray-400">{data.email}</div>
+                            <div className="text-xs text-gray-400 w-64 trunck-text">{data.email}</div>
                           </div>
                         </div>
                         <div className="flex flex-col items-end sm:hidden gap-2">
