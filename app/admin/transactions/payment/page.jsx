@@ -9,6 +9,7 @@ import { MdOutlinePayments } from 'react-icons/md'
 import { TbMoneybag } from 'react-icons/tb'
 import { fetchPaymentTransaction, fetchTransaction, transactionsPaymentSummary } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
+import { debounce } from '@/app/hooks/useDebounce'
 
 function Page() {
   const [showModal, setShowModal] = useState(false)
@@ -25,6 +26,14 @@ function Page() {
     setLoading(false)
   }
 
+  
+
+  const searchFN = debounce(async (e) => {
+    const { status, data } = await fetchPaymentTransaction({ search: e }).catch(err => console.log(err))
+    if (status) {
+      setcate(data.data[0])
+    }
+  }, 3000);
 
   const fetchSummary = async () => {
     const { status, data } = await transactionsPaymentSummary().catch(err => console.log(err))
@@ -51,8 +60,8 @@ function Page() {
         <div className="flex">
           <div className="flex-grow">
             <div className="max-w-sm">
-              <AppInput name="search" required label="Search " />
-            </div>
+              <AppInput name="search" onChange={(e) => searchFN(e.target.value)} required label="Search by Transaction ID " />
+              </div>
           </div>
         </div>
         <div className="space-y-3">
