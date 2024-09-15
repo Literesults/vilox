@@ -8,6 +8,9 @@ import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
 import AppPagination from '@/app/components/organisms/AppPagination'
 import ResponseModal from '@/app/components/organisms/ResponseModal'
+import { debounce } from '@/app/hooks/useDebounce'
+import AppInput from '@/app/components/organisms/AppInput'
+import TopUsers from '@/app/components/organisms/TopUsers'
 
 function Page() {
   const [topRank, setTopRank] = useState(["", "", "", "", ""])
@@ -28,6 +31,13 @@ function Page() {
     fetchSummary()
     setLoading(false)
   }
+
+  const searchFN = debounce(async (e) => {
+    const { status, data } = await fetchUsers({ search: e }).catch(err => console.log(err))
+    if (status) {
+      setcate(data.data);
+    }
+  }, 3000);
 
 
   const submit = async (e) => {
@@ -124,7 +134,14 @@ function Page() {
             <AppCard figure={summary?.active} icon={<i className="ri-user-star-line"></i>} color="text-[#13f444]" text="Total Active Users" bg="bg-[#13f444]" />
             <AppCard figure={summary?.suspended} icon={<i className="ri-user-forbid-line"></i>} color="text-[#ef4444]" text="Total Suspended Users" bg="bg-[#ef4444]" />
           </div>
-          <div className="">
+          <div className="space-y-4">
+            <div className="flex">
+              <div className="flex-grow">
+                <div className="max-w-sm">
+                  <AppInput name="search" onChange={(e) => searchFN(e.target.value)} required label="Search by Name and Email" />
+                </div>
+              </div>
+            </div>
             <table className='w-full'>
               <thead>
                 <tr>
@@ -203,29 +220,7 @@ function Page() {
           </div>
         </div>
         <div className="">
-          <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
-            <div className="flex">
-              <div className="flex-grow font-semibold">Top Users</div>
-            </div>
-            <div className="divide-y divide-gray-200">
-              {
-                topRank.map((user, i) => (
-                  <div key={i} className="flex py-2 items-center">
-                    <div className="flex-grow flex items-center gap-2">
-                      <div className="">
-                        <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                      </div>
-                      <div className="">
-                        <div className="text-xs font-bold">Ebube Roderick</div>
-                        <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
-                      </div>
-                    </div>
-                    <div className="text-sm">&#8358; 34,535</div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
+          <TopUsers />
         </div>
       </div>
       <ResponseModal
