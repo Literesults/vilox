@@ -7,18 +7,18 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import Link from 'next/link'
 import PieChart from '@/app/components/organisms/PieChart'
 import { dashboardSummary } from '@/app/services/authService'
+import TopUsers from '@/app/components/organisms/TopUsers'
 
 function Page() {
   const [summary , setSummary] = useState([])
   const [showOption, setShowOption] = useState(false)
   const [option, setOption] = useState("Transactions")
-  const [topRank, setTopRank] = useState(["", "", "", "", ""])
 
 
   const fetchSummary = async () => {
     const {status,data} = await dashboardSummary().catch(err => console.log(err))
     if (status) {
-      setSummary(data.data);
+      setSummary(data.data);      
     }
   }
 
@@ -51,31 +51,7 @@ function Page() {
             </div>
             <div className="h-64 md:h-96"><LineChart /></div>
           </div>
-          <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
-            <div className="flex">
-              <div className="flex-grow font-semibold">Top Users</div>
-              <Link href="/admin/users"><div className="text-blue text-sm">View all users</div></Link>
-
-            </div>
-            <div className="divide-y divide-gray-200">
-              {
-                topRank.map((user, i) => (
-                  <div key={i} className="flex py-2 items-center">
-                    <div className="flex-grow flex items-center gap-2">
-                      <div className="">
-                        <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                      </div>
-                      <div className="">
-                        <div className="text-xs font-bold">Ebube Roderick</div>
-                        <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
-                      </div>
-                    </div>
-                    <div className="text-sm">&#8358; 34,535</div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
+          <TopUsers extar />
         </div>
         <div className="space-y-5">
           <div className="space-y-2 bg-white rounded-lg px-4 py-4">

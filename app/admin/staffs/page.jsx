@@ -13,10 +13,10 @@ import Image from 'next/image'
 import axios from 'axios'
 import { API_BASE_URL, TOKEN } from '@/app/services/httpService'
 import ResponseModal from '@/app/components/organisms/ResponseModal'
+import TopUsers from '@/app/components/organisms/TopUsers'
+import { debounce } from '@/app/hooks/useDebounce'
 
 function Page() {
-  const [showModal, setShowModal] = useState(false)
-  const [topRank, setTopRank] = useState(["", "", "", "", ""])
   const [summary, setSummary] = useState([])
   const [selectedImage, setSelectedImage] = useState();
   const [addStaff, setAddStaff] = useState(false)
@@ -97,6 +97,12 @@ function Page() {
 
 
 
+  const searchFN = debounce(async (e) => {
+    const { status, data } = await fetchStaffs({ search: e }).catch(err => console.log(err))
+    if (status) {
+      setcate(data.data);
+    }
+  }, 3000);
 
 
   const fetchSummary = async () => {
@@ -200,7 +206,7 @@ function Page() {
             <div className="flex">
               <div className="flex-grow">
                 <div className="max-w-sm">
-                  <AppInput name="search" required label="Search" />
+                  <AppInput name="search" onChange={(e) => searchFN(e.target.value)} required label="Search by Name and Email" />
                 </div>
               </div>
               <div onClick={() => { setAddStaff(true) }} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Staff</div>
@@ -282,29 +288,7 @@ function Page() {
           </div>
         </div>
         <div className="">
-          <div className="bg-white space-y-4 px-4 py-6 rounded-lg">
-            <div className="flex">
-              <div className="flex-grow font-semibold">Top Users</div>
-            </div>
-            <div className="divide-y divide-gray-200">
-              {
-                topRank.map((user, i) => (
-                  <div key={i} className="flex py-2 items-center">
-                    <div className="flex-grow flex items-center gap-2">
-                      <div className="">
-                        <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                      </div>
-                      <div className="">
-                        <div className="text-xs font-bold">Ebube Roderick</div>
-                        <div className="text-gray-400 text-xs">ebuberoderick2@gmail.com</div>
-                      </div>
-                    </div>
-                    <div className="text-sm">&#8358; 34,535</div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
+          <TopUsers />
         </div>
       </div>
       <ResponseModal

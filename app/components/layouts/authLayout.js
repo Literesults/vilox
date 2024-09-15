@@ -2,6 +2,7 @@
 import React from "react";
 import logo from "@assets/images/viloxLogo.png"
 import Image from "next/image";
+import authImg from "@assets/images/aythImage.png"
 import { Session } from "@/app/hooks/Auth";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -82,7 +83,17 @@ function AuthLayout({ children, onSubmit, errMsg }) {
           </div>
           <div className="text-center text-xs select-none pointer-events-none">Powered by Vilox</div>
         </div>
-        <div className="col-span-2"></div>
+        <div className="col-span-2 flex flex-col">
+          <div className="flex-grow space-y-2 px-3 py-12">
+            <div className="text-white text-5xl font-bold text-center">Little text here</div>
+            <div className="text-gray-300 max-w-2xl text-center mx-auto">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo totam fuga quisquam consequuntur, neque, incidunt, exercitationem aspernatur odit provident delectus nisi! Dolorum maiores minima minus commodi ipsum a magni magnam?
+            </div>
+          </div>
+          <div>
+            <Image src={authImg} draggable={false} className="w-2/3 mx-auto" />
+          </div>
+        </div>
       </div>
     );
   }

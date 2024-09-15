@@ -12,6 +12,7 @@ import AppPagination from '@/app/components/organisms/AppPagination'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
 import ResponseModal from '@/app/components/organisms/ResponseModal'
+import { debounce } from '@/app/hooks/useDebounce'
 
 function Page() {
   const [catego, setcate] = useState(["", "", "", "", "", "", "", "", "", "", ""])
@@ -31,6 +32,14 @@ function Page() {
     setLoading(false)
   }
 
+  
+
+  const searchFN = debounce(async (e) => {
+    const { status, data } = await fetchTransaction({ search: e }).catch(err => console.log(err))
+    if (status) {
+      setcate(data.data[0])
+    }
+  }, 3000);
 
 
   const submit = async (e) => {
@@ -126,7 +135,7 @@ function Page() {
         <div className="flex">
           <div className="flex-grow">
             <div className="max-w-sm">
-              <AppInput name="search" required label="Search " />
+              <AppInput name="search" onChange={(e) => searchFN(e.target.value)} required label="Search by Transaction ID " />
             </div>
           </div>
         </div>

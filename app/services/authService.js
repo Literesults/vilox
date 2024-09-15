@@ -55,6 +55,7 @@ export const transactionsPaymentSummary = (formData) => apiWithAuth.post("admin/
 export const transactionsWithdrawalSummary = (formData) => apiWithAuth.post("admin/summary/transactions_withdrawal", formData).then(getApiResponse).catch(getErrorResponse);
 export const cryptoOrderSummary = (formData) => apiWithAuth.post("admin/summary/crypto_orders", formData).then(getApiResponse).catch(getErrorResponse);
 export const giftcardOrderSummary = (formData) => apiWithAuth.post("admin/summary/giftcard_orders", formData).then(getApiResponse).catch(getErrorResponse);
+export const topusers = (formData) => apiWithAuth.post("admin/summary/topusers", formData).then(getApiResponse).catch(getErrorResponse);
 
 
 export const fetchNotification = (formData) => apiWithAuth.post("admin/profile/fetch_notifications", formData).then(getApiResponse).catch(getErrorResponse);

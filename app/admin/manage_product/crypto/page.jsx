@@ -14,6 +14,7 @@ import { BsCamera } from 'react-icons/bs'
 import axios from 'axios'
 import { API_BASE_URL, TOKEN } from '@/app/services/httpService'
 import ResponseModal from '@/app/components/organisms/ResponseModal'
+import { debounce } from '@/app/hooks/useDebounce'
 
 function Page() {
   const [showModal, setShowModal] = useState(false)
@@ -43,6 +44,13 @@ function Page() {
   }
 
 
+
+  const searchFN = debounce(async (e) => {
+    const { status, data } = await fetchCrypto({ search: e }).catch(err => console.log(err))
+    if (status) {
+      setcate(data.data[0]);
+    }
+  }, 3000);
 
   const fetchSummary = async () => {
     const { status, data } = await cryptoSummary().catch(err => console.log(err))
@@ -126,7 +134,7 @@ function Page() {
         <div className="flex">
           <div className="flex-grow">
             <div className="max-w-sm">
-              <AppInput name="search" required label="Search Category" />
+              <AppInput name="search" onChange={(e) => searchFN(e.target.value)} required label="Search by Name and symbol" />
             </div>
           </div>
           <div onClick={() => setShowModal(true)} className="bg-black text-white py-3 font-bold px-6 text-sm rounded-md cursor-pointer">Add Crypto</div>
