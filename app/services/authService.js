@@ -29,7 +29,7 @@ export const orderFetchOrder = (formData) => apiWithAuth.post("admin/order/crypt
 export const comfirmOrderOrder = (formData) => apiWithAuth.post("admin/order/crypto/confirm_order", formData).then(getApiResponse).catch(getErrorResponse);
 
 
-export const fetchPaymentTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch", formData).then(getApiResponse).catch(getErrorResponse);
+export const fetchPaymentTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch_payments", formData).then(getApiResponse).catch(getErrorResponse);
 export const fetchTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const comfirmTransaction = (formData) => apiWithAuth.post("admin/transaction/confirm", formData).then(getApiResponse).catch(getErrorResponse);
 
