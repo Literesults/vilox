@@ -66,7 +66,7 @@ function AuthLayout({ children, onSubmit, errMsg }) {
             <div className="space-y-4">
               <div className="text-3xl">Welcome Back</div>
               <div className="text-sm text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ratione, corrupti consequatur animi fugiat numquam sed dolore repellendus
+                Log in to access the control center of your platform. Manage, monitor, and make data-driven decisions with ease.
               </div>
             </div>
             <div>
@@ -85,9 +85,9 @@ function AuthLayout({ children, onSubmit, errMsg }) {
         </div>
         <div className="col-span-2 flex flex-col">
           <div className="flex-grow space-y-2 px-3 py-12">
-            <div className="text-white text-5xl font-bold text-center">Little text here</div>
+            <div className="text-white text-5xl font-bold text-center">Swift Transactions</div>
             <div className="text-gray-300 max-w-2xl text-center mx-auto">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo totam fuga quisquam consequuntur, neque, incidunt, exercitationem aspernatur odit provident delectus nisi! Dolorum maiores minima minus commodi ipsum a magni magnam?
+              We've got the tools, you've got the power. Let's manage greatness together!
             </div>
           </div>
           <div>
