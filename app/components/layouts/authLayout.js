@@ -87,7 +87,7 @@ function AuthLayout({ children, onSubmit, errMsg }) {
           <div className="flex-grow space-y-2 px-3 py-12">
             <div className="text-white text-5xl font-bold text-center">Swift Transactions</div>
             <div className="text-gray-300 max-w-2xl text-center mx-auto">
-              We've got the tools, you've got the power. Let's manage greatness together!
+              We&apos;ve got the tools, you&apos;ve got the power. Let&apos;s manage greatness together!
             </div>
           </div>
           <div>
