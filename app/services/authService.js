@@ -28,21 +28,17 @@ export const comfirmGiftCardOrder = (formData) => apiWithAuth.post("admin/order/
 export const orderFetchOrder = (formData) => apiWithAuth.post("admin/order/crypto/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const comfirmOrderOrder = (formData) => apiWithAuth.post("admin/order/crypto/confirm_order", formData).then(getApiResponse).catch(getErrorResponse);
 
-
 export const fetchPaymentTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch_payments", formData).then(getApiResponse).catch(getErrorResponse);
 export const fetchTransaction = (formData) => apiWithAuth.post("admin/transaction/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const comfirmTransaction = (formData) => apiWithAuth.post("admin/transaction/confirm", formData).then(getApiResponse).catch(getErrorResponse);
-
 
 export const fetchUsers = (formData) => apiWithAuth.post("admin/user/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const suspendUsers = (formData) => apiWithAuth.post("admin/user/suspend", formData).then(getApiResponse).catch(getErrorResponse);
 export const unsuspendUsers = (formData) => apiWithAuth.post("admin/staff/unsuspend", formData).then(getApiResponse).catch(getErrorResponse);
 
-
 export const fetchStaffs = (formData) => apiWithAuth.post("admin/staff/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const suspendStaffs = (formData) => apiWithAuth.post("admin/user/suspend", formData).then(getApiResponse).catch(getErrorResponse);
 export const unsuspendStaffs = (formData) => apiWithAuth.post("admin/staff/unsuspend", formData).then(getApiResponse).catch(getErrorResponse);
-
 
 export const dashboardSummary = (formData) => apiWithAuth.post("admin/summary/dashboard", formData).then(getApiResponse).catch(getErrorResponse);
 export const staffsSummary = (formData) => apiWithAuth.post("admin/summary/staffs", formData).then(getApiResponse).catch(getErrorResponse);
@@ -56,7 +52,6 @@ export const transactionsWithdrawalSummary = (formData) => apiWithAuth.post("adm
 export const cryptoOrderSummary = (formData) => apiWithAuth.post("admin/summary/crypto_orders", formData).then(getApiResponse).catch(getErrorResponse);
 export const giftcardOrderSummary = (formData) => apiWithAuth.post("admin/summary/giftcard_orders", formData).then(getApiResponse).catch(getErrorResponse);
 export const topusers = (formData) => apiWithAuth.post("admin/summary/topusers", formData).then(getApiResponse).catch(getErrorResponse);
-
 
 export const fetchNotification = (formData) => apiWithAuth.post("admin/profile/fetch_notifications", formData).then(getApiResponse).catch(getErrorResponse);
 export const changePassword = (formData) => apiWithAuth.post("admin/profile/update_password", formData).then(getApiResponse).catch(getErrorResponse);
