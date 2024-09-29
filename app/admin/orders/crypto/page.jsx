@@ -112,13 +112,27 @@ function Page() {
                   </div>
                 </div>
                 <input type='hidden' value={id} name='id' />
-                <AppInput type={"select"} onChange={(e) => setSelected(e)} options={["success", "rejected"]} name="status" required label="Status" />
-                {selected === "success" && <AppInput type={"number"} name="amount" required label="Comfirm amount" />}
-                {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
-                <div className='flex gap-4 items-center'>
-                  <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
-                  <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
-                </div>
+                {
+                  x.status === "processing" ? (
+                    <div className="space-y-4">
+                      <AppInput type={"select"} onChange={(e) => setSelected(e)} options={["success", "rejected"]} name="status" required label="Status" />
+                      {selected === "success" && <AppInput type={"number"} name="amount" required label="Comfirm amount" />}
+                      {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
+                      <div className='flex gap-4 items-center'>
+                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
+                        <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="">
+                      <div className="">
+                        <div className='font-bold'>Status:</div>
+                        <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${x.status === "success" ? "text-success bg-success" : x.status === "rejected" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{x.status}</div>
+                      </div>
+                      <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+                    </div>
+                  )
+                }
               </div>
             </form>
           </Modal>
@@ -159,9 +173,7 @@ function Page() {
                       <div className="flex-grow">
                         <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${data.status === "success" ? "text-success bg-success" : data.status === "rejected" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{data.status}</div>
                       </div>
-                      {
-                        data.status === "processing" && <div onClick={() => { setId(data.id); setX(data) }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
-                      }
+                      <div onClick={() => { setId(data.id); setX(data) }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
                     </div>
                   </td>
                   <td className='px-3 py-2 text-left capitalize hidden sm:table-cell' scope="">{data.type}</td>
@@ -172,9 +184,7 @@ function Page() {
                       <div className="flex-grow">
                         <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${data.status === "success" ? "text-success bg-success" : data.status === "rejected" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{data.status}</div>
                       </div>
-                      {
-                        data.status === "processing" && <div onClick={() => { setId(data.id); setX(data) }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
-                      }
+                      <div onClick={() => { setId(data.id); setX(data) }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
                     </div>
                   </td>
                 </tr>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import AppLayout from '@component/layouts/appLayout'
 import AppCard from '@/app/components/organisms/AppCard'
-import { fetchUsers, suspendUsers, unsuspendUsers, usersSummary } from '@/app/services/authService'
+import { fetchAUser, fetchUsers, suspendUsers, unsuspendUsers, usersSummary } from '@/app/services/authService'
 import { TbEye } from 'react-icons/tb'
 import Modal from '@/app/components/organisms/Modal'
 import serialize from '@/app/hooks/Serialize'
@@ -19,6 +19,7 @@ function Page() {
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
   const [x, setX] = useState({})
+  const [xter, setXter] = useState({})
   const [summary, setSummary] = useState([])
   const [alertMsg, setAlert] = useState(false)
   const [alertMsgData, setAlertData] = useState(false)
@@ -30,6 +31,15 @@ function Page() {
     }
     fetchSummary()
     setLoading(false)
+  }
+
+
+  const fetchTheUser = async () => {
+    const { status, data } = await fetchAUser({ id: x.wallet.user_id }).catch(err => console.log(err))
+    if (status) {
+      console.log(data);
+      setXter(data.data[0])
+    }
   }
 
   const searchFN = debounce(async (e) => {
@@ -77,6 +87,11 @@ function Page() {
     fetch()
   }, [])
 
+  useEffect(() => {
+    Object.keys(x).length > 0 && fetchTheUser()
+  }, [x])
+
+
 
   return (
     <AppLayout title={"Summary of Vilox users"}>
@@ -104,6 +119,14 @@ function Page() {
                       <div className='text-gray-500'>{x?.gender}</div>
                     </div>
                     <div className=''>
+                      <div className='font-bold'>Balance:</div>
+                      <div className='text-gray-500'>&#8358; {Number(x?.wallet.balance).toLocaleString('en-US')}</div>
+                    </div>
+                    <div className=''>
+                      <div className='font-bold'>Bouns:</div>
+                      <div className='text-gray-500'>&#8358; {Number(x?.wallet.bonus).toLocaleString('en-US')}</div>
+                    </div>
+                    <div className=''>
                       <div className='font-bold'>Referral by:</div>
                       <div className='text-gray-500'>{x?.referral_by}</div>
                     </div>
@@ -115,13 +138,34 @@ function Page() {
                       <div className='font-bold'>Address:</div>
                       <div className='text-gray-500'>{x?.address}</div>
                     </div>
+                    <div className='col-span-2'>
+                      <div className='font-bold'>Transaction(s):</div>
+                      <div className='h-44 overflow-y-auto space-y-2'>
+                        {
+                          xter?.transaction?.map((data, i) => (
+                            <div className="space-y-1 bg-gray-50 px-3 py-2 rounded-xl text-xs" key={i}>
+                              <div className="capitalize font-bold">{data.type}</div>
+                              <div className="text-sm">&#8358; {Number(data.amount).toLocaleString('en-US')}</div>
+                              <div className="">Transaction ID : {data.transaction_id}</div>
+                              <div className="flex items-center justify-between">
+                                <div className="">
+                                  <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${data.status === "success" ? "text-success bg-success" : data.status === "failed" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{data.status}</div>
+                                </div>
+                                <div className="text-gray-400 text-xs">{data.created_at.split("T")[0]}</div>
+                              </div>
+                            </div>
+                          ))
+                        }
+
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <input type='hidden' value={x.id} name='id' />
                 <input type='hidden' value={x.status} name='status' />
                 <div className='flex gap-4 items-center'>
                   <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Updating..." : x.status === "active" ? "Suspend" : "Activate"}</button>
-                  <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+                  <div onClick={() => { setX({}) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                 </div>
               </div>
             </form>
