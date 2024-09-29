@@ -34,6 +34,7 @@ export const comfirmTransaction = (formData) => apiWithAuth.post("admin/transact
 
 export const fetchUsers = (formData) => apiWithAuth.post("admin/user/fetch", formData).then(getApiResponse).catch(getErrorResponse);
 export const suspendUsers = (formData) => apiWithAuth.post("admin/user/suspend", formData).then(getApiResponse).catch(getErrorResponse);
+export const fetchAUser = (formData) => apiWithAuth.post("admin/user/fetch_a_user", formData).then(getApiResponse).catch(getErrorResponse);
 export const unsuspendUsers = (formData) => apiWithAuth.post("admin/staff/unsuspend", formData).then(getApiResponse).catch(getErrorResponse);
 
 export const fetchStaffs = (formData) => apiWithAuth.post("admin/staff/fetch", formData).then(getApiResponse).catch(getErrorResponse);
@@ -57,3 +58,5 @@ export const fetchNotification = (formData) => apiWithAuth.post("admin/profile/f
 export const changePassword = (formData) => apiWithAuth.post("admin/profile/update_password", formData).then(getApiResponse).catch(getErrorResponse);
 export const changeAvatar = (formData) => apiWithAuth.post("admin/profile/change_avatar", formData).then(getApiResponse).catch(getErrorResponse);
 export const changeUserName = (formData) => apiWithAuth.post("admin/profile/update", formData).then(getApiResponse).catch(getErrorResponse);
+
+
