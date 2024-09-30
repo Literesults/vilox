@@ -37,7 +37,6 @@ function Page() {
   const fetchTheUser = async () => {
     const { status, data } = await fetchAUser({ id: x.wallet.user_id }).catch(err => console.log(err))
     if (status) {
-      console.log(data);
       setXter(data.data[0])
     }
   }
