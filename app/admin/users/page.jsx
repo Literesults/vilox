@@ -96,16 +96,16 @@ function Page() {
     <AppLayout title={"Summary of Mbwoy users"}>
       {
         Object.keys(x).length > 0 && (
-          <Modal closeModal={() => setX({})} size={"sm"} isOpen={Object.keys(x).length > 0}>
+          <Modal closeModal={() => setX({})} size={"2xl"} isOpen={Object.keys(x).length > 0}>
             <form onSubmit={(e) => { submit(e) }} >
               <div className='space-y-5'>
                 <div className="">
                   <div className="grid gap-y-4 grid-cols-2">
-                    <div className='col-span-2'>
+                    <div className=''>
                       <div className='font-bold'>Name:</div>
                       <div className='text-gray-500'>{x?.name}</div>
                     </div>
-                    <div className='col-span-2'>
+                    <div className=''>
                       <div className='font-bold'>Email:</div>
                       <div className='text-gray-500'>{x?.email}</div>
                     </div>
