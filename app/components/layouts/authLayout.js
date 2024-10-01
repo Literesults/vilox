@@ -83,7 +83,7 @@ function AuthLayout({ children, onSubmit, errMsg }) {
           </div>
           <div className="text-center text-xs select-none pointer-events-none">Powered by Mbwoy</div>
         </div>
-        <div className="col-span-2 flex flex-col">
+        <div className="lg:col-span-2 hidden md:flex flex-col">
           <div className="flex-grow space-y-2 px-3 py-12">
             <div className="text-white text-5xl font-bold text-center">Swift Transactions</div>
             <div className="text-gray-300 max-w-2xl text-center mx-auto">
