@@ -16,7 +16,7 @@ const Download = () => {
         data-aos="fade-out"
       >
         <h1 className='lg:text-6xl text-white font-bold text-3xl'>
-          Download Vilox <br className='hidden lg:block' /> App 
+          Download Mbwoy <br className='hidden lg:block' /> App 
         </h1>
         <div className="ml-0 pl-0 buttonDivs flex my-10 space-x-6 items-center">
           <a href="">

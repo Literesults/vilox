@@ -93,7 +93,7 @@ function Page() {
 
 
   return (
-    <AppLayout title={"Summary of Vilox users"}>
+    <AppLayout title={"Summary of Mbwoy users"}>
       {
         Object.keys(x).length > 0 && (
           <Modal closeModal={() => setX({})} size={"sm"} isOpen={Object.keys(x).length > 0}>

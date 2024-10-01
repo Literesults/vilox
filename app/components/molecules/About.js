@@ -8,14 +8,14 @@ const About = () => {
   return (
     <div className="my-8" id='about'>
       <h2 className="text-3xl font-bold text-center text-blackText" data-aos="fade-up">
-        About Vilox
+        About Mbwoy
       </h2>
       <p className="text-1xl font-normal text-center py-4 text-paraText"  data-aos="fade-up" data-aos-delay="200">
-        Get to understand Vilox and what we do.
+        Get to understand Mbwoy and what we do.
       </p>
       <div className="lg:grid grid-cols-2 lg:p-10 p-0">
         <div className="gridContent p-4" >
-          <Image src={aboutImg} alt="About Vilox" data-aos="zoom-in" />
+          <Image src={aboutImg} alt="About Mbwoy" data-aos="zoom-in" />
         </div>
         <div className="gridContent h-auto p-6">
           <div className="p-6 bg-footerBg rounded-[20px]" data-aos="fade-up">
@@ -23,7 +23,7 @@ const About = () => {
               Why Us
             </h5>
             <p className="py-5 font-normal leading-8 text-paraText" >
-              Vilox has being in business for few year now, thou we have being working offline. Judging from comments we are rated one of the best exchange platform.
+              Mbwoy has being in business for few year now, thou we have being working offline. Judging from comments we are rated one of the best exchange platform.
               We buy gift cards of all kind, give you the best exchange rate, fast payment, very secure, and a good customer service.
             </p>
           </div>

@@ -7,10 +7,10 @@ const WhyUs = () => {
         id="whyUs"
 
         >
-            <h4 className="text-3xl text-white font-bold text-center py-4" data-aos="fade-down">Why use Vilox</h4>
+            <h4 className="text-3xl text-white font-bold text-center py-4" data-aos="fade-down">Why use Mbwoy</h4>
             <p className="text-1xl font-normal text-center text-lightText" data-aos="fade-up"
             >
-                At Vilox we offer these key features and many more <br className="hidden lg:block" />
+                At Mbwoy we offer these key features and many more <br className="hidden lg:block" />
                 Download the app and give us a try today!!
             </p>
             <div className="grid lg:grid-cols-3 my-14">

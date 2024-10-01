@@ -81,7 +81,7 @@ function AuthLayout({ children, onSubmit, errMsg }) {
               </form>
             </div>
           </div>
-          <div className="text-center text-xs select-none pointer-events-none">Powered by Vilox</div>
+          <div className="text-center text-xs select-none pointer-events-none">Powered by Mbwoy</div>
         </div>
         <div className="col-span-2 flex flex-col">
           <div className="flex-grow space-y-2 px-3 py-12">

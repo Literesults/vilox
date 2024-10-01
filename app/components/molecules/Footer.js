@@ -17,7 +17,7 @@ from 'react-icons/fa'
         <p
         className='font-normal my-4 text-center leading-6 py-5 text-paraText'
         
-        >Sell all giftcards and cryptocurrencies on vilox <br className="hidden lg:block" /> and get your funds in minutes.</p>
+        >Sell all giftcards and cryptocurrencies on Mbwoy <br className="hidden lg:block" /> and get your funds in minutes.</p>
 
         <div className="my-10 lg:flex items-center justify-between lg:px-16 py-10 text-center bg-footerBg" 
         
@@ -63,7 +63,7 @@ from 'react-icons/fa'
                 <a href="#" className='text-blackText'>FAQs</a>
             </div>
             <div className="footerImg">
-                <a href="#" className='text-blackText'>@2024 Vilox. All rights reserved</a>
+                <a href="#" className='text-blackText'>@2024 Mbwoy. All rights reserved</a>
             </div>
         </div>
     </div>
