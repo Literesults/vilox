@@ -23,12 +23,12 @@ export const MobileView = () => {
                     </li>
                         <a href="#whyUs"
                             className='font-normal'>
-                            Why use Vilox
+                            Why use Mbwoy
                         </a>
                     <li className='list-none'>
                         <a href="#about"
                             className='font-normal'>
-                            About Vilox
+                            About Mbwoy
                         </a>
                     </li>
                     <li className='list-none'>

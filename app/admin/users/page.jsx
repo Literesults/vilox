@@ -37,7 +37,6 @@ function Page() {
   const fetchTheUser = async () => {
     const { status, data } = await fetchAUser({ id: x.wallet.user_id }).catch(err => console.log(err))
     if (status) {
-      console.log(data);
       setXter(data.data[0])
     }
   }
@@ -94,7 +93,7 @@ function Page() {
 
 
   return (
-    <AppLayout title={"Summary of Vilox users"}>
+    <AppLayout title={"Summary of Mbwoy users"}>
       {
         Object.keys(x).length > 0 && (
           <Modal closeModal={() => setX({})} size={"sm"} isOpen={Object.keys(x).length > 0}>

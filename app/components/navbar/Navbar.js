@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="navbar container-fluid flex lg:px-14 px-5 py-4 justify-between items-center fixed bg-white w-full right-0 left-0 top-0 shadow-md z-[999]"
     >
       <a href="#">
-        <Image src={Logo} alt="Vilox Logo" className='mobileViewLogo' />
+        <Image src={Logo} alt="Mbwoy Logo" className='mobileViewLogo' />
       </a>
       < ul className='lg:flex gap-10 m-0 p-0 justify-end items-center hidden' >
         <li className='list-none'>
@@ -20,12 +20,12 @@ const Navbar = () => {
         </li>
         <a href="#whyUs"
           className='font-normal'>
-          Why use Vilox
+          Why use Mbwoy
         </a>
         <li className='list-none'>
           <a href="#about"
             className='font-normal'>
-            About Vilox
+            About Mbwoy
           </a>
         </li>
         <li className='list-none'>

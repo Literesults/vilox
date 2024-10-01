@@ -118,7 +118,7 @@ function Page() {
   }, [])
 
   return (
-    <AppLayout title={"Summary of Vilox staffs"}>
+    <AppLayout title={"Summary of Mbwoy staffs"}>
       <Modal closeModal={() => { setAddStaff(false) }} size={"lg"} isOpen={addStaff}>
         <form onSubmit={(e) => { addNow(e) }} >
           <div className='space-y-5'>
