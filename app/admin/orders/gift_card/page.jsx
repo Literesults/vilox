@@ -95,6 +95,15 @@ function Page() {
                   )
                 }
 
+                {
+                  x?.ecode !== null && (
+                    <div className=''>
+                      <div className='font-bold'>Ecode:</div>
+                      <div className='text-gray-500 flex gap-5 items-center'>{x.ecode} <span className='cursor-pointer bg-gray-100 w-6 h-6 text-xs flex rounded-full items-center justify-center' title='Click to Copy' onClick={() => navigator?.clipboard?.writeText(x.ecode)}><MdOutlineFileCopy /></span></div>
+                    </div>
+                  )
+                }
+
                 <div className="">
                   <div className="grid grid-cols-2">
                     <div className=''>
@@ -136,7 +145,7 @@ function Page() {
                       {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
                       {selected === "rejected" && <AppInput type={"file"} name="image" required label="Image (Optional)" />}
                       <div className='flex gap-4 items-center'>
-                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ?"Confirming..." : "Confirm"}</button>
+                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Confirming..." : "Confirm"}</button>
                         <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                       </div>
                     </div>
