@@ -12,8 +12,6 @@ const PersonalInfo = ({ goBack }) => {
   const [formError, setFormError] = useState("")
   const [changed, setChanged] = useState(false)
   const dispatch = useDispatch()
-  console.log(user)
-
 
   const uploadUpdateImg = async (e) => {
     setChanged(true)
@@ -55,7 +53,7 @@ const PersonalInfo = ({ goBack }) => {
       </div>
       <div className="flex px-4 md:px-0 flex-col md:flex-row items-center gap-4 mt-6">
         <button disabled={disable} className="bg-black disabled:bg-gray-200 dark:disabled:bg-gray-700 dark:disabled:text-gray-600  w-full md:w-auto py-3 px-5 font-semibold text-[#fff] rounded-lg">
-          Save
+          Confirm
         </button>
         <button className="font-semibold w-full md:w-auto text-[#344051]">Cancel</button>
       </div>

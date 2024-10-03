@@ -119,7 +119,7 @@ function Page() {
                       {selected === "success" && <AppInput type={"number"} name="amount" required label="Comfirm amount" />}
                       {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
                       <div className='flex gap-4 items-center'>
-                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
+                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ?"Confirming..." : "Confirm"}</button>
                         <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                       </div>
                     </div>
