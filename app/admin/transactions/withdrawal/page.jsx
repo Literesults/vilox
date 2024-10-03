@@ -5,7 +5,7 @@ import AppCard from '@/app/components/organisms/AppCard'
 import AppInput from '@/app/components/organisms/AppInput'
 import { CiCreditCardOff } from "react-icons/ci";
 import { PiFingerprintSimpleThin, PiHandWithdraw } from "react-icons/pi";
-import { MdOutlinePayments } from 'react-icons/md'
+import { MdOutlineFileCopy, MdOutlinePayments } from 'react-icons/md'
 import { TbMoneybag } from 'react-icons/tb'
 import { comfirmTransaction, fetchTransaction, transactionsWithdrawalSummary } from '@/app/services/authService'
 import AppPagination from '@/app/components/organisms/AppPagination'
@@ -106,7 +106,7 @@ function Page() {
                     </div>
                     <div className=''>
                       <div className='font-bold'>Accoutn number:</div>
-                      <div className='text-gray-500'>{x.bank.account_number}</div>
+                      <div className='text-gray-500 flex gap-5 items-center'>{x.bank.account_number} <span className='cursor-pointer bg-gray-100 w-6 h-6 text-xs flex rounded-full items-center justify-center' title='Click to Copy' onClick={() => navigator?.clipboard?.writeText(x.bank.account_number)}><MdOutlineFileCopy /></span></div>
                     </div>
                     <div className=''>
                       <div className='font-bold'>Accoutn name:</div>
