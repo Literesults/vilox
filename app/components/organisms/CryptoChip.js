@@ -80,7 +80,7 @@ function CryptoChip({ data }) {
                                 <AppInput defaultValue={data.sell_rate_high} name="sell_rate_high" required label="Sell rate high " />
                                 <AppInput defaultValue={data.wallet_address} name="wallet_address" required label="Wallet address " />
                                 <div className='flex gap-4 items-center'>
-                                    <button className='bg-black text-white text-center flex-grow rounded-md py-2'>Save</button>
+                                    <button className='bg-black text-white text-center flex-grow rounded-md py-2'>Confirm</button>
                                     <div onClick={() => { setShowModal(false); setShowForm(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                                 </div>
                             </div>

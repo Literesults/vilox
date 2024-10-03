@@ -141,7 +141,7 @@ function Page() {
             <AppInput name="email" required label="Email" type="email" />
             <AppInput name="phone" required label="Phone" type="tell" />
             <div className='flex gap-4 items-center'>
-              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
+              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ?"Confirming..." : "Confirm"}</button>
               <div onClick={() => { setAddStaff(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
             </div>
           </div>

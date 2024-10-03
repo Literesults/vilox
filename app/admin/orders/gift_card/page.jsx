@@ -9,6 +9,8 @@ import Modal from '@/app/components/organisms/Modal'
 import AppInput from '@/app/components/organisms/AppInput'
 import serialize from '@/app/hooks/Serialize'
 import ResponseModal from '@/app/components/organisms/ResponseModal'
+import axios from 'axios'
+import { API_BASE_URL, TOKEN } from '@/app/services/httpService'
 
 function Page() {
   const [loading, setLoading] = useState(true)
@@ -20,6 +22,8 @@ function Page() {
   const [summary, setSummary] = useState([])
   const [alertMsg, setAlert] = useState(false)
   const [alertMsgData, setAlertData] = useState(false)
+
+  const headers = { 'Authorization': TOKEN }
 
   const fetch = async () => {
     const { status, data } = await orderFetchGiftCard().catch(err => console.log(err))
@@ -33,18 +37,30 @@ function Page() {
 
   const submit = async (e) => {
     e.preventDefault();
-    const val = serialize(e.target)
     setProcessing(true)
-    const { status, data } = await comfirmGiftCardOrder(val).catch(err => console.log(err))
-    if (status) {
-      fetch()
+    const formData = new FormData();
+    formData.append("id", e.target[0].value)
+    formData.append("status", e.target[1].value)
+    if (e.target[1].value === "rejected") {
+      formData.append("reason", e.target[2].value)
+      formData.append("image", e.target[3].files[0])
+    } else {
+      formData.append("amount", e.target[2].value)
+    }
+
+    await axios.post(`${API_BASE_URL}admin/order/giftcard/confirm_order`, formData, { headers }).then(async (res) => {
+      await fetch()
       setId(0)
       setSelected("")
       setX({})
-    }
-    setProcessing(false)
-    setAlert(true)
-    setAlertData(data)
+      setProcessing(false)
+      setAlert(true)
+      setAlertData(res.data)
+    }).catch((error) => {
+      setProcessing(false)
+      setAlert(true)
+      setAlertData(error?.error)
+    })
   }
 
 
@@ -68,7 +84,7 @@ function Page() {
       {
         id !== 0 && (
           <Modal closeModal={() => { setId(0); setSelected("") }} size={"sm"} isOpen={id !== 0}>
-            <form onSubmit={(e) => { submit(e) }} >
+            <form onSubmit={(e) => { submit(e) }} enctype="multipart/form-data">
               <div className='space-y-5'>
                 <div className="text-xl font-bold">Order Infomation</div>
                 {
@@ -118,22 +134,41 @@ function Page() {
                       <AppInput type={"select"} onChange={(e) => setSelected(e)} options={["success", "rejected"]} name="status" required label="Status" />
                       {selected === "success" && <AppInput type={"number"} name="amount" required label="Comfirm amount" />}
                       {selected === "rejected" && <AppInput type={"textarea"} name="reason" required label="Reason" />}
+                      {selected === "rejected" && <AppInput type={"file"} name="image" required label="Image (Optional)" />}
                       <div className='flex gap-4 items-center'>
-                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Saving..." : "Save"}</button>
+                        <button disabled={processing || selected === ""} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ?"Confirming..." : "Confirm"}</button>
                         <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                       </div>
                     </div>
                   ) : (
-                    <div className="">
+                    <div className="space-y-3">
                       <div className="">
                         <div className='font-bold'>Status:</div>
                         <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${x.status === "success" ? "text-success bg-success" : x.status === "rejected" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{x.status}</div>
                       </div>
+                      {
+                        x.status === "rejected" && (
+                          <div className="">
+                            <div className=''>
+                              <div className='font-bold'>Reason for rejection:</div>
+                              <div className='text-gray-500'>{x?.cancel_reason}</div>
+                            </div>
+                            <div className='font-bold'>Reason for rejection:</div>
+                            {
+                              x?.cancel_image !== null && (
+                                <div className="h-72 bg-gray-50 rounded-md overflow-hidden">
+                                  <img src={x?.cancel_image} className='h-full' />
+                                </div>
+                              )
+                            }
+                          </div>
+
+                        )
+                      }
                       <div onClick={() => { setId(0); setSelected("") }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
                     </div>
                   )
                 }
-
               </div>
             </form>
           </Modal>
@@ -185,7 +220,7 @@ function Page() {
                       <div className="flex-grow">
                         <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${data.status === "success" ? "text-success bg-success" : data.status === "rejected" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{data.status}</div>
                       </div>
-                      <div onClick={() => { setId(data.id); setX(data) }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
+                      <div onClick={() => { setId(data.id); setX(data); console.log(data); }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
                     </div>
                   </td>
                 </tr>
