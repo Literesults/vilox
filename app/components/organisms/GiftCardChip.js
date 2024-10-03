@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { AiOutlineLoading } from 'react-icons/ai';
 import { CiCreditCard1, CiCreditCardOff } from 'react-icons/ci';
 
-function GiftCardChip({ data, refresh }) {
+function GiftCardChip({ data, refresh, upDate }) {
     const sell_rate_high = Number(data.sell_rate_high)
     const sell_rate_low = Number(data.sell_rate_low)
     const [processing, setProcessing] = useState(false)
@@ -55,8 +55,13 @@ function GiftCardChip({ data, refresh }) {
                     <div className='text-gray-500'>&#8358;{sell_rate_high.toLocaleString('en-US')}</div>
                 </div>
             </div>
-            <div className={`inline-block ${data.status === "active" ? "bg-success text-success" : "bg-danger text-danger"} bg-opacity-10 px-6 text-xs rounded-3xl py-1`}>
-                {data.status}
+            <div className='flex items-center justify-between'>
+                <div className={`inline-block ${data.status === "active" ? "bg-success text-success" : "bg-danger text-danger"} bg-opacity-10 px-6 text-xs rounded-3xl py-1`}>
+                    {data.status}
+                </div>
+                <div onClick={upDate} className={`text-white bg-black cursor-pointer px-6 text-xs rounded-3xl py-1`}>
+                    Update
+                </div>
             </div>
         </div>
     )

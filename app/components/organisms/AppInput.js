@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function AppInput({ label, type, required, name, max, options, value, defaultValue, display, onChange }) {
   const [selected, setSelected] = useState("");
@@ -18,6 +18,11 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
     }
     return result;
   }
+
+  useEffect(() => {
+    type === "select" && setSelected(defaultValue)
+  }, [])
+  
 
   const Fid = makeid(7)
 
@@ -89,7 +94,7 @@ function AppInput({ label, type, required, name, max, options, value, defaultVal
               {options?.map((e, i) => (
                 <div
                   key={i}
-                  onClick={() => {setSelected(e); onChange && onChange(e)}}
+                  onClick={() => { setSelected(e); onChange && onChange(e) }}
                   className="hover:bg-gray-100 capitalize cursor-pointer rounded-lg p-2"
                 >
                   {e}

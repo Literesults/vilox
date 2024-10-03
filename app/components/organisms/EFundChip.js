@@ -6,8 +6,10 @@ import AppInput from './AppInput';
 import serialize from '@/app/hooks/Serialize';
 import { updateEFud } from '@/app/services/authService';
 import ResponseModal from './ResponseModal';
+import { AiOutlineLoading } from 'react-icons/ai';
+import { CiCreditCard1, CiCreditCardOff } from 'react-icons/ci';
 
-function EFundChip({ data }) {
+function EFundChip({ data, reload }) {
     const [showModal, setShowModal] = useState(false)
     const [processing, setProcessing] = useState(false)
     const [showForm, setShowForm] = useState(false)
@@ -27,6 +29,7 @@ function EFundChip({ data }) {
         if (status) {
             setShowModal(false)
         }
+        await reload()
         setProcessing(false)
         setAlert(true)
         setAlertData(data)
@@ -82,8 +85,6 @@ function EFundChip({ data }) {
                             </div>
                         )
                     }
-
-
                 </form>
             </Modal>
             <div className="">
@@ -91,12 +92,39 @@ function EFundChip({ data }) {
                     <div className="flex-grow">
                         <div className="w-12 h-12 rounded-full"><img src={data.icon} width={100} height={100} /></div>
                     </div>
-                    <div>
+                    <div className='flex items-center gap-2'>
                         <div onClick={() => setShowModal(true)} className='w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer'><LiaEye /></div>
+                        <div>
+                            {
+                                processing ? (
+                                    <div className='w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer'>
+                                        <AiOutlineLoading className='animate-spin' />
+                                    </div>
+                                ) : (
+                                    <form onSubmit={(e) => updateEFund(e)} enctype="multipart/form-data">
+                                        <div className='space-y-5'>
+                                            <button title={data.status === "active" ? "Click to deactivate" : "Click to activate"} className='w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer'>
+                                                {
+                                                    data.status === "active" ? <CiCreditCard1 /> : <CiCreditCardOff />
+                                                }
+                                            </button>
+                                            <input type='hidden' name='status' value={data.status === "active" ? "inactive" : "active"} />
+                                            <input type='hidden' name='id' value={data.id} />
+                                            <input type='hidden' defaultValue={data.name} name="name" required label="Name" />
+                                            <input type='hidden' defaultValue={data.sell_rate_low} name="sell_rate_low" required label="Sell rate low " />
+                                            <input type='hidden' defaultValue={data.sell_rate_high} name="sell_rate_high" required label="Sell rate high " />
+                                        </div>
+                                    </form>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
                 <div>
                     <div className="text-xl font-bold">{data.name}</div>
+                    <div className={`inline-block ${data.status === "active" ? "bg-success text-success" : "bg-danger text-danger"} bg-opacity-10 px-6 text-xs rounded-3xl py-1`}>
+                        {data.status}
+                    </div>
                 </div>
             </div>
             <div className="grid grid-cols-2">

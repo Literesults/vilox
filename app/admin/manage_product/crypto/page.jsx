@@ -144,7 +144,7 @@ function Page() {
         <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
           {
             !loading && catego.map((cat, i) => (
-              <CryptoChip data={cat} key={i} />
+              <CryptoChip reload={ async () => await fetch()} data={cat} key={i} />
             ))
           }
 

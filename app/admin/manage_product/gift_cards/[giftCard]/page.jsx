@@ -26,8 +26,11 @@ function Page({ params }) {
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState();
   const [showModal, setShowModal] = useState(false)
+  const [selectedUpdateImage, setSelectedUpdateImage] = useState();
   const [processing, setProcessing] = useState(false)
+  const [changed, setChanged] = useState(false)
   const [errors, setErrors] = useState({})
+  const [updateItem, setUpdateItem] = useState({})
   const [alertMsg, setAlert] = useState(false)
   const [alertMsgData, setAlertData] = useState(false)
 
@@ -45,6 +48,14 @@ function Page({ params }) {
   const uploadImg = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
+    }
+  }
+
+
+  const uploadUpdateImg = async (e) => {
+    setChanged(true)
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedUpdateImage(e.target.files[0]);
     }
   }
 
@@ -74,6 +85,40 @@ function Page({ params }) {
     })
     setProcessing(false)
   }
+
+
+
+  const upadateFN = async (e) => {
+    e.preventDefault();
+    const data = serialize(e.target)
+    const formdata = new FormData()
+    setProcessing(true)
+    if (changed) {
+      formdata.append('image', selectedUpdateImage)
+    }
+    formdata.append('id', updateItem.id)
+    formdata.append('status', updateItem.status)
+    formdata.append('name', data.name)
+    formdata.append('speed', data.speed)
+    formdata.append('sell_rate_low', data.sell_rate_low)
+    formdata.append('sell_rate_high', data.sell_rate_high)
+
+
+    await axios.post(`${API_BASE_URL}admin/giftcard/update_giftcard`, formdata, { headers }).then(async (res) => {
+      await fetch()
+      setAlert(true)
+      setAlertData(res.data)
+      setUpdateItem({})
+      setChanged(false)
+      selectedUpdateImage()
+    }).catch((error) => {
+      error.response && setErrors(error.response.data.data);
+      setAlert(true)
+      error.response && setAlertData(error?.response?.data)
+    })
+    setProcessing(false)
+  }
+
 
   useEffect(() => {
     fetch()
@@ -105,17 +150,50 @@ function Page({ params }) {
             <AppInput name="sell_rate_high" required label="Sell rate high " />
             <AppInput type={"select"} options={["hot", "normal"]} name="speed" required label="Speed" />
             <div className='flex gap-4 items-center'>
-              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ?"Confirming..." : "Confirm"}</button>
+              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Confirming..." : "Confirm"}</button>
               <div onClick={() => { setShowModal(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
             </div>
           </div>
         </form>
       </Modal>
 
+
+      <Modal closeModal={() => { setUpdateItem({}); setChanged(false) }} size={"lg"} isOpen={Object.keys(updateItem).length > 0}>
+        <form onSubmit={(e) => { upadateFN(e) }} >
+          <div className='space-y-5'>
+            <div className="h-24 w-24 rounded-full bg-gray-200 relative">
+              {selectedUpdateImage && (
+                <Image
+                  src={changed ? URL.createObjectURL(selectedUpdateImage) : updateItem?.image}
+                  alt="Thumb"
+                  className="w-full h-full rounded-full"
+                  width={'150'}
+                  height={'150'}
+                />
+              )}
+              <div onClick={() => document.querySelector('#imgTwo').click()} className="absolute flex items-center justify-center w-8 h-8 bg-black border-2 border-white rounded-full bottom-0 right-0 cursor-pointer text-white">
+                <BsCamera />
+              </div>
+              <input name="image" id="imgTwo" onChange={(e) => uploadUpdateImg(e)} type="file" className="opacity-0" accept="image/png, image/gif, image/jpeg" />
+            </div>
+            <AppInput name="name" required label="Name" defaultValue={updateItem?.name} />
+            <AppInput name="sell_rate_low" required label="Sell rate low " defaultValue={updateItem?.sell_rate_low} />
+            <AppInput name="sell_rate_high" required label="Sell rate high " defaultValue={updateItem?.sell_rate_high} />
+            <AppInput type={"select"} options={["hot", "normal"]} name="speed" required label="Speed" defaultValue={updateItem?.speed} />
+            <div className='flex gap-4 items-center'>
+              <button disabled={processing} className='bg-black disabled:bg-opacity-30 text-white text-center flex-grow rounded-md py-2'>{processing ? "Confirming..." : "Confirm"}</button>
+              <div onClick={() => { setUpdateItem({}); setChanged(false) }} className='hover:bg-gray-50 text-center flex-grow rounded-md py-2 cursor-pointer'>Cancel</div>
+            </div>
+          </div>
+        </form>
+      </Modal>
+
+
+
       <div className="space-y-5">
         <div className="flex items-center">
           <div className="flex-grow flex">
-            <div onClick={() => router.back() } className="cursor-pointer flex items-center gap-1">
+            <div onClick={() => router.back()} className="cursor-pointer flex items-center gap-1">
               <IoIosArrowRoundBack /> Back
             </div>
           </div>
@@ -124,7 +202,7 @@ function Page({ params }) {
         <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
           {
             !loading && catego.map((cat, i) => (
-              <GiftCardChip refresh={() => fetch()} data={cat} key={i} />
+              <GiftCardChip upDate={() => setUpdateItem(cat)} refresh={() => fetch()} data={cat} key={i} />
             ))
           }
 
