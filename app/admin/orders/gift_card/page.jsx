@@ -230,7 +230,7 @@ function Page() {
                       <div className="flex-grow">
                         <div className={`text-[9px] px-3 inline py-[2px] rounded-lg bg-opacity-10 ${data.status === "success" ? "text-success bg-success" : data.status === "rejected" ? "text-danger bg-danger" : "text-yellow bg-yellow"}`}>{data.status}</div>
                       </div>
-                      <div onClick={() => { setId(data.id); setX(data); console.log(data); }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
+                      <div onClick={() => { setId(data.id); setX(data); }} className="w-7 h-7 cursor-pointer rounded-md text-black flex items-center justify-center bg-gray-200 "><PiFingerprintSimpleThin /></div>
                     </div>
                   </td>
                 </tr>
