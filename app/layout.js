@@ -9,6 +9,7 @@ import Store from "./Store";
 import 'aos/dist/aos.css'; // AOS styles
 import { useEffect } from 'react';
 import AOS from 'aos';
+import Loading from "./components/organisms/Loading";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Provider store={Store}>
-          <PersistGate persistor={persistor}>
+          <PersistGate loading={<Loading />} persistor={persistor}>
             {children}
           </PersistGate>
         </Provider>

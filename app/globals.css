@@ -19,7 +19,7 @@
 body {
   background: white;
   overflow-x: hidden;
- 
+
 }
 
 @layer utilities {
@@ -30,38 +30,42 @@ body {
 
 
 /* .navbar section  */
-.mobileViewLogo{
+.mobileViewLogo {
   width: 100%;
   height: auto;
 }
+
 /* .navbar section ending */
 
 
 
 /* Hero section startting */
-.hero{
+.hero {
   height: 85vh;
-  padding-top: 60px!important
+  padding-top: 60px !important
 }
 
-@media (min-width: 992px){
-  .hero{
+@media (min-width: 992px) {
+  .hero {
     height: 135vh;
   }
-  .hero h1{
+
+  .hero h1 {
     line-height: 84px;
   }
 
   /* download section starting  */
-  .download h1{
+  .download h1 {
     line-height: 84px;
   }
+
   /* download section ending */
 }
+
 /* Hero section ending */
 
-@media  (max-width: 768px) {
-  .navbar .mobileView{
+@media (max-width: 768px) {
+  .navbar .mobileView {
     position: absolute;
     text-align: center;
     height: 90vh;
@@ -71,11 +75,12 @@ body {
     right: 0;
     left: 0;
     display: flex;
-    flex-direction : column;
+    flex-direction: column;
     justify-content: center;
     transition: all 0.3s ease-in;
   }
-  .mobileViewLogo{
+
+  .mobileViewLogo {
     width: 100%;
     height: auto;
   }
@@ -100,25 +105,25 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #000; 
+  background: #000;
   border-radius: 100px
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #000; 
+  background: #000;
 }
 
-.apexcharts-toolbar{
+.apexcharts-toolbar {
   display: none !important;
 }
 
-.trunck-text{
+.trunck-text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -133,6 +138,7 @@ body {
   0% {
     background-position: -800px 0
   }
+
   100% {
     background-position: 800px 0
   }
@@ -150,4 +156,79 @@ body {
   background-size: 800px 104px;
   position: relative;
   /* border-radius: 8px ; */
+}
+
+
+
+
+.lds-ellipsis,
+.lds-ellipsis div {
+  box-sizing: border-box;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33.33333px;
+  width: 13.33333px;
+  height: 13.33333px;
+  border-radius: 50%;
+  background: "#fff";
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
 }
